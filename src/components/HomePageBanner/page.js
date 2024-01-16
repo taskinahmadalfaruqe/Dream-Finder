@@ -26,7 +26,7 @@ const HomePageBanner = () => {
 
   return (
     <motion.div initial={{y: 800, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:1.5}} className="homePageBanner h-lvh w-full relative flex justify-center items-center">
-      <div className="absolute h-full w-full bg-[#00000080] left-0 top-0"></div>
+      <div className="absolute h-full w-full bg-darkColor opacity-70 left-0 top-0"></div>
       <div className="relative z-10">
         <div className="container">
    
