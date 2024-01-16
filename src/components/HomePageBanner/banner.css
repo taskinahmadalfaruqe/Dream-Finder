@@ -1,0 +1,8 @@
+.homePageBanner{
+    background: url('../../assets//banner/homePageBanner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.heading{
+    z-index: 20!important;
+}

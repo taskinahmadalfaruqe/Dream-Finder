@@ -1,10 +1,13 @@
+import HomePageBanner from '@/components/HomePageBanner/page';
 import React from 'react';
+// import banner from "../assets/banner/homePageBanner.jpg"
+
 
 const HomePage = () => {
 
   return (
     <div>
-      This Is Home Page
+     <HomePageBanner />
     </div>
   );
 };
