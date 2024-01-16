@@ -1,0 +1,65 @@
+{
+    "categories":[
+        {
+          "id": 1,
+          "category_name": "Accounting",
+          "available_job": 200,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991144.svg"
+        },
+        {
+          "id": 2,
+          "category_name": "Administrative",
+          "available_job": 150,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991145.svg"
+        },
+        {
+          "id": 3,
+          "category_name": "Advertising",
+          "available_job": 100,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991146.svg"
+        },
+        {
+          "id": 4,
+          "category_name": "Banking",
+          "available_job": 300,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991147.svg"
+        },
+        {
+          "id": 5,
+          "category_name": "Construction",
+          "available_job": 250,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991148.svg"
+        },
+        {
+          "id": 6,
+          "category_name": "Customer Service",
+          "available_job": 175,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991149.svg"
+        },
+        {
+          "id": 7,
+          "category_name": "Education",
+          "available_job": 225,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991150.svg"
+        },
+        {
+          "id": 8,
+          "category_name": "Engineering",
+          "available_job": 275,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991151.svg"
+        },
+        {
+          "id": 9,
+          "category_name": "Finance",
+          "available_job": 350,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991152.svg"
+        },
+        {
+          "id": 10,
+          "category_name": "Healthcare",
+          "available_job": 400,
+          "icon_image": "https://www.flaticon.com/svg/static/icons/svg/2991/2991153.svg"
+        }
+      ]
+      
+}
