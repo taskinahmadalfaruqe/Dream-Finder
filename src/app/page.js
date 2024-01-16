@@ -1,4 +1,4 @@
-import JobSection from "@/components/jobSection/JobSection";
+import JobSection from "@/components/ui/jobSection/JobSection";
 import { Button } from "@nextui-org/react";
 import React from "react";
 
