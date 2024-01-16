@@ -53,12 +53,12 @@ export default function HelpDesk() {
               </label>
               <input
                 type="tel"
-                id="contactNumber" className="w-full border-primaryColor border p-2 rounded"
+                id="contactNumber" className="w-full border-primaryColor border  p-2 rounded"
                 required
               />
             </div>
           </div>
-          <div className='flex gap-4'>
+          <div className='flex gap-4 '>
             <div className="w-1/2">
               <label className="block mb-2 text-darkColor dark:text-whiteColor">
                 Email Address
