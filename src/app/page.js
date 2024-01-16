@@ -1,7 +1,8 @@
 import HomePageBanner from '@/components/HomePageBanner/page';
 import { Button } from '@nextui-org/react';
 import React from 'react';
-// import banner from "../assets/banner/homePageBanner.jpg"
+import Categories from '@/components/Categories';
+
 
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
      <HomePageBanner />
       This Is Home Page
       <Button> Remove</Button>
+      <Categories></Categories>
     </div>
   );
 };
