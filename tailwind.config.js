@@ -14,13 +14,12 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: '10px',
-        sm: '1rem',
-        lg: '50px',
+        sm: '10px',
+        lg: '30px',
         xl: '50px',
         '2xl': '80px',
       },
     },
-
     extend: {
       backgroundImage: {
         'BG1': "url('https://i.ibb.co/z6PG6Nb/bg.jpg')",
@@ -36,7 +35,7 @@ module.exports = {
         lightdarkColor: '#1D1D1D',
         primaryColor: '#00BE63',
         secondoryColor: '#5b6e7f',
-        lightSkyBlue: '#98d5c7',
+        lightSkyBlue: '#98d5c7', 
       },
 
     },
