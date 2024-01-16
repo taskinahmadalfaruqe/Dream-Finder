@@ -70,7 +70,7 @@
       "position": "Software Engineer",
       "jobType": "Full-time",
       "skill": ["Java", "JavaScript", "React"],
-      "salary": "$100,000 - $120,000"
+      "salary": "$100,000"
     },
     {
       "_id": "2",
@@ -80,7 +80,7 @@
       "position": "Data Scientist",
       "jobType": "Contract",
       "skill": ["Python", "Machine Learning", "SQL"],
-      "salary": "$120,000 - $150,000"
+      "salary": "$120,000"
     },
     {
       "_id": "3",
@@ -90,7 +90,7 @@
       "position": "UI/UX Designer",
       "jobType": "Part-time",
       "skill": ["Adobe XD", "Sketch", "HTML", "CSS"],
-      "salary": "$70,000 - $80,000"
+      "salary": "$70,000"
     },
     {
       "_id": "4",
@@ -100,7 +100,7 @@
       "position": "Medical Researcher",
       "jobType": "Full-time",
       "skill": ["Medical Research", "Statistics", "Data Analysis"],
-      "salary": "$90,000 - $110,000"
+      "salary": "$90,000"
     },
     {
       "_id": "5",
@@ -110,7 +110,7 @@
       "position": "Environmental Scientist",
       "jobType": "Full-time",
       "skill": ["Environmental Science", "Climate Modeling", "GIS"],
-      "salary": "$80,000 - $100,000"
+      "salary": "$80,000"
     },
     {
       "_id": "6",
@@ -120,7 +120,7 @@
       "position": "Financial Analyst",
       "jobType": "Contract",
       "skill": ["Financial Analysis", "Excel", "Data Modeling"],
-      "salary": "$110,000 - $130,000"
+      "salary": "$110,000"
     },
     {
       "_id": "7",
@@ -130,7 +130,7 @@
       "position": "Front-end Developer",
       "jobType": "Full-time",
       "skill": ["HTML", "CSS", "JavaScript", "React"],
-      "salary": "$90,000 - $110,000"
+      "salary": "$90,000"
     },
     {
       "_id": "8",
@@ -140,7 +140,7 @@
       "position": "Project Manager",
       "jobType": "Full-time",
       "skill": ["Project Management", "Leadership", "Communication"],
-      "salary": "$120,000 - $140,000"
+      "salary": "$120,000"
     },
     {
       "_id": "9",
@@ -149,8 +149,19 @@
       "location": "Austin, TX",
       "position": "Security Analyst",
       "jobType": "Part-time",
-      "skill": ["Cybersecurity", "Network Security", "Penetration Testing"],
-      "salary": "$80,000 - $100,000"
+      "skill": [
+        "Cybersecurity",
+        "Network Security",
+        "Digital",
+        "Digital Marketing",
+        "SEO",
+        "Social Media",
+        "Marketing",
+        "SEO",
+        "Social Media",
+        "Penetration Testing"
+      ],
+      "salary": "$80,000"
     },
     {
       "_id": "10",
@@ -160,7 +171,7 @@
       "position": "Digital Marketing Specialist",
       "jobType": "Full-time",
       "skill": ["Digital Marketing", "SEO", "Social Media"],
-      "salary": "$70,000 - $90,000"
+      "salary": "$70,000"
     },
     {
       "_id": "11",
@@ -170,7 +181,7 @@
       "position": "Machine Learning Engineer",
       "jobType": "Contract",
       "skill": ["Machine Learning", "Python", "TensorFlow"],
-      "salary": "$130,000 - $150,000"
+      "salary": "$130,000"
     },
     {
       "_id": "12",
@@ -180,7 +191,7 @@
       "position": "Travel Consultant",
       "jobType": "Full-time",
       "skill": ["Customer Service", "Geography", "Communication"],
-      "salary": "$50,000 - $70,000"
+      "salary": "$50,000"
     }
   ]
 }

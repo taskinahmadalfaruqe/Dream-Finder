@@ -37,28 +37,6 @@ module.exports = {
         secondoryColor: "#5b6e7f",
         lightSkyBlue: "#98d5c7",
       },
-
-      screens: {
-        "2xsm": "375px",
-        // => @media (min-width: 440px) { ... }
-        xsm: "440px",
-        // => @media (min-width: 440px) { ... }
-
-        sm: "640px",
-        // => @media (min-width: 640px) { ... }
-
-        md: "768px",
-        // => @media (min-width: 768px) { ... }
-
-        lg: "1024px",
-        // => @media (min-width: 1024px) { ... }
-
-        xl: "1280px",
-        // => @media (min-width: 1280px) { ... }
-
-        "2xl": "1535px",
-        // => @media (min-width: 1280px) { ... }
-      },
     },
   },
   plugins: [nextui()],
