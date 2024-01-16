@@ -1,13 +1,16 @@
-import JobSection from "@/components/ui/jobSection/JobSection";
-import { Button } from "@nextui-org/react";
 import React from "react";
+import JobSection from "@/components/ui/jobSection/JobSection";
+import HelpDesk from "@/components/ui/helpDesk/helpDesk";
+import HomePageBanner from "@/components/HomePageBanner/page";
+import Categories from "@/components/Categories";
 
 const HomePage = () => {
   return (
-    <div>
-      This Is Home Page
-      <Button> Remove</Button>
+    <div className="p-20">
+      <HomePageBanner />
+      <Categories></Categories>
       <JobSection />
+      <HelpDesk></HelpDesk>
     </div>
   );
 };
