@@ -5,7 +5,7 @@ import { FaFacebook,FaLinkedin,FaTwitter, FaInstagram,FaInstagramSquare } from "
 
 const Footer = () => {
     return (
-       <div className="mt-20">
+       <div className="mt-20 ">
        
          <div className="h-[300px] bg-darkColor flex items-center">
             <footer className="container relative">
@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="flex justify-between items-center">
                 <div>
                     <h1 className="text-2xl font-bold text-lightWhiteColor">Does your company need a great employees?</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, error dolores cum recusandae, quae architecto possimus molestias enim et repudiandae nam. Aut officia sit hic id quam omnis unde nisi!</p>
+                    
                 </div>
                 <div>
                     <button className="px-3 py-1 z-40 bg-lightWhiteColor rounded-md font-medium text-gray-600">Post a job</button>
