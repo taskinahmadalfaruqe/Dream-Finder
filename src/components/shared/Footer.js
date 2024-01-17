@@ -38,7 +38,7 @@ const Footer = () => {
                         <h1>Our Clients</h1>
                         <h1>For Employers</h1>
                         <h1>Blog</h1>
-                        <p>&copy;2024 All Rights Reserves</p>
+                        <p>&copy;2024 All Rights Reserves by dream finder</p>
                     </div>
                 </div>
             </footer>
