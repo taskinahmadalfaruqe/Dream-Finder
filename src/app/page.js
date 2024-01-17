@@ -9,7 +9,7 @@ const HomePage = () => {
     <div className="p-20">
       <HomePageBanner />
       <Categories></Categories>
-      {/* <JobSection /> */}
+      <JobSection />
       <HelpDesk></HelpDesk>
     </div>
   );
