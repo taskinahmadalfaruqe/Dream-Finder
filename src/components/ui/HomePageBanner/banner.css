@@ -1,5 +1,5 @@
 .homePageBanner{
-    background: url('../../assets//banner/homePageBanner.jpg');
+    background: url('../../../assets/banner/homePageBanner.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
