@@ -32,7 +32,7 @@ const JobApplyCard = ({ job }) => {
       {/* CTA div */}
       <div className="flex items-center justify-between mt-auto ">
         <p>
-          <span className="text-xl font-bold">{job.salary}</span>
+          <span className="text-[16px] font-medium">{job.salary}</span>
           <span className="text-sm text-secondoryColor">/monthly</span>
         </p>
         {/* <Button>Apply Now</Button> */}
