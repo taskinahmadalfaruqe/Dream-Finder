@@ -23,7 +23,7 @@ const JobSection = async () => {
         {/* job cards grid container */}
         <div className="grid gap-10 justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {/* job card */}
-          {recentJobs.map(job => (
+          {recentJobs?.map(job => (
             <JobApplyCard key={job._id} job={job} />
           ))}
         </div>
