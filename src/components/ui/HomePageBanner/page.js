@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 const HomePageBanner = () => {
     const textArray = [
         "We Make Dreams a Reality",
-        "by",
+        "By",
         "Getting You Hired!"
       ];
     const {
