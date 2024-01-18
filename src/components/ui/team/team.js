@@ -8,7 +8,6 @@ import img3 from "@/assets/team/team3.jpg"
 import img4 from "@/assets/team/team4.jpg"
 import img5 from "@/assets/team/team5.jpg"
 import img6 from "@/assets/team/team6.jpg"
-import Button from "@/components/shared/Button";
 import Image from "next/image";
 
 
@@ -22,7 +21,6 @@ const Team = () => {
                             <h1 className="text-4xl font-bold leadi text-center sm:text-5xl">Meet the Heroes Behind the Scenes</h1>
                             <p className="p-2 text-sm font-medium tracki text-center ">And with great bows, the pilot himself. It needs to be in the free throat. Arcu does not want to worry about any easy consequences.<br /> Risus mauris risus molestie mus tellus no tortor. It has always been said that revenge.</p>
                            <div className="text-center">
-                           <Button></Button>
                            </div>
                         </Zoom>
                     </div>

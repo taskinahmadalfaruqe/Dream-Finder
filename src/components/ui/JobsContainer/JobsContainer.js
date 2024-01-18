@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import JobCard from "../JobCard/JobCard";
 import JobSearchSection from "../JobSearchSection/JobSearchSection";
-import Button from "@/components/shared/Button";
+import CommonButton from "@/components/shared/CommonButton";
 
 const JobsContainer = () => {
   const [jobs, setJobs] = useState([]);
@@ -35,9 +35,10 @@ const JobsContainer = () => {
               setPage(page - 1);
               setStartIndex(startIndex && page * 5);
               setEndIndex(page * 5 - 5);
+
             }}
           >
-            <Button />
+            <CommonButton buttonName={'Previous'} />
           </div>
           <div
             onClick={() => {
@@ -46,7 +47,7 @@ const JobsContainer = () => {
               setEndIndex(page * 5 + 5);
             }}
           >
-            <Button />
+            <CommonButton  buttonName={'Next'}/>
           </div>
         </div>
       </div>
