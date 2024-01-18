@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="flex justify-between items-center">
                 <div>
                     <h1 className="text-2xl font-bold text-lightWhiteColor">Does your company need a great employees?</h1>
-                    
+
                 </div>
                 <div>
                     <button className="px-3 py-1 z-40 bg-lightWhiteColor rounded-md font-medium text-gray-600">Post a job...</button>
