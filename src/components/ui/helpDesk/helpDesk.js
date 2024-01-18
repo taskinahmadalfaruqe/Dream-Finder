@@ -1,5 +1,5 @@
 "use client"
-import Button from "@/components/shared/Button";
+import CommonButton from "@/components/shared/CommonButton";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
@@ -49,7 +49,7 @@ export default function HelpDesk() {
                 className="w-full border-primaryColor border p-2 rounded "
                 placeholder=" Your Name"
               />
-              {errors.name && <span className="text-red-500">This field is required</span>}
+              {errors.name && <span className="text-redColor">This field is required</span>}
             </div>
             <div className="w-1/2">
               <label htmlFor="contactNumber" className="block mb-2 text-darkColor dark:text-whiteColor">
@@ -61,7 +61,7 @@ export default function HelpDesk() {
                 className="w-full border-primaryColor border  p-2 rounded"
                 placeholder=" Contact Number"
               />
-              {errors.number && <span className="text-red-500">This field is required</span>}
+              {errors.number && <span className="text-redColor">This field is required</span>}
             </div>
           </div>
           <div className='flex gap-4 '>
@@ -75,7 +75,7 @@ export default function HelpDesk() {
                 className="w-full border-primaryColor border p-2 rounded"
                 placeholder=" Your Email"
               />
-              {errors.email && <span className="text-red-500">This field is required</span>}
+              {errors.email && <span className="text-redColor">This field is required</span>}
             </div>
             <div className="w-1/2">
               <label htmlFor="subject" className="block mb-2 text-darkColor dark:text-whiteColor">
@@ -87,7 +87,7 @@ export default function HelpDesk() {
                 className="w-full border-primaryColor border p-2 rounded"
                 placeholder=" Email Subject"
               />
-              {errors.email_subject && <span className="text-red-500">This field is required</span>}
+              {errors.email_subject && <span className="text-redColor">This field is required</span>}
             </div>
           </div>
           <div className="my-4">
@@ -100,10 +100,10 @@ export default function HelpDesk() {
               rows="5"
               placeholder=" Your Message"
             ></textarea>
-             {errors.message && <span className="text-red-500">This field is required</span>}
+             {errors.message && <span className="text-redColor">This field is required</span>}
           </div>
-          <div className='text-center w-[100%] flex'>
-            <Button type="submit" className="w-[100%]" >submit</Button>
+          <div className='text-center w-[100%] flex justify-center items-center'>
+            <CommonButton buttonName={"Submit"}></CommonButton>
           </div>
         </form>
 
