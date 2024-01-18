@@ -1,8 +1,8 @@
 "use client";
 const ErrorPage = () => {
     return (
-        <div>
-            Error...
+        <div className="flex justify-center items-center h-[70vh]">
+            404
         </div>
     );
 };

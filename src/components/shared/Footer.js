@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="mt-20 ">
       <div className="h-[300px] bg-darkColor flex items-center">
         <footer className="container relative">
-          <div className=" bg-lightSkyBlue w-[70%] mx-auto rounded-md p-12 absolute left-[15%] -top-[150px]">
+          <div className=" bg-primaryColor w-[70%] mx-auto rounded-md p-12 absolute left-[15%] -top-[150px]">
             <div className="flex justify-between items-center">
               <div>
                 <h1 className="text-2xl font-bold text-lightWhiteColor">
