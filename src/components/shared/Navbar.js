@@ -22,9 +22,11 @@ const NavbarPage = () => {
   const menuItems = ["Home", "Jobs", "About", "Services"];
 
   return (
-    <div>
-      <Navbar className="w-[1200px]" onMenuOpenChange={setIsMenuOpen}>
-        <NavbarContent>
+    <div className="container">
+
+      <Navbar  onMenuOpenChange={setIsMenuOpen} >
+
+        <NavbarContent >
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
@@ -36,8 +38,8 @@ const NavbarPage = () => {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem className="">
+        <NavbarContent className="hidden sm:flex gap-4">
+          <NavbarItem >
             <Link
               href="/"
               className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
@@ -50,7 +52,15 @@ const NavbarPage = () => {
               href="/Find-Jobs"
               className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
             >
-              Jobs
+             All Jobs
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              href="/contact"
+              className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+            >
+             Contact US
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -61,7 +71,6 @@ const NavbarPage = () => {
               About
             </Link>
           </NavbarItem>
-
           <NavbarItem>
             <Link
               href="#"
@@ -71,7 +80,8 @@ const NavbarPage = () => {
             </Link>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent justify="end">
+
+        <NavbarContent>
           <NavbarItem>
             <Badge content="99+" shape="circle" color="danger">
               <Button
@@ -101,6 +111,7 @@ const NavbarPage = () => {
             </Button>
           </NavbarItem>
         </NavbarContent>
+
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
@@ -121,6 +132,7 @@ const NavbarPage = () => {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
+
       </Navbar>
     </div>
   );
