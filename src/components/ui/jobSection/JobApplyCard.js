@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Skeleton } from "@nextui-org/react";
-import Button from "@/components/shared/Button";
+import CommonButton from "@/components/shared/CommonButton";
 
 const JobApplyCard = ({ job }) => {
   return (
@@ -30,13 +30,12 @@ const JobApplyCard = ({ job }) => {
         </p>
       </div>
       {/* CTA div */}
-      <div className="flex items-center justify-between mt-auto ">
+      <div className="flex items-center justify-between mt-auto gap-5 ">
         <p>
           <span className="text-[16px] font-medium">{job.salary}</span>
           <span className="text-sm text-secondoryColor">/monthly</span>
         </p>
-        {/* <Button>Apply Now</Button> */}
-        <Button>Apply Now</Button>
+        <CommonButton buttonName={'Apply'}></CommonButton>
       </div>
     </div>
   );

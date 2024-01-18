@@ -36,6 +36,7 @@ module.exports = {
         primaryColor: "#00BE63",
         secondoryColor: "#5b6e7f",
         lightSkyBlue: "#98d5c7",
+        redColor: "#FF0000",
       },
     },
   },
