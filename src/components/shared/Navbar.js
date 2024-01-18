@@ -1,4 +1,7 @@
 "use client";
+
+import Link from "next/link";
+
 const Navbar = () => {
   return (
     <div>
@@ -15,9 +18,9 @@ const Navbar = () => {
             </li>
             <li className="text-gray-300"></li>
             <li>
-              <a className="text-sm hover:text-blue-600 font-bold" href="#">
+              <Link className="text-sm hover:text-blue-600 font-bold" href="/Find-Jobs">
                 Find Jobs
-              </a>
+              </Link>
             </li>
             <li className="text-gray-300"></li>
             <li>

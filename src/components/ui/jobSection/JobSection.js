@@ -4,7 +4,7 @@ import React from "react";
 import JobApplyCard from "./JobApplyCard";
 
 const JobSection = async () => {
-  const res = await fetch("http://localhost:5000/recent-jobs", {
+  const res = await fetch("http://localhost:3000/recent-jobs", {
     /* next: {
       revalidate: 5,
     }, */
