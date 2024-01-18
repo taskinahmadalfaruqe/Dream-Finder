@@ -10,8 +10,8 @@ import {
 
 const Footer = () => {
   return (
-    <div className="mt-20">
-      <div className="h-[300px] bg-darkColor flex items-center z-20">
+    <div className="mt-20 ">
+      <div className="h-[300px] bg-darkColor flex items-center">
         <footer className="container relative">
           <div className=" bg-lightSkyBlue w-[70%] mx-auto rounded-md p-12 absolute left-[15%] -top-[150px]">
             <div className="flex justify-between items-center">
@@ -22,7 +22,7 @@ const Footer = () => {
               </div>
               <div>
                 <button className="px-3 py-1 z-40 bg-lightWhiteColor rounded-md font-medium text-gray-600">
-                  Post a job
+                  Post a job...
                 </button>
               </div>
             </div>
@@ -54,7 +54,7 @@ const Footer = () => {
               <h1>Our Clients</h1>
               <h1>For Employers</h1>
               <h1>Blog</h1>
-              <p>&copy;2024 All Rights Reserves</p>
+              <p>&copy;2024 All Rights Reserves by dream finder</p>
             </div>
           </div>
         </footer>
