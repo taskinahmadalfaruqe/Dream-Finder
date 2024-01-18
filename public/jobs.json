@@ -1,0 +1,219 @@
+[
+    {
+      "company_name": "Tech Innovators",
+      "job_title": "Software Engineer",
+      "type": "Remote",
+      "description": "Join our dynamic team of software engineers and contribute to cutting-edge projects.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Data Solutions Inc.",
+      "job_title": "Data Analyst",
+      "type": "Hybrid",
+      "description": "Exciting opportunity for a data analyst to work on data-driven projects and analytics.",
+      "salary": "$70,000 - $90,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "E-commerce Ventures",
+      "job_title": "Marketing Specialist",
+      "type": "On-site",
+      "description": "Seeking a talented marketing specialist to drive our e-commerce brand to new heights.",
+      "salary": "$60,000 - $80,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "AI Solutions Co.",
+      "job_title": "Machine Learning Engineer",
+      "type": "Remote",
+      "description": "Explore the frontier of AI and contribute to the development of innovative machine learning solutions.",
+      "salary": "$90,000 - $120,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "HealthTech Innovations",
+      "job_title": "Healthcare Data Analyst",
+      "type": "Hybrid",
+      "description": "Join our team in transforming healthcare through data analytics and technology.",
+      "salary": "$75,000 - $95,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Green Energy Solutions",
+      "job_title": "Environmental Engineer",
+      "type": "On-site",
+      "description": "Contribute to sustainable practices as an environmental engineer in our green energy initiatives.",
+      "salary": "$70,000 - $90,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "FinTech Innovators",
+      "job_title": "Financial Analyst",
+      "type": "Remote",
+      "description": "Join our finance team to analyze and optimize financial strategies for the digital age.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Virtual Reality Studios",
+      "job_title": "VR Developer",
+      "type": "Hybrid",
+      "description": "Immerse yourself in the world of virtual reality and create groundbreaking experiences as a VR developer.",
+      "salary": "$85,000 - $110,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "SmartCity Solutions",
+      "job_title": "Urban Planner",
+      "type": "On-site",
+      "description": "Shape the cities of the future as an urban planner working on innovative smart city projects.",
+      "salary": "$75,000 - $95,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Cybersecurity Guardians",
+      "job_title": "Cybersecurity Analyst",
+      "type": "Remote",
+      "description": "Protect our digital world by joining our team of cybersecurity experts as an analyst.",
+      "salary": "$90,000 - $120,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "BioTech Innovations",
+      "job_title": "Biomedical Researcher",
+      "type": "Hybrid",
+      "description": "Contribute to groundbreaking biomedical research and innovation as a key member of our team.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "EduTech Solutions",
+      "job_title": "Educational Content Developer",
+      "type": "On-site",
+      "description": "Create engaging educational content to empower learners in the digital age.",
+      "salary": "$70,000 - $90,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Automotive Innovators",
+      "job_title": "Automotive Engineer",
+      "type": "Remote",
+      "description": "Drive innovation in the automotive industry by joining our team of skilled engineers.",
+      "salary": "$85,000 - $110,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Fashion Forward",
+      "job_title": "Fashion Designer",
+      "type": "Hybrid",
+      "description": "Bring your creativity to the forefront of the fashion industry as a skilled fashion designer.",
+      "salary": "$75,000 - $95,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Renewable Energy Solutions",
+      "job_title": "Renewable Energy Analyst",
+      "type": "On-site",
+      "description": "Contribute to sustainable energy solutions as an analyst in our renewable energy projects.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Telecommunications Innovators",
+      "job_title": "Network Engineer",
+      "type": "Remote",
+      "description": "Build and optimize networks for the future as a key member of our telecommunications team.",
+      "salary": "$90,000 - $120,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Space Exploration Technologies",
+      "job_title": "Space Systems Engineer",
+      "type": "Hybrid",
+      "description": "Embark on a journey of space exploration by contributing to the design of advanced space systems.",
+      "salary": "$85,000 - $110,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Wellness Solutions",
+      "job_title": "Wellness Coach",
+      "type": "On-site",
+      "description": "Promote well-being and healthy living as a wellness coach helping individuals achieve their goals.",
+      "salary": "$70,000 - $90,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Eco-friendly Homes",
+      "job_title": "Sustainable Architecture Designer",
+      "type": "Remote",
+      "description": "Design eco-friendly homes and structures as a key member of our sustainable architecture team.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Digital Marketing Wizards",
+      "job_title": "Digital Marketing Specialist",
+      "type": "Hybrid",
+      "description": "Drive digital marketing strategies and campaigns to elevate our brand in the online space.",
+      "salary": "$75,000 - $95,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Healthcare Innovations",
+      "job_title": "Medical Research Scientist",
+      "type": "On-site",
+      "description": "Contribute to cutting-edge medical research and advancements as a dedicated research scientist.",
+      "salary": "$90,000 - $120,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "AgriTech Solutions",
+      "job_title": "Precision Agriculture Specialist",
+      "type": "Remote",
+      "description": "Apply precision agriculture techniques to revolutionize farming and contribute to food sustainability.",
+      "salary": "$85,000 - $110,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Music Streaming Platforms",
+      "job_title": "Backend Developer",
+      "type": "Hybrid",
+      "description": "Play a key role in developing the backend infrastructure for cutting-edge music streaming platforms.",
+      "salary": "$80,000 - $100,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    },
+    {
+      "company_name": "Elder Care Solutions",
+      "job_title": "Senior Care Coordinator",
+      "type": "On-site",
+      "description": "Make a difference in the lives of seniors by coordinating compassionate and comprehensive care services.",
+      "salary": "$70,000 - $90,000 per year",
+      "company_logo": "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "posted_date": "2024-01-17"
+    }
+  ]
+  
