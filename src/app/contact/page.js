@@ -1,7 +1,11 @@
+import HelpDesk from "@/components/ui/helpDesk/helpDesk";
+import Team from "@/components/ui/team/team";
+
 const page = () => {
     return (
         <div className="container">
-            contact page
+            <HelpDesk></HelpDesk>
+            <Team></Team>
         </div>
     );
 };
