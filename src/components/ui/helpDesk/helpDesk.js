@@ -3,11 +3,15 @@ import Button from "@/components/shared/Button";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
+import { useForm } from 'react-hook-form';
 
 export default function HelpDesk() {
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data)
   return (
 
-    <div className="py-16 container" >
+    <div className="pb-10 container" >
       <h2 className='text-center text-darkColor dark:text-whiteColor font-bold text-4xl my-10'>Help <span className='text-primaryColor'>Desk</span></h2>
       <div className='flex justify-evenly items-center flex-wrap'>
         <div>
@@ -33,7 +37,7 @@ export default function HelpDesk() {
           </div>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)} >
           <div className="flex gap-4 mb-4">
             <div className="w-1/2">
               <label className="block mb-2 text-darkColor dark:text-whiteColor">
@@ -41,11 +45,11 @@ export default function HelpDesk() {
               </label>
               <input
                 type="text"
-                id="fullName"
-                name='from_name'
+                {...register("name", { required: true })}
                 className="w-full border-primaryColor border p-2 rounded "
-                required
+                placeholder=" Your Name"
               />
+              {errors.name && <span className="text-red-500">This field is required</span>}
             </div>
             <div className="w-1/2">
               <label htmlFor="contactNumber" className="block mb-2 text-darkColor dark:text-whiteColor">
@@ -53,9 +57,11 @@ export default function HelpDesk() {
               </label>
               <input
                 type="tel"
-                id="contactNumber" className="w-full border-primaryColor border  p-2 rounded"
-                required
+                {...register("number", { required: true })}
+                className="w-full border-primaryColor border  p-2 rounded"
+                placeholder=" Contact Number"
               />
+              {errors.number && <span className="text-red-500">This field is required</span>}
             </div>
           </div>
           <div className='flex gap-4 '>
@@ -65,11 +71,11 @@ export default function HelpDesk() {
               </label>
               <input
                 type="email"
-                id="email"
-                name='from_email'
+                {...register("email", { required: true })}
                 className="w-full border-primaryColor border p-2 rounded"
-                required
+                placeholder=" Your Email"
               />
+              {errors.email && <span className="text-red-500">This field is required</span>}
             </div>
             <div className="w-1/2">
               <label htmlFor="subject" className="block mb-2 text-darkColor dark:text-whiteColor">
@@ -77,10 +83,11 @@ export default function HelpDesk() {
               </label>
               <input
                 type="text"
-                id="subject"
+                {...register("email_subject", { required: true })}
                 className="w-full border-primaryColor border p-2 rounded"
-                required
+                placeholder=" Email Subject"
               />
+              {errors.email_subject && <span className="text-red-500">This field is required</span>}
             </div>
           </div>
           <div className="my-4">
@@ -88,15 +95,15 @@ export default function HelpDesk() {
               Your Message
             </label>
             <textarea
-              id="message"
-              name='message'
+              {...register("message", { required: true })}
               className="w-full border-primaryColor border p-2 rounded"
               rows="5"
-              required
+              placeholder=" Your Message"
             ></textarea>
+             {errors.message && <span className="text-red-500">This field is required</span>}
           </div>
-          <div className='text-center'>
-            <Button />
+          <div className='text-center w-[100%] flex'>
+            <Button type="submit" className="w-[100%]" >submit</Button>
           </div>
         </form>
 

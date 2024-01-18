@@ -6,7 +6,7 @@ import Categories from "@/components/Categories";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <div>
       <HomePageBanner />
       <Categories></Categories>
       <JobSection />
