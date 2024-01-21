@@ -15,18 +15,19 @@ import { useState } from "react";
 import { Badge } from "@nextui-org/react";
 import { FaBell, FaMoon, FaSun } from "react-icons/fa";
 import { Switch } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
 
 const NavbarPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Home", "Jobs", "About", "Services"];
 
+  const path = usePathname();
+
   return (
-    <div className="container">
-
-      <Navbar  onMenuOpenChange={setIsMenuOpen} >
-
-        <NavbarContent >
+    <div className={`container ${path.includes("auth") && "hidden"}`}>
+      <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
@@ -39,7 +40,7 @@ const NavbarPage = () => {
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4">
-          <NavbarItem >
+          <NavbarItem>
             <Link
               href="/"
               className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
@@ -52,7 +53,7 @@ const NavbarPage = () => {
               href="/Find-Jobs"
               className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
             >
-             All Jobs
+              All Jobs
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -60,7 +61,7 @@ const NavbarPage = () => {
               href="/contact"
               className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
             >
-             Contact US
+              Contact US
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -106,8 +107,13 @@ const NavbarPage = () => {
           </NavbarItem>
 
           <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="flat">
-              Sign Up
+            <Button
+              as={Link}
+              color="primary"
+              href="/auth/signin"
+              variant="flat"
+            >
+              Sign in
             </Button>
           </NavbarItem>
         </NavbarContent>
@@ -132,7 +138,6 @@ const NavbarPage = () => {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
-
       </Navbar>
     </div>
   );
