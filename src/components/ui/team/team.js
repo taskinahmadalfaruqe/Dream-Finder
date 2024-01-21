@@ -4,24 +4,26 @@ import { Zoom } from "react-awesome-reveal"
 import { motion } from 'framer-motion';
 import img1 from "@/assets/team/team1.jpg"
 import img2 from "@/assets/team/team2.jpg"
-import img3 from "@/assets/team/team3.jpg"
+import img3 from "@/assets/team/team3.jpeg"
 import img4 from "@/assets/team/team4.jpg"
-import img5 from "@/assets/team/team5.jpg"
+import img5 from "@/assets/team/team5.jpeg"
 import img6 from "@/assets/team/team6.jpg"
 import Image from "next/image";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 
 const Team = () => {
     return (
         <div>
-            <section className="py-6 ">
+            <section className="min-h-screen ">
                 <div className="container flex flex-col items-center justify-center p-4 mx-auto sm:p-10">
                     <div>
                         <Zoom>
-                            <h1 className="text-4xl font-bold leadi text-center sm:text-5xl">Meet the Heroes Behind the Scenes</h1>
-                            <p className="p-2 text-sm font-medium tracki text-center ">And with great bows, the pilot himself. It needs to be in the free throat. Arcu does not want to worry about any easy consequences.<br /> Risus mauris risus molestie mus tellus no tortor. It has always been said that revenge.</p>
-                           <div className="text-center">
-                           </div>
+                            <SectionHeading
+                            heading="Meet the Heroes Behind the Scenes"
+                            subHeading="And with great bows, the pilot himself. It needs to be in the free throat. Arcu does not want to worry about any easy consequences. 
+                            Risus mauris risus molestie mus tellus no tortor. It has always been said that revenge."
+                            />
                         </Zoom>
                     </div>
                     <div className="flex flex-row flex-wrap-reverse justify-center mt-8">
@@ -30,8 +32,8 @@ const Team = () => {
                                 <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
                                     <Image alt="" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img1} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">Emily Roberts</p>
-                                        <p>Shelter Manager</p>
+                                        <p className="text-xl font-semibold leadi">Halima Tus sadia</p>
+                                        <p>Front-End developer</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
@@ -65,8 +67,8 @@ const Team = () => {
                                     
                                     <Image alt="img" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img2} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">Sarah Johnson</p>
-                                        <p>Volunteer Coordinator</p>
+                                        <p className="text-xl font-semibold leadi">Md Siam Islam Sagor </p>
+                                        <p>Front-End developer</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
@@ -99,8 +101,8 @@ const Team = () => {
                                 <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
                                     <Image alt="" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img3} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">Zazie Skymm</p>
-                                        <p>Development Manager</p>
+                                        <p className="text-xl font-semibold leadi">Md Mostaq Muzahid Moin</p>
+                                        <p>Front-End developer</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
@@ -133,8 +135,8 @@ const Team = () => {
                                 <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
                                     <Image alt="" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img4} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">David Patterson</p>
-                                        <p>Adoption Coordinator</p>
+                                        <p className="text-xl font-semibold leadi">Taskin Ahomad Al Faruqe</p>
+                                        <p>Team Leader</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
@@ -167,8 +169,8 @@ const Team = () => {
                                 <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
                                     <Image alt="" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img5} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">Marcus Cooper</p>
-                                        <p>Lead Animal Caretaker</p>
+                                        <p className="text-xl font-semibold leadi">Md. Atiqul Islam Rajib</p>
+                                        <p>Front-End developerr</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
@@ -201,8 +203,8 @@ const Team = () => {
                                 <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-100 dark:text-gray-800">
                                     <Image alt="" className="self-center flex-shrink-0 w-24 h-24 -mt-12 bg-center bg-cover rounded-full dark:bg-gray-500" src={img6} />
                                     <div className="flex-1 my-4">
-                                        <p className="text-xl font-semibold leadi">Olivia Parker</p>
-                                        <p>Veterinarian</p>
+                                        <p className="text-xl font-semibold leadi">Khaleda Ferdous</p>
+                                        <p>Front-End developer</p>
                                     </div>
                                     <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
                                         <a rel="noopener noreferrer" href="#" title="Email" className="dark:text-gray-900 hover:dark:text-violet-400">
