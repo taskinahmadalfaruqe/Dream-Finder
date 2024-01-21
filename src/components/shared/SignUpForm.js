@@ -37,7 +37,7 @@ export default function SignUpForm() {
                   required: "Name is required *",
                 })}
                 aria-invalid={errors.name ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-md hover:shadow-primaryColor focus:shadow-md focus:shadow-primaryColor duration-700 outline-none text-lg"
+                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
               />
               {errors.name && (
                 <p className="text-sm text-red-600 mt-1">
@@ -56,7 +56,7 @@ export default function SignUpForm() {
                   required: "photo url is required *",
                 })}
                 aria-invalid={errors.photoUrl ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-md hover:shadow-primaryColor focus:shadow-md focus:shadow-primaryColor duration-700 outline-none text-lg"
+                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
               />
               {errors.photoUrl && (
                 <p className="text-sm text-red-600 mt-1">
@@ -75,7 +75,7 @@ export default function SignUpForm() {
                   required: "Email address is required *",
                 })}
                 aria-invalid={errors.email ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-md hover:shadow-primaryColor focus:shadow-md focus:shadow-primaryColor duration-700 outline-none text-lg"
+                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
               />
               {errors.email && (
                 <p className="text-sm text-red-600 mt-1">
@@ -97,7 +97,7 @@ export default function SignUpForm() {
                   pattern: /(?=.*[A-Z])(?=.*[@$!%*?&])(?=.*[0-9])(?=.*[a-z])/,
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-md hover:shadow-primaryColor focus:shadow-md focus:shadow-primaryColor duration-700 outline-none text-lg"
+                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
               />
               {errors.password?.type === "required" && (
                 <p className="text-sm text-red-600 mt-1">
@@ -125,7 +125,7 @@ export default function SignUpForm() {
                 </p>
               )}
             </div>
-            <button className="active:scale-[.98] duration-200 bg-darkColor text-white text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6">
+            <button className="scale-95 active:scale-90 duration-200 bg-darkColor text-white text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6">
               Sign up
             </button>
             {/* </Fade> */}
