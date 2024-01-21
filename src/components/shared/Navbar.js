@@ -110,10 +110,10 @@ const NavbarPage = () => {
             <Button
               as={Link}
               color="primary"
-              href="/auth/signup"
+              href="/auth/signin"
               variant="flat"
             >
-              Sign Up
+              Sign in
             </Button>
           </NavbarItem>
         </NavbarContent>

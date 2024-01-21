@@ -1,7 +1,6 @@
 "use client";
 
 /* eslint-disable react/no-unescaped-entities */
-import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
@@ -10,6 +9,7 @@ import { Fade } from "react-awesome-reveal";
 import { RiFingerprintLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
 import SignInAnim from "./SignInAnim";
+import { Link } from "@nextui-org/react";
 
 const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);

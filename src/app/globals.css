@@ -12,4 +12,5 @@ li {
 
 .anim-div > div > svg {
   max-width: 700px !important;
+  margin-inline: auto;
 }
