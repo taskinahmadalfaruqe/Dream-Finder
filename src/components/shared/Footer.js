@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   FaFacebook,
   FaLinkedin,
@@ -9,8 +10,9 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const path = usePathname();
   return (
-    <div className="mt-20 ">
+    <div className={`mt-20 ${path.includes("auth") && "hidden"}`}>
       <div className="h-[300px] bg-darkColor flex items-center">
         <footer className="container relative">
           <div className=" bg-primaryColor w-[70%] mx-auto rounded-md p-12 absolute left-[15%] -top-[150px]">

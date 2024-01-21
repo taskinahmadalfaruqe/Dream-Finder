@@ -27,14 +27,14 @@ module.exports = {
         "common-bg": "linear-gradient(to right, #fa5252, #dd2476)",
         "common-bg-hover": "linear-gradient(to left, #fa5252, #dd2476)",
       },
-    
+
       colors: {
         whiteColor: "#fff",
         lightWhiteColor: "#F3F6F6",
         darkColor: "#111111",
-        lightdarkColor: "#1D1D1D",
+        lightDarkColor: "#1D1D1D",
         primaryColor: "#00BE63",
-        secondoryColor: "#5b6e7f",
+        secondaryColor: "#5b6e7f",
         lightSkyBlue: "#98d5c7",
         redColor: "#FF0000",
       },
