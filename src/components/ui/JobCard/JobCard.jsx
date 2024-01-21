@@ -28,7 +28,6 @@ const JobCard = ({ job }) => {
   const [isShow, setIsShow] = useState(false);
 
   return (
-
     <Card
       onMouseOver={() => setIsShow(true)}
       onMouseLeave={() => setIsShow(false)}
@@ -50,7 +49,7 @@ const JobCard = ({ job }) => {
         <div className="flex justify-between">
           <div>
             <h1 className="text-xl md:text-2xl font-bold">{job_title}</h1>
-            <p className=" md:text-lg font-semibold mt-1 text-secondoryColor">
+            <p className=" md:text-lg font-semibold mt-1 text-secondaryColor">
               {company_name}
             </p>
           </div>
@@ -65,34 +64,33 @@ const JobCard = ({ job }) => {
         </div>
         <div>
           {/* <IoLocationOutline /> */}
-          <p className="lg:w-2/3 text-secondoryColor mt-2 text-sm md:text-lg">{description}</p>
+          <p className="lg:w-2/3 text-secondaryColor mt-2 text-sm md:text-lg">
+            {description}
+          </p>
           <div className="lg:w-2/3 mt-3">
             <p className=" flex items-center">
               <FaClock className="font-bold mr-2" />
               <span>Posted Date</span>
             </p>
-            <span className="text-secondoryColor ">{posted_date}</span>
+            <span className="text-secondaryColor ">{posted_date}</span>
           </div>
         </div>
       </CardBody>
       <Divider />
       <div
-        className={`transition-opacity duration-500 ease-in-out ${isShow ? "opacity-100 block" : "opacity-0 hidden"
-          }`}
+        className={`transition-opacity duration-500 ease-in-out ${
+          isShow ? "opacity-100 block" : "opacity-0 hidden"
+        }`}
       >
         <div className="absolute h-full w-full top-0 left-0 bg-lightSkyBlue z-20  opacity-80  flex justify-center items-center">
           <div className=" space-x-5">
-            <Link
-              href="/"
-            >
-              <CommonButton buttonName={'Apply Now'}></CommonButton>
-
+            <Link href="/">
+              <CommonButton buttonName={"Apply Now"}></CommonButton>
             </Link>
           </div>
         </div>
       </div>
     </Card>
-
   );
 };
 

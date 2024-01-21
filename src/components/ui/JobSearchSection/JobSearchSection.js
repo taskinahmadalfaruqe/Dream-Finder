@@ -30,7 +30,7 @@ const JobSearchSection = () => {
                 label="Select Category"
                 className="max-w-xs border border-primaryColor rounded-xl"
               >
-                {type.map((item) => (
+                {type.map(item => (
                   <SelectItem key={item} value={item.toUpperCase}>
                     {item}
                   </SelectItem>
@@ -51,7 +51,7 @@ const JobSearchSection = () => {
           </div>
 
           <div className="mt-8  ml-1 ">
-            <p className="mb-2 text-secondoryColor font-semibold">Type</p>
+            <p className="mb-2 text-secondaryColor font-semibold">Type</p>
             <div className="flex flex-col">
               <Checkbox color="success">On-Sight</Checkbox>
               <Checkbox color="success">Remote</Checkbox>
@@ -59,7 +59,7 @@ const JobSearchSection = () => {
             </div>
           </div>
           <div className="mt-8">
-            <p className="mb-2 text-secondoryColor font-semibold">
+            <p className="mb-2 text-secondaryColor font-semibold">
               Salary Expectation (In Lakhs)
             </p>
             <Slider
