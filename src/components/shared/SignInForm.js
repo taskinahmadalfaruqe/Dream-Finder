@@ -2,13 +2,17 @@
 
 /* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import Divider from "./Divider";
 import { Fade } from "react-awesome-reveal";
+import { RiFingerprintLine } from "react-icons/ri";
+import { MdAlternateEmail } from "react-icons/md";
 
 const SignInForm = () => {
+  const [isPasswordType, setIsPasswordType] = useState(true);
+
   const {
     register,
     handleSubmit,
@@ -33,7 +37,7 @@ const SignInForm = () => {
           <Divider content={"or sign in with email"} />
 
           <form onSubmit={handleSubmit(onSubmit)} className="">
-            <div className="w-full mb-4">
+            <div className="w-full mb-4 relative">
               <label className="label">
                 <span className="text-lg font-bold">Your Email</span>
               </label>
@@ -45,15 +49,16 @@ const SignInForm = () => {
                   required: "Email address is required *",
                 })}
                 aria-invalid={errors.email ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
+                className="border w-full rounded-xl px-5 pr-12 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-[.98] text-secondaryColor font-medium"
               />
+              <MdAlternateEmail className="text-xl md:text-2xl absolute top-12 right-6 text-secondaryColor" />
               {errors.email && (
                 <p className="text-sm text-red-600 mt-1">
                   {errors.email?.message}
                 </p>
               )}
             </div>
-            <div className="w-full mb-4">
+            <div className="w-full mb-4 relative">
               <label className="font-normal flex justify-between">
                 <span className="text-lg font-bold">Your Password</span>
                 <span className="underline cursor-pointer pr-2 max-sm:text-xs text-sm">
@@ -61,7 +66,7 @@ const SignInForm = () => {
                 </span>
               </label>
               <input
-                type="password"
+                type={isPasswordType ? "password" : "text"}
                 placeholder="6+ characters"
                 {...register("password", {
                   required: true,
@@ -70,8 +75,19 @@ const SignInForm = () => {
                   pattern: /(?=.*[A-Z])(?=.*[@$!%*?&])(?=.*[0-9])(?=.*[a-z])/,
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
-                className="border w-full rounded-xl px-5 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-100"
+                className="border w-full rounded-xl px-5 pr-12 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-[.98] text-secondaryColor font-medium"
               />
+              {isPasswordType ? (
+                <RiFingerprintLine
+                  onClick={() => setIsPasswordType(!isPasswordType)}
+                  className="cursor-pointer text-2xl absolute top-12 right-6 text-secondaryColor"
+                ></RiFingerprintLine>
+              ) : (
+                <RiFingerprintLine
+                  onClick={() => setIsPasswordType(!isPasswordType)}
+                  className="cursor-pointer text-2xl absolute top-12 right-6 text-primaryColor"
+                ></RiFingerprintLine>
+              )}
               {errors.password?.type === "required" && (
                 <p className="text-sm text-red-600 mt-1">
                   {errors.password && (
