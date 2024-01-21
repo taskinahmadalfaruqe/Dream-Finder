@@ -53,7 +53,7 @@ export default function SignUpForm() {
         <div className="max-lg:hidden  w-1/2">
           <SignUpAnim />
         </div>
-        <div className="mt-20 sm:m-28  rounded-md max-w-md mx-auto w-full  lg:w-1/2">
+        <div className="mt-20 sm:mt-28  rounded-md max-w-md mx-auto w-full  lg:w-1/2">
           <h2 className="text-3xl my-10 font-bold">Sign up to Dream Finder</h2>
 
           {isEmailSignUpPage ? (
