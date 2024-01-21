@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { Bounce, Fade } from "react-awesome-reveal";
 import { useForm } from "react-hook-form";
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import Divider from "./Divider";
 
 export default function SignUpForm() {
   // state
@@ -24,16 +25,16 @@ export default function SignUpForm() {
   };
 
   return (
-    <div>
+    <Fade>
       {isEmailSignUpPage && (
         <div className="fixed z-[90] top-5 md:top-16 left-5 md:left-10  overflow-hidden">
-          <Bounce delay={1000}>
+          <Bounce delay={600}>
             <Button
               onClick={() => setIsEmailSignUpPage(!isEmailSignUpPage)}
-              className="text-3xl bg-white  hover:bg-gray-100 font-bold border"
+              className="text-2xl bg-white  hover:bg-gray-100  border"
               isIconOnly
             >
-              <FaAngleLeft />
+              <FaAngleLeft className="font-[200]" />
             </Button>
           </Bounce>
         </div>
@@ -157,14 +158,10 @@ export default function SignUpForm() {
                 <FcGoogle className="text-2xl" />
                 Sign up with Google
               </button>
-              <div className="text-center my-8 text-slate-400 flex justify-between items-center">
-                <div className="w-full h-[1px] bg-secondaryColor mx-6"></div>
-                or
-                <div className="w-full h-[1px] bg-secondaryColor mx-6"></div>
-              </div>
+              <Divider content={"or"} />
               <button
                 onClick={() => setIsEmailSignUpPage(!isEmailSignUpPage)}
-                className="scale-95 active:scale-90 duration-200 bg-whiteColor border hover:border-none text-darkColor text-base opacity-90 hover:bg-lightWhiteColor hover:bg-opacity-80 rounded-full w-full font-bold h-16 "
+                className="scale-95 active:scale-90 duration-200 bg-lightWhiteColor text-darkColor text-base  rounded-full border w-full font-bold h-16 "
               >
                 Continue with email
               </button>
@@ -179,6 +176,6 @@ export default function SignUpForm() {
           </p>
         </div>
       </main>
-    </div>
+    </Fade>
   );
 }
