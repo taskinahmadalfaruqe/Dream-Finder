@@ -20,7 +20,33 @@ import { usePathname } from "next/navigation";
 const NavbarPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = ["Home", "Jobs", "About", "Services"];
+  // const menuItems = ["Home", "Jobs", "About", "Services", "signin", "signup"];
+  const menuItems = [
+    {
+      title: "Home",
+      path: '/'
+    },
+    {
+      title: "Find Jobs",
+      path: '/Find-Jobs'
+    },
+    {
+      title: "Contact Us",
+      path: '/contact'
+    },
+    {
+      title: "Services",
+      path: '/'
+    },
+    {
+      title: "Login",
+      path: '/auth/signin'
+    },
+    {
+      title: "Resister",
+      path: '/auth/signup'
+    }
+  ];
 
   const path = usePathname();
 
@@ -121,19 +147,8 @@ const NavbarPage = () => {
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                className="w-full"
-                href="#"
-                size="lg"
-              >
-                {item}
+              <Link href={item.path}>
+                {item.title}
               </Link>
             </NavbarMenuItem>
           ))}
@@ -144,3 +159,18 @@ const NavbarPage = () => {
 };
 
 export default NavbarPage;
+
+{/* <Link
+  color={
+    index === 2
+      ? "primary"
+      : index === menuItems.length - 1
+        ? "danger"
+        : "foreground"
+  }
+  className="w-full"
+  href="#"
+  size="lg"
+>
+  {item}
+</Link> */}
