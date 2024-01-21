@@ -34,6 +34,7 @@ module.exports = {
         darkColor: "#111111",
         lightDarkColor: "#1D1D1D",
         primaryColor: "#00BE63",
+        lightPrimaryColor: "#4CD191",
         secondaryColor: "#5b6e7f",
         lightSkyBlue: "#98d5c7",
         redColor: "#FF0000",

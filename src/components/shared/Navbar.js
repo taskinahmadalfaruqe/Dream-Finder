@@ -53,19 +53,19 @@ const NavbarPage = () => {
   return (
     <div className={`container ${path.includes("auth") && "hidden"}`}>
       <Navbar onMenuOpenChange={setIsMenuOpen}>
-        <NavbarContent>
+        <NavbarContent >
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="sm:hidden"
+            className="lg:hidden"
           />
-          <NavbarBrand>
-            <Link href="#">
+          <NavbarBrand className="hidden md:flex">
+            <Link href="/">
               <p className="font-bold text-inherit">Dream Finder</p>
             </Link>
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4">
+        <NavbarContent className="hidden lg:flex gap-4">
           <NavbarItem>
             <Link
               href="/"
@@ -159,18 +159,3 @@ const NavbarPage = () => {
 };
 
 export default NavbarPage;
-
-{/* <Link
-  color={
-    index === 2
-      ? "primary"
-      : index === menuItems.length - 1
-        ? "danger"
-        : "foreground"
-  }
-  className="w-full"
-  href="#"
-  size="lg"
->
-  {item}
-</Link> */}
