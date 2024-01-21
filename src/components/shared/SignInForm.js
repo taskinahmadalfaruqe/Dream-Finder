@@ -9,6 +9,7 @@ import Divider from "./Divider";
 import { Fade } from "react-awesome-reveal";
 import { RiFingerprintLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
+import SignInAnim from "./SignInAnim";
 
 const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
@@ -26,8 +27,11 @@ const SignInForm = () => {
 
   return (
     <Fade>
-      <main className="px-5">
-        <div className="mt-20 xsm:mt-28 lg:mt-40 rounded-md max-w-md mx-auto w-full">
+      <main className="px-5 lg:flex items-center justify-center">
+        <div className="max-lg:hidden  w-1/2">
+          <SignInAnim />
+        </div>
+        <div className="mt-20 sm:mt-28  rounded-md max-w-md mx-auto w-full  lg:w-1/2">
           <h2 className="text-3xl my-10 font-bold">Sign in to Dream Finder</h2>
           <button className="scale-95 active:scale-[.93] duration-200 bg-lightWhiteColor text-darkColor text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6 flex items-center justify-center gap-2">
             <FcGoogle className="text-2xl" />

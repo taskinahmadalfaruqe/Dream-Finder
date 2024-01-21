@@ -12,6 +12,7 @@ import { RiFingerprintLine } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
+import SignUpAnim from "./SignUpAnim";
 
 export default function SignUpForm() {
   // state
@@ -44,8 +45,15 @@ export default function SignUpForm() {
           </Bounce>
         </div>
       )}
-      <main className="px-5">
-        <div className="mt-20 xsm:mt-28 lg:mt-40 rounded-md max-w-md mx-auto w-full">
+      <main
+        className={`px-5 lg:flex items-center justify-center ${
+          isEmailSignUpPage || "min-h-screen"
+        }`}
+      >
+        <div className="max-lg:hidden  w-1/2">
+          <SignUpAnim />
+        </div>
+        <div className="mt-20 sm:m-28  rounded-md max-w-md mx-auto w-full  lg:w-1/2">
           <h2 className="text-3xl my-10 font-bold">Sign up to Dream Finder</h2>
 
           {isEmailSignUpPage ? (

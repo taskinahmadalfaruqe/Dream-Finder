@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-ul,li{
-    display: inline-block;
-    list-style: none;
-    display: flex;
-    width: 100% !important;
+ul,
+li {
+  display: inline-block;
+  list-style: none;
+  display: flex;
+  width: 100% !important;
+}
+
+.anim-div > div > svg {
+  max-width: 700px !important;
 }
