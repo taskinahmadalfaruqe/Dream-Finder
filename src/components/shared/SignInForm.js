@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import Divider from "./Divider";
@@ -10,9 +10,14 @@ import { RiFingerprintLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
 import SignInAnim from "./SignInAnim";
 import { Link } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
+  const [err, setErr] = useState("");
+  const router = useRouter();
+  const session = useSession();
 
   const {
     register,
@@ -21,8 +26,33 @@ const SignInForm = () => {
     reset,
   } = useForm();
 
-  const onSubmit = data => {
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      console.log(session);
+      console.log('do:> router.replace("/contact")');
+      router.replace("/contact");
+    }
+  }, [session, router]);
+
+  const onSubmit = async data => {
     console.log(data);
+    const { email, password } = data;
+    console.log(email, password);
+
+    //
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (res?.error) {
+      setErr("Invalid email or password.");
+      if (res?.url) router.replace("/contact");
+    } else {
+      setErr("");
+    }
   };
 
   return (
@@ -42,15 +72,17 @@ const SignInForm = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="">
             <div className="w-full mb-4 relative">
+              {err && <p className="tex-sm mb-2 text-red-600 mt-1">{err}</p>}
               <label className="label">
                 <span className="text-lg font-bold">Your Email</span>
               </label>
               <input
-                type="email"
+                type="text"
                 placeholder="your email"
                 autoFocus={true}
                 {...register("email", {
                   required: "Email address is required *",
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
                 aria-invalid={errors.email ? "true" : "false"}
                 className="border w-full rounded-xl px-5 pr-12 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-[.98] text-secondaryColor font-medium"
@@ -59,6 +91,11 @@ const SignInForm = () => {
               {errors.email && (
                 <p className="text-sm text-red-600 mt-1">
                   {errors.email?.message}
+                </p>
+              )}
+              {errors?.email?.type === "pattern" && (
+                <p className="text-sm text-red-600 mt-1">
+                  invalid email address *
                 </p>
               )}
             </div>

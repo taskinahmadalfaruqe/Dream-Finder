@@ -7,8 +7,11 @@ import { RiFingerprintLine } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 const Form = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
+  const [err, setErr] = useState("");
+  const router = useRouter();
 
   const {
     register,
@@ -17,14 +20,43 @@ const Form = () => {
     reset,
   } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     console.log(data);
+    const { email, password } = data;
+    console.log(email, password);
+
+    //
+
+    try {
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      if (res.status === 400) {
+        setErr("This email is already registered, please try another email.");
+        console.log("This email is already registered");
+      }
+      if (res.status === 200) {
+        setErr("");
+        router.push("/auth/signin");
+      }
+    } catch (error) {
+      setErr("Error: something is wrong, please try again.");
+      console.log(error);
+    }
   };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="overflow-hidden">
         <Fade direction="down">
           <div className="w-full mb-4">
+            {err && <p className="tex-sm mb-2 text-red-600 mt-1">{err}</p>}
             <label className="label">
               <span className="text-lg font-bold">Your Name</span>
             </label>
@@ -74,6 +106,7 @@ const Form = () => {
               placeholder="your email"
               {...register("email", {
                 required: "Email address is required *",
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}
               className="border w-full rounded-xl px-5 pr-12 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-[.98] text-secondaryColor font-medium"
@@ -82,6 +115,11 @@ const Form = () => {
             {errors.email && (
               <p className="text-sm text-red-600 mt-1">
                 {errors.email?.message}
+              </p>
+            )}
+            {errors?.email?.type === "pattern" && (
+              <p className="text-sm text-red-600 mt-1">
+                invalid email address *
               </p>
             )}
           </div>
