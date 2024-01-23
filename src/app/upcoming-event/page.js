@@ -48,7 +48,7 @@ const upcomingEvent = () => {
         </CardFooter>
       </Card>
 
-      {/* upcoming event  */}
+      
 
       {/* <div className="flex  items-center space-x-4 text-small py-10">
         <div className="h-[300px] w-full">
