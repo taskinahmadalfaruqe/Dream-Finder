@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.3",
     "@nextui-org/react": "^2.2.9",
     "bcryptjs": "^2.4.3",
+    "aos": "^2.3.4",
     "framer-motion": "^10.18.0",
     "json-server": "^1.0.0-alpha.21",
     "lottie-react": "^2.4.0",
