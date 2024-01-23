@@ -6,9 +6,6 @@ import UpcomingEventModal from "@/components/ui/UpcomingEventModal/UpcomingEvent
 import FeedBack from "@/components/ui/FeedBack/FeedBack";
 import Accordin from "@/components/ui/Accordion/Accordin";
 import Categories from "@/components/ui/Category/Categories";
-
-
-
 const HomePage = () => {
   return (
     <div>
