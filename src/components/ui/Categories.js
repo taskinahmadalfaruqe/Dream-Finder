@@ -1,16 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import icon1 from "@/assets/Categories-Image/accounting.png";
-import icon2 from "@/assets/Categories-Image/administrative.png";
-import icon3 from "@/assets/Categories-Image/dataanalyst.jpg";
-import icon4 from "@/assets/Categories-Image/manager.jpg";
-import icon5 from "@/assets/Categories-Image/marketingspecialists.png";
 import icon6 from "@/assets/Categories-Image/customerservice.jpg";
-import icon7 from "@/assets/Categories-Image/education.png";
-import icon8 from "@/assets/Categories-Image/engeneering.png";
-import icon9 from "@/assets/Categories-Image/finance.jpg";
-import icon10 from "@/assets/Categories-Image/tech.png";
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -78,7 +69,7 @@ const allCategory = [
         "id": 4,
         "category_name": "Manager",
         "available_job": 300,
-        "icon_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA1fLdTfJMuWl-XQcHwqG4Cu-kouv5BoTx4A&usqp=CAU"
+        "icon_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5RtbtsyuM9zEYZsqsgcNydzyF3Fg9w39RQ&usqp=CAU"
     },
     {
         "id": 5,
