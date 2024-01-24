@@ -81,7 +81,7 @@ const allCategory = [
         "id": 6,
         "category_name": "Customer Service",
         "available_job": 175,
-        "icon_image": { icon6 }
+        "icon_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-1D16cGw7WMi1L6lzBYE3Eur0PpkcUw7OKA&usqp=CAU"
     },
     {
         "id": 7,
