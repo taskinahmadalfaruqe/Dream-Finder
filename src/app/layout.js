@@ -6,6 +6,7 @@ import Footer from "@/components/shared/Footer";
 import { getServerSession } from "next-auth";
 import SharedNextUiProvider from "@/utils/SharedNextUiProvider";
 import SessionProvider from "@/utils/SessionProvider";
+import NextNavbar from "@/components/shared/NextNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,8 @@ export default async function RootLayout({ children }) {
       <body className={inter.className} suppressHydrationWarning={true}>
         <SharedNextUiProvider>
           <SessionProvider session={session}>
-            <Navbar />
+            {/* <Navbar /> */}
+            <NextNavbar />
             {children}
             <Footer></Footer>
           </SessionProvider>
