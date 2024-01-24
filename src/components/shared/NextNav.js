@@ -94,18 +94,18 @@ const NextNavbar = () => {
             </NavbarItem>
             <NavbarItem>
               <Link
-                href="#"
+                href="subscription"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                About
+                Subscription
               </Link>
             </NavbarItem>
             <NavbarItem>
               <Link
-                href="#"
+                href="upcoming-event"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                Services
+                Upcomming Event
               </Link>
             </NavbarItem>
 
