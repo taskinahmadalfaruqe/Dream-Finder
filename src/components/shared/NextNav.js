@@ -94,11 +94,10 @@ const NextNavbar = () => {
             </NavbarItem>
             <NavbarItem>
               <Link
-                href="/subscription"
+                href="subscription"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                Subscribe
-              </Link>
+                Subscription</Link>
             </NavbarItem>
             <NavbarItem>
               <Link
