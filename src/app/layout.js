@@ -1,9 +1,9 @@
 "use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { NextUIProvider } from "@nextui-org/react";
+import NextNavbar from "@/components/shared/NextNav";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextUIProvider>
-          <Navbar />
+         <NextNavbar></NextNavbar>
           {children}
           <Footer></Footer>
         </NextUIProvider>
