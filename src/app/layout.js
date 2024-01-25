@@ -1,29 +1,20 @@
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-
-import { getServerSession } from "next-auth";
-import SharedNextUiProvider from "@/utils/SharedNextUiProvider";
-import SessionProvider from "@/utils/SessionProvider";
-import NextNavbar from "@/components/shared/NextNav";
+import { NextUIProvider } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export default async function RootLayout({ children }) {
-  const session = await getServerSession();
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <SharedNextUiProvider>
-          {/* <SessionProvider session={session}> */}
-            {/* <Navbar /> */}
-            <NextNavbar />
-            {children}
-            <Footer></Footer>
-          {/* </SessionProvider> */}
-        </SharedNextUiProvider>
+        <NextUIProvider>
+          <Navbar />
+          {children}
+          <Footer></Footer>
+        </NextUIProvider>
       </body>
     </html>
   );
