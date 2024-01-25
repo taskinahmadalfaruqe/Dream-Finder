@@ -97,14 +97,15 @@ const NextNavbar = () => {
                 href="subscription"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                Subscription</Link>
+                Subscription
+              </Link>
             </NavbarItem>
             <NavbarItem>
               <Link
                 href="upcoming-event"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                Upcoming Event
+                Upcomming Event
               </Link>
             </NavbarItem>
 
