@@ -18,7 +18,6 @@ const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [err, setErr] = useState("");
   const router = useRouter();
-  const session = useSession();
 
   const {
     register,
@@ -27,33 +26,12 @@ const SignInForm = () => {
     reset,
   } = useForm();
 
-  useEffect(() => {
-    if (session.status === "authenticated") {
-      console.log(session);
-      console.log('do:> router.replace("/contact")');
-      router.replace("/contact");
-    }
-  }, [session, router]);
 
   const onSubmit = async data => {
     console.log(data);
     const { email, password } = data;
     console.log(email, password);
 
-    //
-
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
-
-    if (res?.error) {
-      setErr("Invalid email or password.");
-      if (res?.url) router.replace("/contact");
-    } else {
-      setErr("");
-    }
   };
 
   return (
