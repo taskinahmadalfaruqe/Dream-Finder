@@ -17,12 +17,12 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
         <SharedNextUiProvider>
-          <SessionProvider session={session}>
+          {/* <SessionProvider session={session}> */}
             {/* <Navbar /> */}
             <NextNavbar />
             {children}
             <Footer></Footer>
-          </SessionProvider>
+          {/* </SessionProvider> */}
         </SharedNextUiProvider>
       </body>
     </html>
