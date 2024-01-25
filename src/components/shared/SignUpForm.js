@@ -3,7 +3,6 @@
 import { Button, Link, Tooltip } from "@nextui-org/react";
 import { useState } from "react";
 import { Bounce, Fade } from "react-awesome-reveal";
-import { FaAngleLeft } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import Divider from "./Divider";
 import SignUpAnim from "./SignUpAnim";

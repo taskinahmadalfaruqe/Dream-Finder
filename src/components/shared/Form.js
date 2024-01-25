@@ -25,31 +25,7 @@ const Form = () => {
     const { email, password } = data;
     console.log(email, password);
 
-    //
 
-    try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      if (res.status === 400) {
-        setErr("This email is already registered, please try another email.");
-        console.log("This email is already registered");
-      }
-      if (res.status === 200) {
-        setErr("");
-        router.push("/auth/signin");
-      }
-    } catch (error) {
-      setErr("Error: something is wrong, please try again.");
-      console.log(error);
-    }
   };
   return (
     <div>
