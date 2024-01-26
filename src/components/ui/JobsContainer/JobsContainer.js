@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import JobCard from "../JobCard/JobCard";
 import JobSearchSection from "../JobSearchSection/JobSearchSection";
