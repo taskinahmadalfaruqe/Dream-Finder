@@ -15,8 +15,8 @@ const JobSection = async () => {
   const recentJobs = await res.json(); */
 
   return (
-    <section className="min-h-screen bg-lightWhiteColor py-40">
-      <div className=" container mx-auto">
+    <section className="container bg-lightWhiteColor py-10">
+      <div className="mx-auto">
         {/* section heading */}
         <SectionHeading
           heading="Recent Job Circulars"
