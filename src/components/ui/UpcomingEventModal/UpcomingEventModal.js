@@ -12,7 +12,7 @@ const UpcomingEventModal = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onOpen();
-    }, 15000); // 15 seconds
+    }, 5000); // 5 seconds
 
     return () => clearTimeout(timer); 
 
