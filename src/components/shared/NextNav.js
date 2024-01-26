@@ -10,18 +10,26 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  useDisclosure,
+  Avatar,
 } from "@nextui-org/react";
 import { useCallback, useEffect, useState } from "react";
 import { Badge } from "@nextui-org/react";
 import { FaBell, FaMoon, FaSun } from "react-icons/fa";
 import { Switch } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import useContextData from "@/hooks/useContextData";
+import SignOutModal from "./LogoutModal";
 
 const NextNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // log out modal state
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
+
+  const { user } = useContextData();
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
@@ -139,15 +147,31 @@ const NextNavbar = () => {
             </NavbarItem>
 
             <NavbarItem>
-              <Button
-                as={Link}
-                href="/auth/signin"
-                color="success"
-                variant="flat"
-                className="font-bold"
-              >
-                Sign in
-              </Button>
+              {user ? (
+                <>
+                  <Button
+                    onClick={onOpen}
+                    color="success"
+                    variant="flat"
+                    className="font-bold"
+                  >
+                    Sign out
+                  </Button>
+                  {user && (
+                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
+                  )}
+                </>
+              ) : (
+                <Button
+                  as={Link}
+                  href="/auth/signin"
+                  color="success"
+                  variant="flat"
+                  className="font-bold"
+                >
+                  Sign in
+                </Button>
+              )}
             </NavbarItem>
           </NavbarContent>
 
@@ -181,15 +205,31 @@ const NextNavbar = () => {
             </NavbarItem>
 
             <NavbarItem>
-              <Button
-                as={Link}
-                href="/auth/signin"
-                color="success"
-                variant="flat"
-                className="font-bold"
-              >
-                Sign in
-              </Button>
+              {user ? (
+                <>
+                  <Button
+                    onClick={onOpen}
+                    color="success"
+                    variant="flat"
+                    className="font-bold"
+                  >
+                    Sign out
+                  </Button>
+                  {user && (
+                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
+                  )}
+                </>
+              ) : (
+                <Button
+                  as={Link}
+                  href="/auth/signin"
+                  color="success"
+                  variant="flat"
+                  className="font-bold"
+                >
+                  Sign in
+                </Button>
+              )}
             </NavbarItem>
           </NavbarContent>
 
@@ -200,6 +240,9 @@ const NextNavbar = () => {
               </NavbarMenuItem>
             ))}
           </NavbarMenu>
+
+          {/* logout modal */}
+          <SignOutModal isOpen={isOpen} onOpenChange={onOpenChange} />
         </Navbar>
       )}
     </>
