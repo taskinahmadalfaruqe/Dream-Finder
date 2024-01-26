@@ -30,7 +30,7 @@ export default function jobDetailsPage() {
                 Join Us
               </h2>
               <h1 className="uppercase mt-1  text-2xl md:text-6xl  text-whiteColor">
-                We're <span className="text-primaryColor">Hiring!</span>
+                We'<span>re</span> <span className="text-primaryColor">Hiring!</span>
               </h1>
               <p className="text-whiteColor mt-3 text-xl md:text-2xl">
                 position: Junior Web developer
