@@ -8,7 +8,7 @@ import { IoIosLink } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-const Form = () => {
+const CompanyRegisterForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [err, setErr] = useState("");
   const router = useRouter();
@@ -22,10 +22,6 @@ const Form = () => {
 
   const onSubmit = async data => {
     console.log(data);
-    const { email, password } = data;
-    console.log(email, password);
-
-
   };
   return (
     <div>
@@ -34,7 +30,7 @@ const Form = () => {
           <div className="w-full mb-4">
             {err && <p className="tex-sm mb-2 text-red-600 mt-1">{err}</p>}
             <label className="label">
-              <span className="text-lg font-bold">Your Name</span>
+              <span className="text-lg font-bold">Your Company Name</span>
             </label>
             <input
               type="text"
@@ -55,13 +51,13 @@ const Form = () => {
           </div>
           <div className="w-full mb-4">
             <label className="label">
-              <span className="text-lg font-bold">Your Photo url</span>
+              <span className="text-lg font-bold">Your Company logo</span>
             </label>
             <input
               type="url"
-              placeholder="your photo url"
+              placeholder="your company logo"
               {...register("photoUrl", {
-                required: "photo url is required *",
+                required: "company logo is required *",
               })}
               aria-invalid={errors.photoUrl ? "true" : "false"}
               className="border w-full rounded-xl px-5 pr-12 h-16 hover:shadow-lg   focus:shadow-lg   duration-500 outline-none text-lg scale-95 focus:scale-[.98] text-secondaryColor font-medium"
@@ -75,13 +71,13 @@ const Form = () => {
           </div>
           <div className="w-full mb-4">
             <label className="label">
-              <span className="text-lg font-bold">Your Email</span>
+              <span className="text-lg font-bold">Your Company Email</span>
             </label>
             <input
               type="email"
-              placeholder="your email"
+              placeholder="your company email"
               {...register("email", {
-                required: "Email address is required *",
+                required: "Company Email address is required *",
                 pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}
@@ -101,7 +97,7 @@ const Form = () => {
           </div>
           <div className="w-full mb-4">
             <label className="label">
-              <span className="text-lg font-bold">Your Password</span>
+              <span className="text-lg font-bold">Your Company Password</span>
             </label>
             <input
               type={isPasswordType ? "password" : "text"}
@@ -161,4 +157,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default CompanyRegisterForm;
