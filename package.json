@@ -12,9 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@nextui-org/react": "^2.2.9",
-    "bcryptjs": "^2.4.3",
     "@smastrom/react-rating": "^1.4.0",
     "aos": "^2.3.4",
+    "axios": "^1.6.7",
+    "bcryptjs": "^2.4.3",
+    "firebase": "^10.7.2",
     "framer-motion": "^10.18.0",
     "json-server": "^1.0.0-alpha.21",
     "lottie-react": "^2.4.0",

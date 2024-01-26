@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/shared/Footer";
 import { NextUIProvider } from "@nextui-org/react";
 import NextNavbar from "@/components/shared/NextNav";
+import AuthProvider from "@/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
@@ -11,9 +12,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextUIProvider>
-         <NextNavbar></NextNavbar>
-          {children}
-          <Footer></Footer>
+          <AuthProvider>
+            <NextNavbar></NextNavbar>
+            {children}
+            <Footer></Footer>
+          </AuthProvider>
         </NextUIProvider>
       </body>
     </html>

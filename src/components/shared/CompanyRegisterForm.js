@@ -8,11 +8,24 @@ import { IoIosLink } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import useContextData from "@/hooks/useContextData";
+import { Spinner } from "@nextui-org/react";
 const CompanyRegisterForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [err, setErr] = useState("");
+  const [isEmailSingInBtnActive, setIsEmailSingInBtnActive] = useState(false);
   const router = useRouter();
 
+  // context data
+  const {
+    createUser,
+    profileUpdate,
+    updateUserData,
+    setProfileUpdate,
+    logOut,
+  } = useContextData();
+
+  // hook form
   const {
     register,
     handleSubmit,
@@ -21,8 +34,36 @@ const CompanyRegisterForm = () => {
   } = useForm();
 
   const onSubmit = async data => {
+    setIsEmailSingInBtnActive(true);
     console.log(data);
+    const { email, password, name, photoUrl } = data;
+    console.log(email, password);
+
+    // sign up / create user using firebase
+    createUser(email, password)
+      .then(res => {
+        console.log(res.user);
+        updateUserData(name, photoUrl)
+          .then(res => {
+            console.log(res);
+            setProfileUpdate(!profileUpdate);
+            logOut().then();
+            reset();
+            router.push("/auth/signin");
+            setIsEmailSingInBtnActive(false);
+          })
+          .catch(err => {
+            console.log(err);
+            setIsEmailSingInBtnActive(false);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+        setIsEmailSingInBtnActive(false);
+        setErr("something is wrong! please try again.");
+      });
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="overflow-hidden">
@@ -149,7 +190,11 @@ const CompanyRegisterForm = () => {
             )}
           </div>
           <button className="scale-95 active:scale-[.93] duration-200 bg-darkColor text-white text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6">
-            Sign up
+            {isEmailSingInBtnActive ? (
+              <Spinner color="success" />
+            ) : (
+              <span>Sign up</span>
+            )}
           </button>
         </Fade>
       </form>
