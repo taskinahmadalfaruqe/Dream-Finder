@@ -40,7 +40,7 @@ const NextNavbar = () => {
   // side effect
   useEffect(() => {
     handleResize();
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize)
 
     return () => {
       window.removeEventListener("resize", handleResize);
