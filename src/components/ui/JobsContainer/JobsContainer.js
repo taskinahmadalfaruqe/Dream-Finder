@@ -28,7 +28,7 @@ const JobsContainer = () => {
   
 
   return (
-    <div>
+    <div className="pb-20">
       <div className="grid grid-cols-12 md:gap-10 relative">
         <div className="col-span-12 lg:col-span-4">
           <JobSearchSection
