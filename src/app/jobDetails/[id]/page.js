@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   Card,
@@ -8,11 +9,15 @@ import {
 } from "@nextui-org/react";
 import "./jobDetails.css";
 import { FaCheckSquare } from "react-icons/fa";
-import CommonButton from "@/components/shared/CommonButton";
 import { VscDebugBreakpointDataUnverified } from "react-icons/vsc";
+import CommonButton from "@/components/shared/CommonButton";
+import { useRouter } from "next/router";
+
 
 export default function jobDetailsPage() {
+
   return (
+    
     <div className="container my-10 mb-40 p-5">
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
