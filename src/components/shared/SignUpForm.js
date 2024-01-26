@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Link, Tooltip } from "@nextui-org/react";
+import { Button, Link, Spinner, Tooltip } from "@nextui-org/react";
 import { useState } from "react";
 import { Bounce, Fade } from "react-awesome-reveal";
 import { FcGoogle } from "react-icons/fc";
@@ -9,12 +9,34 @@ import SignUpAnim from "./SignUpAnim";
 import Form from "./Form";
 import CompanyRegisterForm from "./CompanyRegisterForm";
 import BackToPrevState from "./BackToPrevState";
+import useContextData from "@/hooks/useContextData";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   // state
   const [isEmailSignUpPage, setIsEmailSignUpPage] = useState(false);
   const [questionPage, setQuestionPage] = useState(true);
   const [recruiterPage, setRecruiterPage] = useState(false);
+  const [isGoogleAuthBtnActive, setIsGoogleAuthBtnActive] = useState(false);
+
+  const { googleLogin } = useContextData();
+  const router = useRouter();
+
+  // handler
+
+  const handleGoogleLogin = () => {
+    setIsGoogleAuthBtnActive(true);
+    googleLogin()
+      .then(() => {
+        console.log("google authentication successfully.");
+        router.push("/Find-Jobs");
+        setIsGoogleAuthBtnActive(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setIsGoogleAuthBtnActive(false);
+      });
+  };
 
   return (
     <Fade triggerOnce={true}>
@@ -74,9 +96,18 @@ export default function SignUpForm() {
                 <Form />
               ) : (
                 <div>
-                  <button className="scale-95 active:scale-[.93] duration-200 bg-darkColor text-white text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6 flex items-center justify-center gap-2">
-                    <FcGoogle className="text-2xl" />
-                    Sign up with Google
+                  <button
+                    onClick={handleGoogleLogin}
+                    className="scale-95 active:scale-[.93] duration-200 bg-darkColor text-white text-base opacity-100 hover:bg-light-black hover:opacity-90 rounded-full w-full font-bold h-16 mt-6 flex items-center justify-center gap-2"
+                  >
+                    {isGoogleAuthBtnActive ? (
+                      <Spinner color="default" />
+                    ) : (
+                      <>
+                        <FcGoogle className="text-2xl" />
+                        <span>Sign up with Google</span>
+                      </>
+                    )}
                   </button>
                   <Divider content={"or"} />
                   <button
