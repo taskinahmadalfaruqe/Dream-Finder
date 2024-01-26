@@ -1,6 +1,6 @@
 .jobDetailsBanner{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../../../assets/banner/hiring.jpg') center/cover no-repeat;;
+    url('../../assets/banner/hiring.jpg') center/cover no-repeat;;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

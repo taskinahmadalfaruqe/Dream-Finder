@@ -16,12 +16,10 @@ const JobsContainer = () => {
   const [salary, setSalary] = useState(0);
   const [preference, setPreference] = useState(false);
   const [submit, setSubmit] = useState(false)
-  
+  // `https://11-service-squade-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&salary=${salary}&preference=${preference}&page=${page}`
   
   useEffect(() => {
-    fetch(
-      `https://11-service-squade-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&salary=${salary}&preference=${preference}&page=${page}`
-    )
+    fetch("/jobs.json")
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, [submit,page]);
