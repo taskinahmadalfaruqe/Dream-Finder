@@ -17,12 +17,14 @@ import CommonButton from "@/components/shared/CommonButton";
 const JobCard = ({ job }) => {
   const {
     company_name,
-    job_title,
+    category,
     type,
+    _id,
     description,
     salary,
     company_logo,
     posted_date,
+    viewCount,
   } = job;
 
   const [isShow, setIsShow] = useState(false);
@@ -48,7 +50,7 @@ const JobCard = ({ job }) => {
       <CardBody className="px-5 py-8">
         <div className="flex justify-between">
           <div>
-            <h1 className="text-xl md:text-2xl font-bold">{job_title}</h1>
+            <h1 className="text-xl md:text-2xl font-bold">{category}</h1>
             <p className=" md:text-lg font-semibold mt-1 text-secondaryColor">
               {company_name}
             </p>
@@ -67,12 +69,21 @@ const JobCard = ({ job }) => {
           <p className="lg:w-2/3 text-secondaryColor mt-2 text-sm md:text-lg">
             {description}
           </p>
-          <div className="lg:w-2/3 mt-3">
-            <p className=" flex items-center">
-              <FaClock className="font-bold mr-2" />
-              <span>Posted Date</span>
-            </p>
-            <span className="text-secondaryColor ">{posted_date}</span>
+          <div className="flex gap-5 items-center mt-3">
+            <div className="">
+              <p className=" flex items-center">
+                <FaClock className="font-bold mr-2" />
+                <span>Posted Date</span>
+              </p>
+              <span className="text-secondaryColor ">{posted_date}</span>
+            </div>
+            <div className="">
+              <p className=" flex items-center">
+                <FaClock className="font-bold mr-2" />
+                <span>View</span>
+              </p>
+              <span className="text-secondaryColor ">{viewCount}</span>
+            </div>
           </div>
         </div>
       </CardBody>
@@ -84,7 +95,7 @@ const JobCard = ({ job }) => {
       >
         <div className="absolute h-full w-full top-0 left-0 bg-lightSkyBlue z-20  opacity-80  flex justify-center items-center">
           <div className=" space-x-5">
-            <Link href="/">
+            <Link href={`/jobDetails/${_id}`}>
               <CommonButton buttonName={"Apply Now"}></CommonButton>
             </Link>
           </div>
