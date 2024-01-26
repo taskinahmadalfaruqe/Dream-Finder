@@ -20,7 +20,7 @@ export default function ContactForm() {
                         <input
                             type="text"
                             {...register("name", { required: true })}
-                            className="w-full border-primaryColor border p-2 rounded "
+                            className="w-full border-primaryColor border  p-2 rounded "
                             placeholder=" Your Name"
                         />
                         {errors.name && <span className="text-redColor">This field is required</span>}
@@ -32,7 +32,7 @@ export default function ContactForm() {
                         <input
                             type="tel"
                             {...register("number", { required: true })}
-                            className="w-full border-primaryColor border  p-2 rounded"
+                            className="w-full border-primaryColor border   p-2 rounded"
                             placeholder=" Contact Number"
                         />
                         {errors.number && <span className="text-redColor">This field is required</span>}
