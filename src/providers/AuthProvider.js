@@ -77,10 +77,10 @@ const AuthProvider = ({ children }) => {
       /// jwt block ////
       //////////////////
 
-      /* if (presentUser) {
+      if (presentUser) {
         // get token form server side and store in local storage
         const userInfo = { email: presentUser.email };
-        axiosPublic.post("/jwt", userInfo).then(res => {
+        axiosPublic.post("/create/jwt", userInfo).then(res => {
           // if token exist, then store in local storage
           if (res.data) {
             localStorage.setItem("access-token", res.data.token);
@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem("access-token");
         console.log("access-token removed");
         setLoading(false);
-      } */
+      }
       //////////////////////////////////
     });
     return () => {

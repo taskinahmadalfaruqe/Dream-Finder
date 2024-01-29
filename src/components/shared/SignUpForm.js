@@ -27,7 +27,15 @@ export default function SignUpForm() {
   const handleGoogleLogin = () => {
     setIsGoogleAuthBtnActive(true);
     googleLogin()
-      .then(() => {
+      .then(async res => {
+        const userData = {
+          email: res?.user?.email,
+          name: res?.user?.displayName,
+        };
+        ////////////////////////////
+        // if user not exist in db, then create user in db by there information.
+        await axiosPublic.post("/create/user", userData);
+        ////////////////////////////
         console.log("google authentication successfully.");
         router.push("/Find-Jobs");
         setIsGoogleAuthBtnActive(false);
