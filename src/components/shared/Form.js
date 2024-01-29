@@ -10,21 +10,17 @@ import { FaRegUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import { Spinner } from "@nextui-org/react";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 const Form = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [isEmailSingInBtnActive, setIsEmailSingInBtnActive] = useState(false);
 
   const [err, setErr] = useState("");
   const router = useRouter();
+  const axiosPublic = useAxiosPublic();
 
   // context data
-  const {
-    createUser,
-    profileUpdate,
-    updateUserData,
-    setProfileUpdate,
-    logOut,
-  } = useContextData();
+  const { createUser, updateUserData, logOut } = useContextData();
 
   // hook form
   const {
@@ -45,13 +41,20 @@ const Form = () => {
       .then(res => {
         console.log(res.user);
         updateUserData(name, photoUrl)
-          .then(res => {
+          .then(async res => {
             console.log(res);
-            setProfileUpdate(!profileUpdate);
-            logOut().then();
-            reset();
+            const userInfo = {
+              name,
+              email,
+            };
+            ////////////////////////////
+            // if user not exist in db, then create user in db by there information.
+            await axiosPublic.post("/create/user", userInfo);
+            ////////////////////////////
+            await logOut();
             router.push("/auth/signin");
             setIsEmailSingInBtnActive(false);
+            reset();
           })
           .catch(err => {
             console.log(err);
