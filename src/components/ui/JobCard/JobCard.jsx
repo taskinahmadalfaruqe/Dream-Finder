@@ -85,7 +85,7 @@ const JobCard = ({ job }) => {
       >
         <div className="absolute h-full w-full top-0 left-0 bg-lightSkyBlue z-20  opacity-80  flex justify-center items-center">
           <div className=" space-x-5">
-            <Link href="Find-Jobs/details">
+            <Link href={`/Find-Jobs/${_id}`}>
               <CommonButton buttonName={"Apply Now"}></CommonButton>
             </Link>
           </div>
