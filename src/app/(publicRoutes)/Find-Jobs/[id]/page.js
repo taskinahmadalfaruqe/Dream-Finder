@@ -1,4 +1,3 @@
-// import JobDetails from '@/components/ui/jobDetails/JobDetails';
 import JobDetails from '@/components/ui/jobDetails/JobDetails';
 import React from 'react';
 
