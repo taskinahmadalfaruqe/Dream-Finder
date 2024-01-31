@@ -1,10 +1,11 @@
 import JobDetails from '@/components/ui/jobDetails/JobDetails';
 import React from 'react';
 
-const page = () => {
+const page = ({params}) => {
+  
     return (
         <div className="container">
-            <JobDetails />
+            <JobDetails id={params.id} />
         </div>
     );
 };

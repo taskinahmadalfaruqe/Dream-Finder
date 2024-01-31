@@ -1,23 +1,23 @@
-"use client"
-import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Image,
-  ListboxItem,
-} from "@nextui-org/react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { Card, CardHeader, CardBody, useDisclosure } from "@nextui-org/react";
 import "./jobDetails.css";
 import { FaCheckSquare } from "react-icons/fa";
 import { VscDebugBreakpointDataUnverified } from "react-icons/vsc";
 import CommonButton from "@/components/shared/CommonButton";
+import ApplicationSubmissionForm from "../ApplicationSubmissionForm/ApplicationSubmissionForm";
 
+export default function JobDetails({ id }) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [job, setJob] = useState({})
 
-
-export default function JobDetails() {
+  useEffect(() => {
+    fetch(`https://dream-finder-file-upload-server.vercel.app/jobDetails/${id}`)
+    .then(res => res.json())
+    .then(data => setJob(data))
+  }, [id]);
 
   return (
-    
     <div className="container my-10 mb-40 p-5">
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
@@ -30,10 +30,11 @@ export default function JobDetails() {
                 Join Us
               </h2>
               <h1 className="uppercase mt-1  text-2xl md:text-6xl  text-whiteColor">
-                We<span>Are</span> <span className="text-primaryColor">Hiring!</span>
+                We<span> Are</span>{" "}
+                <span className="text-primaryColor">Hiring!</span>
               </h1>
               <p className="text-whiteColor mt-3 text-xl md:text-2xl">
-                position: Junior Web developer
+                Junior Web developer
               </p>
             </div>
           </div>
@@ -250,12 +251,16 @@ export default function JobDetails() {
             </div>
           </div>
           <div>
-            <div className="w-48 mx-auto mt-10">
+            <div onClick={onOpen} className="w-48 mx-auto mt-10">
               <CommonButton buttonName="Apply Now" />
             </div>
           </div>
         </CardBody>
       </Card>
+      <ApplicationSubmissionForm
+        actions={{ isOpen, onOpen, onOpenChange }}
+        jobInfo={{id:job._id, company_name:job.company_name, category:job.category}}
+      />
     </div>
   );
 }
