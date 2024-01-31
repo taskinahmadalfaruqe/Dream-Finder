@@ -13,6 +13,10 @@ import Image from "next/image";
 import jobImage from "@/assets/upcoming/upcoming2.jpg";
 import jobTitle from "@/assets/upcoming/job.jpg"
 
+export const metadata= {
+  title: 'Dream Finder | Upcoming Event',
+};
+
 const upcomingEvent = () => {
   return (
     <div className="container">

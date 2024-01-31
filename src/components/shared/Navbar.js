@@ -10,12 +10,15 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Image,
 } from "@nextui-org/react";
 import { useState } from "react";
 import { Badge } from "@nextui-org/react";
 import { FaBell, FaMoon, FaSun } from "react-icons/fa";
 import { Switch } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import logo from "../../assets/logo.png"
+
 
 const NavbarPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +63,9 @@ const NavbarPage = () => {
           />
           <NavbarBrand className="hidden md:flex">
             <Link href="/">
-              <p className="font-bold text-inherit">Dream Finder</p>
+              <Image width={100}
+              height={50} src={logo} alt="Logo" />
+              <p className="font-bold text-inherit">Dream Finde</p>
             </Link>
           </NavbarBrand>
         </NavbarContent>
