@@ -2,7 +2,9 @@
 import Subscribe from '@/components/ui/Subscribe/Subscribe';
 import React from 'react';
 
-
+export const metadata= {
+    title: 'Dream Finder | Subscription',
+  };
 const SubscribePage = () => {
     return (
         <div className='h-screen-full w-full py-20'>
