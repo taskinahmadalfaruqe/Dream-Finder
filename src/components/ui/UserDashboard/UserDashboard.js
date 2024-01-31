@@ -38,50 +38,51 @@ const UserDashboard = () => {
                     </Fade>
                     <div className='my-4 border border-primaryColor'></div>
 
-                    <Fade direction="left" cascade>
-                        <Link href='/dashboard'>
-                            <div className={`
+                    <Link href='/'>
+                        <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
+                            <IoHomeOutline className='text-2xl' />
+                            <h1 className={` font-bold text-2xl `}>Go Home</h1>
+                        </div>
+                    </Link>
+
+                    <Link href='/dashboard'>
+                        <div className={`
                 flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg`}
-                            >
-                                <RxDashboard className='text-2xl' />
-                                <h1 className={` font-bold text-2xl `}>Dashboard</h1>
-                            </div>
-                        </Link>
-                        </Fade>
+                        >
+                            <RxDashboard className='text-2xl' />
+                            <h1 className={` font-bold text-2xl `}>Dashboard</h1>
+                        </div>
+                    </Link>
 
-                    <Fade direction="left" cascade>
-                        <Link href='/dashboard/profile'>
-                            <div className={` 
+
+
+                    <Link href='/dashboard/profile'>
+                        <div className={` 
                 flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg`}
-                            >
-                                <RiProfileLine className='text-2xl' />
-                                <h1 className={` font-bold text-2xl `}>Profile</h1>
-                            </div>
-                        </Link></Fade>
+                        >
+                            <RiProfileLine className='text-2xl' />
+                            <h1 className={` font-bold text-2xl `}>Profile</h1>
+                        </div>
+                    </Link>
 
-                    <Fade direction="left" cascade>
-                        <Link href='/dashboard/appliedJob'>
-                            <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
-                                <FaRegFileAlt className='text-2xl' />
-                                <h1 className={` font-bold text-2xl `}>Applied Job</h1>
-                            </div>
-                        </Link></Fade>
 
-                    <Fade direction="left" cascade>
-                        <Link href='/logout'>
-                            <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
-                                <IoMdLogOut className='text-2xl' />
-                                <h1 className={` font-bold text-2xl `}>Logout</h1>
-                            </div>
-                        </Link></Fade>
+                    <Link href='/dashboard/appliedJob'>
+                        <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
+                            <FaRegFileAlt className='text-2xl' />
+                            <h1 className={` font-bold text-2xl `}>Applied Job</h1>
+                        </div>
+                    </Link>
 
-                    <Fade direction="left" cascade>
-                        <Link href='/'>
-                            <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
-                                <IoHomeOutline className='text-2xl' />
-                                <h1 className={` font-bold text-2xl `}>Go Home</h1>
-                            </div>
-                        </Link></Fade>
+
+                    <Link href='/logout'>
+                        <div className='flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg'>
+                            <IoMdLogOut className='text-2xl' />
+                            <h1 className={` font-bold text-2xl `}>Logout</h1>
+                        </div>
+                    </Link>
+
+
+
                 </div>
             </Disclosure>
 

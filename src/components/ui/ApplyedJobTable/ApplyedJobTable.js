@@ -9,57 +9,31 @@ export default function App() {
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>
-        <TableColumn>NAME</TableColumn>
+        <TableColumn>COMPANY NAME</TableColumn>
         <TableColumn>ROLE</TableColumn>
         <TableColumn>STATUS</TableColumn>
-        <TableColumn>EDIT</TableColumn>
-        <TableColumn>DELETE</TableColumn>
+        <TableColumn>APPLY DATE</TableColumn>
       </TableHeader>
       <TableBody>
         <TableRow key="1">
-          <TableCell>Tony Reichert</TableCell>
-          <TableCell>CEO</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegEdit />
-            </Link>
-          </TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegTrashAlt />
-            </Link>
-          </TableCell>
+          <TableCell>Harberd Ltd.</TableCell>
+          <TableCell>Web Developer</TableCell>
+          <TableCell>pending</TableCell>
+          <TableCell>30/01/2024</TableCell>
+          
         </TableRow>
         <TableRow key="2">
-          <TableCell>Zoey Lang</TableCell>
+          <TableCell>Alfa Co. Ltd.</TableCell>
           <TableCell>Technical Lead</TableCell>
-          <TableCell>Paused</TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegEdit />
-            </Link>
-          </TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegTrashAlt />
-            </Link>
-          </TableCell>
+          <TableCell>On the Way</TableCell>
+          <TableCell>25/01/2024</TableCell>
         </TableRow>
         <TableRow key="3">
-          <TableCell>Jane Fisher</TableCell>
-          <TableCell>Senior Developer</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegEdit />
-            </Link>
-          </TableCell>
-          <TableCell>
-            <Link href='/'>
-              <FaRegTrashAlt />
-            </Link>
-          </TableCell>
+          <TableCell>BestDev Co.</TableCell>
+          <TableCell>Junior Developer</TableCell>
+          <TableCell>Responsed</TableCell>
+          <TableCell>20/01/2024</TableCell>
+          
         </TableRow>
       </TableBody>
     </Table>
