@@ -80,14 +80,14 @@ const AuthProvider = ({ children }) => {
       if (presentUser) {
         // get token form server side and store in local storage
         const userInfo = { email: presentUser.email };
-        axiosPublic.post("/create/jwt", userInfo).then(res => {
-          // if token exist, then store in local storage
-          if (res.data) {
-            localStorage.setItem("access-token", res.data.token);
-            console.log("access-token stored");
-            setLoading(false);
-          }
-        });
+        // axiosPublic.post("/create/jwt", userInfo).then(res => {
+        //   // if token exist, then store in local storage
+        //   if (res.data) {
+        //     localStorage.setItem("access-token", res.data.token);
+        //     console.log("access-token stored");
+        //     setLoading(false);
+        //   }
+        // });
       }
       // if user dose not exist, then remove stored token in local storage
       else {

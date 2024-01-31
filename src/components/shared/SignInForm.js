@@ -33,12 +33,10 @@ const SignInForm = () => {
 
   const onSubmit = async data => {
     setIsEmailSingInBtnActive(true);
-    console.log(data);
     const { email, password } = data;
-    console.log(email, password);
+ 
 
     // sign in using firebase
-
     logIn(email, password)
       .then(res => {
         console.log(res.user);
@@ -64,7 +62,7 @@ const SignInForm = () => {
         };
         ////////////////////////////
         // if user not exist in db, then create user in db by there information.
-        await axiosPublic.post("/create/user", userData);
+        // await axiosPublic.post("/create/user", userData);
         ////////////////////////////
         console.log("google authentication successfully.");
         router.push("/Find-Jobs");

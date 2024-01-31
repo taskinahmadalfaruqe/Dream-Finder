@@ -6,6 +6,11 @@ import UpcomingEventModal from "@/components/ui/UpcomingEventModal/UpcomingEvent
 import HelpDesk from "@/components/ui/helpDesk/helpDesk";
 import JobSection from "@/components/ui/jobSection/JobSection";
 import React from "react";
+
+ 
+export const metadata= {
+  title: 'Dream Finder ',
+};
 const HomePage = () => {
   return (
     <div>

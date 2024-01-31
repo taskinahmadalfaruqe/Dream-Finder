@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
   useDisclosure,
   Avatar,
+  Image,
 } from "@nextui-org/react";
 import { useCallback, useEffect, useState } from "react";
 import { Badge } from "@nextui-org/react";
@@ -21,9 +22,10 @@ import { usePathname } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
 
+
 const NextNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // log out modal state
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const path = usePathname();
@@ -70,7 +72,8 @@ const NextNavbar = () => {
             />
             <NavbarBrand className="hidden md:flex">
               <Link href="/">
-                <p className="font-bold text-inherit">Dream Finder</p>
+                <Image src="/logo.png" className="hidden lg:flex" width={100}  alt="logo" />
+                {/* <p className="font-bold text-inherit">Dream Finder</p> */}
               </Link>
             </NavbarBrand>
           </NavbarContent>
@@ -102,7 +105,7 @@ const NextNavbar = () => {
             </NavbarItem>
             <NavbarItem>
               <Link
-                href="subscription"
+                href="/subscription"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 Subscription
@@ -110,7 +113,7 @@ const NextNavbar = () => {
             </NavbarItem>
             <NavbarItem>
               <Link
-                href="upcoming-event"
+                href="/upcoming-event"
                 className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 Upcomming Event

@@ -13,14 +13,18 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import CommonButton from "@/components/shared/CommonButton";
+import { FaBookmark, FaRegBookmark, FaLocationDot } from "react-icons/fa6";
+import { TbCashBanknote } from "react-icons/tb";
 
 const JobCard = ({ job }) => {
   const {
     company_name,
-    job_title,
+    category,
     type,
     description,
-    salary,
+    minSalary,
+    maxSalary,
+    location,
     _id,
     company_logo,
     posted_date,
@@ -30,12 +34,11 @@ const JobCard = ({ job }) => {
 
   return (
     <Card
-      onMouseOver={() => setIsShow(true)}
       onMouseLeave={() => setIsShow(false)}
       className=" relative shadow-2xl"
       radius="sm"
     >
-      <CardHeader className="flex gap-3 p-5">
+      <CardHeader className="flex gap-3 p-5 justify-between">
         <Button
           className="border-primaryColor px-5 py-1"
           radius="sm"
@@ -44,16 +47,22 @@ const JobCard = ({ job }) => {
           <BiBarChartAlt className="text-primaryColor text-lg font-bold" />{" "}
           Actively Hiring
         </Button>
+        <div>
+          <FaRegBookmark
+            style={{ fontSize: 28, color: "#00BE63", cursor: "pointer" }}
+          />
+        </div>
       </CardHeader>
       <Divider />
-      <CardBody className="px-5 py-8">
+      <CardBody onMouseOver={() => setIsShow(true)} className="px-5 py-8">
         <div className="flex justify-between">
           <div>
-            <h1 className="text-xl md:text-2xl font-bold">{job_title}</h1>
+            <h1 className="text-xl md:text-2xl font-bold">{category}</h1>
             <p className=" md:text-lg font-semibold mt-1 text-secondaryColor">
               {company_name}
             </p>
           </div>
+
           <div>
             <Image
               src={company_logo}
@@ -64,20 +73,39 @@ const JobCard = ({ job }) => {
           </div>
         </div>
         <div>
-          {/* <IoLocationOutline /> */}
           <p className="lg:w-2/3 text-secondaryColor mt-2 text-sm md:text-lg">
             {description}
           </p>
-          <div className="lg:w-2/3 mt-3">
-            <p className=" flex items-center">
-              <FaClock className="font-bold mr-2" />
-              <span>Posted Date</span>
-            </p>
-            <span className="text-secondaryColor ">{posted_date}</span>
+          <div className="mt-3 flex gap-8">
+            <div>
+              <p className=" flex items-center">
+                <FaLocationDot className="font-bold mr-1" />
+                <span>Location</span>
+              </p>
+              <span className="text-secondaryColor ml-1">{location}</span>
+            </div>
+            <div>
+              <p className=" flex items-center">
+                <TbCashBanknote className="font-bold mr-1" />
+                <span>Salary (Per Month)</span>
+              </p>
+              <span className="text-secondaryColor ml-1">
+               $ {minSalary} - {maxSalary}
+              </span>
+            </div>
           </div>
         </div>
       </CardBody>
       <Divider />
+      <div className="px-5 py-3 flex justify-end">
+        <div>
+          <p className=" flex items-center">
+            <FaClock className="font-bold mr-1" />
+            <span>Posted Date</span>
+          </p>
+          <span className="text-secondaryColor ml-1">{posted_date}</span>
+        </div>
+      </div>
       <div
         className={`transition-opacity duration-500 ease-in-out ${
           isShow ? "opacity-100 block" : "opacity-0 hidden"

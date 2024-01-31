@@ -13,13 +13,14 @@ import CommonButton from "./CommonButton";
 
 const Footer = () => {
   const path = usePathname();
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   return (
-    <div className={`mt-20 ${path.includes("auth") && "hidden"}`}>
-      <div className="bg-darkColor flex items-center py-5 ">
+    <div
+      className={`${path.includes("auth") && "hidden"}`}
+    >
+      <div className="bg-darkColor mt-32 flex items-center py-5 ">
         <footer className="container">
           <div className="flex justify-between items-center text-whiteColor flex-col md:flex-row text-center gap-5 relative lg:pt-16">
-
             <div className="space-y-3">
               <h1 className="text-2xl font-semibold">Dream Finder</h1>
               <p>
@@ -49,26 +50,29 @@ const Footer = () => {
               <div>Blog</div>
             </div>
 
-            <div className=" bg-lightPrimaryColor  w-[80%] mx-auto rounded-md p-12 absolute left-[50%] translate-x-[-50%] translate-y-[-70%] top-[0%] hidden lg:flex">
+            <div className=" bg-lightPrimaryColor w-[80%] mx-auto rounded-md p-12 absolute left-[50%] translate-x-[-50%] translate-y-[-70%] top-[0%] hidden lg:flex">
               <div className="flex justify-between items-center gap-5 w-[100%]">
-
                 <div className="text-2xl font-bold text-lightWhiteColor">
                   Does your company need a great employees?
                 </div>
 
                 <div>
-                  <CommonButton buttonName={'Post Job'}></CommonButton>
+                  <CommonButton buttonName={"Post Job"}></CommonButton>
                 </div>
               </div>
             </div>
-
           </div>
 
-
-          <div className="text-whiteColor text-center pt-4 mt-5">
-            &copy; {year} All Rights Reserves by 
-            <span >
-              <Link href={'/'} className="text-primaryColor font-semibold cursor-pointer"> Dream Finder</Link>
+          <div className="text-whiteColor text-center pt-4 mt-5 ">
+            &copy; {year} All Rights Reserves by
+            <span>
+              <Link
+                href={"/"}
+                className="text-primaryColor font-semibold cursor-pointer"
+              >
+                {" "}
+                Dream Finder
+              </Link>
             </span>
           </div>
         </footer>
