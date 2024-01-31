@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
+    "@headlessui/react": "^1.7.18",
     "@nextui-org/react": "^2.2.9",
     "@smastrom/react-rating": "^1.4.0",
     "aos": "^2.3.4",
