@@ -1,5 +1,5 @@
-import Footer from "@/components/shared/Footer";
-import NextNavbar from "@/components/shared/NextNav";
+// import Footer from "@/components/shared/Footer";
+// import NextNavbar from "@/components/shared/NextNav";
 import UserDashboard from "@/components/ui/UserDashboard/UserDashboard";
 
 const DashboardLayout = ({ children }) => {
