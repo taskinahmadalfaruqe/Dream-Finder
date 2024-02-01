@@ -3,28 +3,29 @@
 import React, { useEffect, useState } from "react";
 import JobCard from "../JobCard/JobCard";
 import JobSearchSection from "../JobSearchSection/JobSearchSection";
-import CommonButton from "@/components/shared/CommonButton";
 import { Button } from "@nextui-org/react";
 import { GrLinkNext, GrLinkPrevious  } from "react-icons/gr";
 
-const JobsContainer = () => {
+
+const JobsContainer = ({category:queryCategory}) => {
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(5);
 
-  const [category, setCategory] = useState("");
+  
+
+  const [category, setCategory] = useState(queryCategory);
   const [location, setLocation] = useState("");
   const [type, setType] = useState([]);
-  const [salary, setSalary] = useState(0);
+  const [minSalary, setMinSalary] = useState(0);
+  const [maxSalary, setMaxSalary] = useState(10000000);
   const [preference, setPreference] = useState(false);
   const [submit, setSubmit] = useState(false);
   // `https://11-service-squade-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&salary=${salary}&preference=${preference}&page=${page}`
 
   useEffect(() => {
     fetch(
-      `https://dream-finder-file-upload-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&salary=${salary}&preference=${preference}&page=${page}`
+      `https://dream-finder-file-upload-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&minSalary=${minSalary}&maxSalary=${maxSalary}&preference=${preference}&page=${page}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +35,8 @@ const JobsContainer = () => {
   }, [submit, page]);
 
   const lastPage = Math.floor(jobsCount / 5)
-  console.log(lastPage);
+ 
+
 
   return (
     <div>
@@ -50,7 +52,8 @@ const JobsContainer = () => {
               setCategory,
               setType,
               setLocation,
-              setSalary,
+              setMinSalary,
+              setMaxSalary,
               type,
               preference,
               setPreference,

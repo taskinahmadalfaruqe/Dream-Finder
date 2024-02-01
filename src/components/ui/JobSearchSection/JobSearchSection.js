@@ -12,13 +12,15 @@ import {
 import { Select, SelectItem, Checkbox, Slider } from "@nextui-org/react";
 import { IoSearchSharp } from "react-icons/io5";
 import CommonButton from "@/components/shared/CommonButton";
+import { ScrollShadow } from "@nextui-org/react";
 
 const JobSearchSection = ({ state }) => {
   const {
     setCategory,
     setType,
     setLocation,
-    setSalary,
+    setMinSalary,
+    setMaxSalary,
     type,
     preference,
     setPreference,
@@ -26,15 +28,24 @@ const JobSearchSection = ({ state }) => {
     setSubmit,
   } = state;
   const category = [
+    "all",
     "Web Developer",
-    "Front End Developer",
-    "UI/UX designer",
-    "Back End Developer",
-    "MERN Stack Developer",
+    "Accounting",
+    "Administrative",
+    "Data Analyst",
+    "Manager",
+    "Marketing Specialist",
+    "Customer Service",
+    "Education",
+    "Engineering",
+    "Finance",
+    "IT",
   ];
 
   const handleCategory = (e) => {
-    setCategory(e.target.value);
+    const value = e.target.value;
+    setCategory(value == "all" ? "" : value);
+    console.log(e.target.value);
   };
 
   const handleLocation = (e) => {
@@ -51,145 +62,149 @@ const JobSearchSection = ({ state }) => {
   };
 
   const handleSalary = (value) => {
-    setSalary(value);
+    setMinSalary(value[0]);
+    setMaxSalary([value[1]]);
   };
 
   return (
     <Card className="sectionSearchSection h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  ">
-      <CardBody className="p-5 overflow-y-scroll">
-        <div className="">
+      <CardBody className="p-5">
+        <ScrollShadow
+          hideScrollBar
+          offset={100}
+          orientation="horizontal"
+          className=""
+        >
           <div className="">
-            <div className="w-xs ">
-              <Select
-                label="Select Category"
-                className="max-w-xs border border-primaryColor rounded-xl"
-                onChange={handleCategory}
-              >
-                {category.map((item) => (
-                  <SelectItem key={item} value={item.toUpperCase}>
-                    {item}
-                  </SelectItem>
-                ))}
-              </Select>
-            </div>
-            <div className="flex w-full flex-wrap md:flex-nowrap mt-5 relative  max-w-xs">
-              <Input
-                type="text"
-                label="Location"
-                placeholder="Search"
-                onChange={handleLocation}
-                className="border border-primaryColor rounded-xl max-w-xs"
-              />
-              <div className="absolute top-5 right-3">
-                <IoSearchSharp />
+            <div className="md:flex lg:block md:gap-3 lg:gap-0">
+              <div className="md:flex-1">
+                <Select
+                  label="Select Category"
+                  className="md:w-full border border-primaryColor rounded-xl"
+                  onChange={handleCategory}
+                >
+                  {category.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {item.toUpperCase()}
+                    </SelectItem>
+                  ))}
+                </Select>
+              </div>
+              <div className=" mt-5 md:mt-0 lg:mt-5 relative md:flex-1  lg:max-w-xs">
+                <Input
+                  type="text"
+                  label="Location"
+                  placeholder="Search"
+                  onChange={handleLocation}
+                  className="border md:w-full border-primaryColor rounded-xl md:flex-1"
+                />
+                <div className="absolute top-5 right-3">
+                  <IoSearchSharp />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="mt-5  ml-1 ">
-            <p className="mb-2 text-secondaryColor font-semibold">Type</p>
-            <div className="flex flex-col">
-              <Checkbox
-                checked={true}
-                onChange={() => handleType("on-sight")}
-                color="success"
-              >
-                On-Sight
-              </Checkbox>
-              <Checkbox
-                checked
-                onChange={() => handleType("remote")}
-                color="success"
-              >
-                Remote
-              </Checkbox>
-              <Checkbox
-                checked
-                onChange={() => handleType("hybrid")}
-                color="success"
-              >
-                Hybrid
-              </Checkbox>
+            <div className="mt-5 ml-1 flex flex-col md:flex-row lg:flex-col md:gap-14 lg:gap-0">
+              <div>
+                <p className="mb-2 text-secondaryColor font-semibold">Type</p>
+                <div className="flex flex-col md:flex-row lg:flex-col md:gap-5 lg:gap-1">
+                  <Checkbox
+                    checked={true}
+                    onChange={() => handleType("on-sight")}
+                    color="success"
+                  >
+                    On-Sight
+                  </Checkbox>
+                  <Checkbox
+                    checked
+                    onChange={() => handleType("remote")}
+                    color="success"
+                  >
+                    Remote
+                  </Checkbox>
+                  <Checkbox
+                    checked
+                    onChange={() => handleType("hybrid")}
+                    color="success"
+                  >
+                    Hybrid
+                  </Checkbox>
+                </div>
+              </div>
+
+              <div className="mt-5 md:mt-0 lg:mt-5">
+                <p className="mb-2 text-secondaryColor font-semibold">
+                  Preferences
+                </p>
+                <div className="flex flex-col">
+                  <Checkbox
+                    checked={true}
+                    onChange={() => setPreference(!preference)}
+                    color="success"
+                  >
+                    Most Applied
+                  </Checkbox>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 mb-3">
+              <p className="mb-2 text-secondaryColor font-semibold">
+                Salary Expectation
+              </p>
+
+              <Slider
+                label="Range"
+                step={10000}
+                maxValue={100000}
+                minValue={0}
+                defaultValue={[0, 100000]}
+                showSteps={true}
+                showTooltip={true}
+                showOutline={true}
+                disableThumbScale={true}
+                formatOptions={{ style: "currency", currency: "USD" }}
+                tooltipValueFormatOptions={{
+                  style: "currency",
+                  currency: "USD",
+                  maximumFractionDigits: 0,
+                }}
+                onChange={handleSalary}
+                classNames={{
+                  base: "",
+                  filler: "bg-gradient-to-r from-primaryColor to-primaryColor",
+                  labelWrapper: "mb-2",
+                  label: "font-medium text-default-700 text-medium",
+                  value: "font-medium text-default-500 text-small",
+                  thumb: [
+                    "transition-size",
+                    "bg-gradient-to-r from-primaryColor to-primaryColor",
+                    "data-[dragging=true]:shadow-lg data-[dragging=true]:shadow-black/20",
+                    "data-[dragging=true]:w-7 data-[dragging=true]:h-7 data-[dragging=true]:after:h-6 data-[dragging=true]:after:w-6",
+                  ],
+                  step: "data-[in-range=true]:bg-black/30 dark:data-[in-range=true]:bg-white/50",
+                }}
+                tooltipProps={{
+                  offset: 10,
+                  placement: "bottom",
+                  classNames: {
+                    base: [
+                      // arrow color
+                      "before:bg-gradient-to-r before:from-primaryColor before:to-primaryColor",
+                    ],
+                    content: [
+                      "py-2 shadow-xl",
+                      "text-white bg-gradient-to-r from-primaryColor to-primaryColor",
+                    ],
+                  },
+                }}
+              />
+            </div>
+            <div onClick={() => setSubmit(!submit)} className="mt-10 ">
+              <CommonButton buttonName={"Search"} />
             </div>
           </div>
-
-          <div className="mt-5  ml-1 ">
-            <p className="mb-2 text-secondaryColor font-semibold">
-              Preferences
-            </p>
-            <div className="flex flex-col">
-              <Checkbox
-                checked={true}
-                onChange={() => setPreference(!preference)}
-                color="success"
-              >
-                Most Applied
-              </Checkbox>
-            </div>
-          </div>
-          <div className="mt-5 mb-3">
-            <p className="mb-2 text-secondaryColor font-semibold">
-              Salary Expectation (In Lakhs)
-            </p>
-            <Slider
-              showTooltip={true}
-              size="sm"
-              color="success"
-              step={1}
-              maxValue={10}
-              minValue={0}
-              fillOffset={0}
-              defaultValue={0}
-              onChange={handleSalary}
-              marks={[
-                {
-                  value: 1,
-                  label: "1",
-                },
-                {
-                  value: 2,
-                  label: "2",
-                },
-                {
-                  value: 3,
-                  label: "3",
-                },
-                {
-                  value: 4,
-                  label: "4",
-                },
-                {
-                  value: 5,
-                  label: "5",
-                },
-                {
-                  value: 6,
-                  label: "6",
-                },
-                {
-                  value: 7,
-                  label: "7",
-                },
-                {
-                  value: 8,
-                  label: "8",
-                },
-                {
-                  value: 9,
-                  label: "9",
-                },
-                {
-                  value: 10,
-                  label: "10",
-                },
-              ]}
-              className="max-w-md"
-            />
-          </div>
-          <div onClick={() => setSubmit(!submit)} className="mt-10 ">
-            <CommonButton buttonName={"Search"} />
-          </div>
-        </div>
+        </ScrollShadow>
       </CardBody>
     </Card>
   );
