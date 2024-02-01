@@ -1,12 +1,14 @@
 "use client"
-import React from "react";
+import { useRouter } from "next/navigation";
 import "./banner.css";
 import {Button, Input} from "@nextui-org/react";
 import { useForm } from "react-hook-form"
 import { motion } from 'framer-motion'
 
 
+
 const HomePageBanner = () => {
+  const router = useRouter();
     const textArray = [
         "We Make Dreams a Reality",
         "By",
@@ -21,7 +23,7 @@ const HomePageBanner = () => {
 
       const onSubmit = (data) => {
         const searchValue = data.search
-        console.log(searchValue);
+        router.push(`/Find-Jobs?category=${searchValue}`);
       }
 
   return (
@@ -43,6 +45,7 @@ const HomePageBanner = () => {
           placeholder="&nbsp; &nbsp; Find Your Dream Job"
           className="mt-10"
           {...register("search")}
+
         />
         <Button type="submit" className="z-20 bg-primaryColor text-white  font-bold absolute top-1 h-12 md:px-14 right-1" radius="full">SEARCH</Button>
     </div>
