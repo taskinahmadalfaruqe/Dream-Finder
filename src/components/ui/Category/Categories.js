@@ -6,6 +6,7 @@ import Image from "next/image";
 // import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Card } from "@nextui-org/react";
 const allCategory = [
   {
     id: 1,
@@ -90,14 +91,15 @@ const Categories = () => {
             lg:grid-cols-5 md:grid-cols-3 gap-6 justify-between"
       >
         {allCategory?.map((single) => (
-          <Link
-            key={single.id}
+          <Card className="border border-primaryColor shadow-xl"  key={single.id}>
+            <Link
+           
             href={`/Find-Jobs?category=${single.category_name}`}
           >
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
-              className=" p-2 shadow-xl rounded-lg border border-primaryColor"
+              className=" p-2  rounded-lg  h-full"
             >
               <Image
                 className="mx-auto"
@@ -114,6 +116,7 @@ const Categories = () => {
               <p>Available Job: {single.available_job}</p>
             </motion.div>
           </Link>
+          </Card>
         ))}
       </div>
     </div>
