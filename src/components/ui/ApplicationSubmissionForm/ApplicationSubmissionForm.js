@@ -46,6 +46,10 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
       method: "POST",
       body: formData,
+      headers: {
+       
+        'Content-Type': 'multipart/form-data'
+      }
     })
       .then((response) => {
         console.log(response);

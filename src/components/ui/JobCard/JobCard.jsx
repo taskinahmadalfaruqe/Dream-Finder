@@ -74,7 +74,7 @@ const JobCard = ({ job }) => {
         </div>
         <div>
           <p className="lg:w-2/3 text-secondaryColor mt-2 text-sm md:text-lg">
-            {description}
+            {description.slice(0, 100)} ...
           </p>
           <div className="mt-3 flex gap-8">
             <div>
