@@ -13,6 +13,7 @@ import { useContext, useRef, useState } from "react";
 import "./applicationSubmissionForm.css";
 import { FiUpload } from "react-icons/fi";
 import { AuthContext } from "@/providers/AuthProvider";
+import axios from "axios";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const { isOpen, onOpenChange } = actions;
@@ -43,13 +44,10 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
 
  
 
-    fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
+   fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
       method: "POST",
       body: formData,
-      headers: {
-       
-        'Content-Type': 'multipart/form-data'
-      }
+      
     })
       .then((response) => {
         console.log(response);
@@ -89,7 +87,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                   <div>
                     <label
                       className="border-2 border-secondaryColor h-16 inline-block w-72 rounded-md"
-                      for="inputTag"
+                      htmlFor="inputTag"
                       onChange={handleFileChange}
                     >
                       <div className="flex justify-center items-center h-full gap-3">
