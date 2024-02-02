@@ -13,6 +13,7 @@ import { Link, Spinner } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import BackToPrevState from "./BackToPrevState";
 import useContextData from "@/hooks/useContextData";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
@@ -20,6 +21,7 @@ const SignInForm = () => {
   const [isEmailSingInBtnActive, setIsEmailSingInBtnActive] = useState(false);
   const [err, setErr] = useState("");
   const router = useRouter();
+  const axioxPublic= useAxiosPublic();
 
   // context data
   const { logIn, googleLogin } = useContextData();
@@ -62,7 +64,7 @@ const SignInForm = () => {
         };
         ////////////////////////////
         // if user not exist in db, then create user in db by there information.
-        // await axiosPublic.post("/create/user", userData);
+        await axioxPublic.post("/create/user", userData);
         ////////////////////////////
         console.log("google authentication successfully.");
         router.push("/Find-Jobs");
