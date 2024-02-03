@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card } from "@nextui-org/react";
+import "./categories.css";
 const allCategory = [
   {
     id: 1,
@@ -91,31 +92,32 @@ const Categories = () => {
             lg:grid-cols-5 md:grid-cols-3 gap-6 justify-between"
       >
         {allCategory?.map((single) => (
-          <Card className="border border-primaryColor shadow-xl"  key={single.id}>
-            <Link
-           
-            href={`/Find-Jobs?category=${single.category_name}`}
+          <Card
+            className="border categoryTransition border-primaryColor shadow-xl"
+            key={single.id}
           >
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className=" p-2  rounded-lg  h-full"
+            <Link
+              style={{ display: "inline-block", height: "100%" }}
+              href={`/Find-Jobs?category=${single.category_name}`}
             >
-              <Image
-                className="mx-auto"
-                src={single.icon_image}
-                width={60}
-                height={60}
-                alt="Picture of the author"
-              />
+              <div className="p-2 rounded-lg h-full flex flex-col">
+                <div className="flex-grow">
+                  <Image
+                    className="mx-auto "
+                    src={single.icon_image}
+                    width={60}
+                    height={60}
+                    alt="Picture of the author"
+                  />
+                </div>
 
-              <h2 className="font-semibold text-xl text-primaryColor">
-                {single.category_name}
-              </h2>
+                <h2 className="font-semibold text-xl text-primaryColor">
+                  {single.category_name}
+                </h2>
 
-              <p>Available Job: {single.available_job}</p>
-            </motion.div>
-          </Link>
+                <p>Available Job: {single.available_job}</p>
+              </div>
+            </Link>
           </Card>
         ))}
       </div>

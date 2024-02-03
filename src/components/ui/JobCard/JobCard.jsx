@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BiBarChartAlt } from "react-icons/bi";
 import { FaClock } from "react-icons/fa";
 
@@ -15,8 +15,17 @@ import Link from "next/link";
 import CommonButton from "@/components/shared/CommonButton";
 import { FaBookmark, FaRegBookmark, FaLocationDot } from "react-icons/fa6";
 import { TbCashBanknote } from "react-icons/tb";
+import { AuthContext } from "@/providers/AuthProvider";
+import axios from "axios";
+import useBookmarkDelete from "@/hooks/useBookmarkDelete";
 
 const JobCard = ({ job }) => {
+  const { user, Loading } = useContext(AuthContext);
+  const [isShow, setIsShow] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false)
+  const [bookmarks, setBookmarks] = useState([]);
+  const { handleBookmarkDelete } = useBookmarkDelete();
+  const [deleteState, setDeleteState] = useState(false)
   const {
     company_name,
     category,
@@ -30,7 +39,27 @@ const JobCard = ({ job }) => {
     posted_date,
   } = job;
 
-  const [isShow, setIsShow] = useState(false);
+  const handleSaveToBookmark = () => {
+    const bookmark = { ...job, user: user?.email, jobId: _id };
+    axios
+      .post(`https://dream-finder-file-upload-server.vercel.app/bookmark`, bookmark)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
+
+
+  
+  useEffect(() => {
+    if (!Loading) {
+      fetch(`https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`)
+        .then((res) => res.json())
+        .then((data) => setBookmarks(data));
+    }
+     const bookmarked = bookmarks?.find(bookmark => bookmark.jobId === _id)
+     if(bookmarked){
+      setIsBookmarked(true)
+     }
+  }, [Loading, deleteState, bookmarks]);
 
   return (
     <Card
@@ -40,18 +69,23 @@ const JobCard = ({ job }) => {
     >
       <CardHeader className="flex gap-3 p-5 justify-between">
         <Button
-          className="border-primaryColor px-5 py-1"
+          className="border-primaryColor border-[1px] px-5 py-1"
           radius="sm"
           variant="bordered"
         >
           <BiBarChartAlt className="text-primaryColor text-lg font-bold" />{" "}
           Actively Hiring
         </Button>
-        <div>
-          <FaRegBookmark
-            style={{ fontSize: 28, color: "#00BE63", cursor: "pointer" }}
-          />
-        </div>
+        {user && (
+          <div>
+            {
+             isBookmarked ? <div title="Remove from Bookmark" onClick={()=> {
+              handleBookmarkDelete(_id)
+              setIsBookmarked(false)
+             }}><FaBookmark style={{color:"#00BE63", fontSize: 22, cursor:"pointer"}}  /></div>:<div title="Add To Bookmark"  onClick={()=> handleSaveToBookmark()}><FaRegBookmark style={{color:"#00BE63", fontSize: 22, cursor:"pointer"}} /></div>
+            }
+          </div>
+        )}
       </CardHeader>
       <Divider />
       <CardBody onMouseOver={() => setIsShow(true)} className="px-5 py-8">
@@ -90,7 +124,7 @@ const JobCard = ({ job }) => {
                 <span>Salary (Per Month)</span>
               </p>
               <span className="text-secondaryColor ml-1">
-               $ {minSalary} - {maxSalary}
+                $ {minSalary} - {maxSalary}
               </span>
             </div>
           </div>

@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-// import { useRouter } from 'next/router';
-import React, { useState } from "react";
+import { FaBookmark } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaRegFileAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import { IoHomeOutline, IoReorderThreeSharp } from "react-icons/io5";
@@ -18,7 +18,25 @@ import "./userDashboard.css";
 const UserDashboard = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [isActive, setIsActive] = useState(0);
+  const [isActive, setIsActive] = useState();
+  
+ useEffect(()=>{
+  if(pathname.includes("/dashboard")){
+    setIsActive(0)
+  }
+  if(pathname.includes("/dashboard/profile")){
+    setIsActive(1)
+  }
+  if(pathname.includes("/dashboard/profile")){
+    setIsActive(1)
+  }
+  if(pathname.includes("/dashboard/appliedJob")){
+    setIsActive(2)
+  }
+  if(pathname.includes("/dashboard/bookmark")){
+    setIsActive(3)
+  }
+ },[isActive, pathname])
 
   return (
     <div>
@@ -42,7 +60,7 @@ const UserDashboard = () => {
               <h1 className={` font-bold text-lg lg:text-xl `}>Dream Finder</h1>
             </div>
           </Fade>
-          <div className="my-4 border border-primaryColor"></div>
+          <div className="my-4 border"></div>
 
           <Link href="/">
             <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
@@ -52,8 +70,7 @@ const UserDashboard = () => {
           </Link>
 
           <div
-            onClick={() => setIsActive(0)}
-            className={`${isActive == 0 ? "bg-primaryColor text-whiteColor " : ""}`}
+            className={`${isActive == 0 && "active "}`}
           >
             <Link href="/dashboard">
               <div
@@ -67,8 +84,7 @@ const UserDashboard = () => {
           </div>
 
           <div
-            onClick={() => setIsActive(1)}
-            className={`${isActive == 1 ? "bg-primaryColor text-whiteColor" : ""}`}
+            className={`${isActive == 1 && "active"}`}
           >
             <Link href="/dashboard/profile">
               <div
@@ -82,8 +98,7 @@ const UserDashboard = () => {
           </div>
 
           <div
-            onClick={() => setIsActive(2)}
-            className={`${isActive == 2 ? "bg-primaryColor text-whiteColor" : ""}`}
+            className={`${isActive == 2 && "active"}`}
           >
             <Link href="/dashboard/appliedJob">
               <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
@@ -92,9 +107,18 @@ const UserDashboard = () => {
               </div>
             </Link>
           </div>
+          <div
+            className={`${isActive == 3 && "active"}`}
+          >
+            <Link href="/dashboard/bookmark">
+              <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
+                <FaBookmark className="text-2xl" />
+                <h1 className={` font-bold text-2xl `}>Save Posts</h1>
+              </div>
+            </Link>
+          </div>
 
-          <div   onClick={() => setIsActive(3)}
-            className={`${isActive == 3 ? "bg-primaryColor text-whiteColor" : ""}`}>
+          <div>
           <Link href="/logout">
             <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
               <IoMdLogOut className="text-2xl" />
