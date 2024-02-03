@@ -21,7 +21,8 @@ const JobsContainer = ({category:queryCategory}) => {
   const [maxSalary, setMaxSalary] = useState(10000000);
   const [preference, setPreference] = useState(false);
   const [submit, setSubmit] = useState(false);
-  // `https://11-service-squade-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&salary=${salary}&preference=${preference}&page=${page}`
+
+ 
 
   useEffect(() => {
     fetch(
@@ -69,7 +70,7 @@ const JobsContainer = ({category:queryCategory}) => {
           }
           <div className="space-y-10">
             {jobsCount ? (
-              jobs.map((job, i) => <JobCard key={i} job={job} />)
+              jobs.map((job, i) => <JobCard key={i}  job={job} />)
             ) : (
               <div className=" h-[500px] flex justify-center items-center">
                 <h1>No Jobs Found</h1>
@@ -88,7 +89,7 @@ const JobsContainer = ({category:queryCategory}) => {
             }} variant={page <= 1 ? "faded":"solid"}  color="success"><GrLinkPrevious /> Prev </Button>
           </div>
           <div>
-            <Button variant={lastPage >= page ? "solid" :"faded"}  onClick={() => {
+            <Button className="" variant={lastPage >= page ? "solid" :"faded"}  onClick={() => {
               if(page <= lastPage){
                 setPage(page + 1);
               }
