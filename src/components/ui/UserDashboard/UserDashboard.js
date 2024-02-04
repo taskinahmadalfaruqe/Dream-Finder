@@ -55,9 +55,11 @@ const UserDashboard = () => {
             peer:transition ease-out delay-150 duration-200 px-0"
         >
           <Fade direction="up" cascade>
-            <div className="flex gap-x-2 items-center pb-5">
+            <div className="flex  items-center ">
               {/* <RxDashboard className='text-xl' /> */}
+              <Image alt="dashboardLogo" width={50} height={50} src="/icon.png" />
               <h1 className={` font-bold text-lg lg:text-xl `}>Dream Finder</h1>
+          
             </div>
           </Fade>
           <div className="my-4 border"></div>

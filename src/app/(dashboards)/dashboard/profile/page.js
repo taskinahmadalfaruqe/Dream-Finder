@@ -5,7 +5,7 @@ import { FaRegEdit } from 'react-icons/fa';
 
 const ProfilePage = () => {
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="">
             <h2 className="font-bold text-3xl text-primaryColor text-center">User Information</h2>
             <div className='p-6 border mt-4 border-primaryColor shadow-xl rounded-lg'>
                 <div className='pb-2'>
