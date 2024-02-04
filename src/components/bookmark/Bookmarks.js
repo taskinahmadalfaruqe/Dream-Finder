@@ -31,7 +31,7 @@ const Bookmarks = () => {
   }, [Loading, deleteState]);
 
   return (
-    <div className="w-2/3 mx-auto space-y-10">
+    <div className=" space-y-10">
       {bookmarks.length ? (
         bookmarks?.map((bookmark) => (
           <Card key={bookmark?._id} className="border p-2 rounded-none">
