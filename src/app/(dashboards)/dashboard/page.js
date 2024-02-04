@@ -7,9 +7,9 @@ import Link from "next/link";
 
 const Dashboard = () => {
   return (
-    <div className="w-2/3 mx-auto">
+    <div className="mx-auto">
       <h2 className="font-bold text-3xl text-primaryColor text-center">This is User Dashboard Page.</h2>
-      <div className="md:flex gap-10 p-10">
+      <div className="md:flex gap-10 p-5 mt-5">
         <div className="mb-10 h-full flex-1  border rounded space-y-4 p-4 shadow-xl hover:shadow-2xl duration-400">
           <h2 className="font-semibold text-xl text-primaryColor">User Info</h2>
           <Image className="" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU' height={50} width={50} alt="Profile image" />
