@@ -16,7 +16,7 @@ const BackToPrevState = ({ state, setState }) => {
       className="text-white font-semibold bg-primaryColor"
       content={setState ? "Back to previous state." : "Back to home."}
     >
-      <div className="fixed z-[90] top-5 md:top-16 left-5 md:left-10  overflow-hidden">
+      <div className="fixed z-[900000] top-5 md:top-16 left-5 md:left-10  overflow-hidden">
         <Bounce delay={600}>
           {setState ? (
             <Button
