@@ -19,7 +19,7 @@ const CompanyRegisterForm = () => {
   const axiosPublic = useAxiosPublic();
 
   // context data
-  const { createUser, updateUserData, logOut } = useContextData();
+  const { createUser, logOut } = useContextData();
 
   // hook form
   const {
@@ -35,30 +35,24 @@ const CompanyRegisterForm = () => {
     const { email, password, name, photoUrl } = data;
     console.log(email, password);
 
-    // sign up / create user using firebase
+    // sign up / create company entries using firebase
     createUser(email, password)
-      .then(res => {
-        console.log(res.user);
-        updateUserData(name, photoUrl)
-          .then(async res => {
-            console.log(res);
-            const userInfo = {
-              name,
-              email,
-            };
-            ////////////////////////////
-            // if user not exist in db, then create user in db by there information.
-            await axiosPublic.post("/create/user", userInfo);
-            ////////////////////////////
-            await logOut();
-            router.push("/auth/signin");
-            setIsEmailSingInBtnActive(false);
-            reset();
-          })
-          .catch(err => {
-            console.log(err);
-            setIsEmailSingInBtnActive(false);
-          });
+      .then(async res => {
+        console.log(res);
+        const companyInfo = {
+          companyName: name,
+          companyEmail: email,
+          companyLogo: photoUrl,
+          isRecruiter: true,
+        };
+        ////////////////////////////
+        // if company not exist in db, then create company in db by there information.
+        await axiosPublic.post("/create/company", companyInfo);
+        ////////////////////////////
+        router.push("/auth/signin");
+        await logOut();
+        reset();
+        setIsEmailSingInBtnActive(false);
       })
       .catch(err => {
         console.log(err);
