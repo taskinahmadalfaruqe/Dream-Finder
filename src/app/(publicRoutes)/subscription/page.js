@@ -8,7 +8,7 @@ export const metadata= {
 const SubscribePage = () => {
     return (
         <div className='h-screen-full w-full py-20'>
-            <h2 className='container text-center text-4xl font-bold text-lightDarkColor'>For More Facilities Please <span className='text-primaryColor text-5xl'>Subscribe </span> To Us!</h2>
+            <h2 className='container text-center text-4xl font-bold text-lightDarkColor dark:text-white'>For More Facilities Please <span className='text-primaryColor text-5xl'>Subscribe </span> To Us!</h2>
             <Subscribe></Subscribe>
         </div>
     );

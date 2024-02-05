@@ -43,7 +43,7 @@ const UserDashboard = () => {
       <Disclosure as="nav">
         <Disclosure.Button
           className="absolute top-4 right-4 lg:hidden inline-flex items-center peer justify-center rounded-md p-2
-            text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:rind-white gorup hover:bg-gray-900 "
+            text-gray-900 dark:text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:rind-white gorup hover:bg-gray-900 "
         >
           <IoReorderThreeSharp
             className="block lg:hidden h-6 w-6"
@@ -51,7 +51,7 @@ const UserDashboard = () => {
           />
         </Disclosure.Button>
         <div
-          className="p-6 w-1/2 h-screen border border-r-primaryColor bg-slate-100 z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer peer-focus:left-0 
+          className="p-6 w-1/2 h-screen border border-r-primaryColor bg-slate-100 dark:bg-slate-800 dark:text-blue-500 z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer peer-focus:left-0 
             peer:transition ease-out delay-150 duration-200 px-0"
         >
           <Fade direction="up" cascade>
