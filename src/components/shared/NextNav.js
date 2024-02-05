@@ -21,9 +21,11 @@ import { Switch } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
+import ThemeSwitch from "@/app/ThemeSwitch";
 
 
 const NextNavbar = () => {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -46,6 +48,7 @@ const NextNavbar = () => {
       setNavbarSize("sm");
     }
   }, []);
+
 
   // side effect
   useEffect(() => {
@@ -82,7 +85,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/"
-                className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 Home
               </Link>
@@ -90,7 +93,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/Find-Jobs"
-                className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 All Jobs
               </Link>
@@ -98,15 +101,15 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/contact"
-                className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
-                Contact US
+                Contact Us
               </Link>
             </NavbarItem>
             <NavbarItem>
               <Link
                 href="/subscription"
-                className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 Subscription
               </Link>
@@ -114,7 +117,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/upcoming-event"
-                className="text-black hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
               >
                 Upcomming Event
               </Link>
@@ -135,18 +138,7 @@ const NextNavbar = () => {
             </NavbarItem>
 
             <NavbarItem>
-              <Switch
-                defaultSelected
-                size="lg"
-                color="success"
-                thumbIcon={({ isSelected, className }) =>
-                  isSelected ? (
-                    <FaSun className={className} />
-                  ) : (
-                    <FaMoon className={className} />
-                  )
-                }
-              ></Switch>
+              <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
 
             <NavbarItem>
@@ -193,19 +185,9 @@ const NextNavbar = () => {
             </NavbarItem>
 
             <NavbarItem>
-              <Switch
-                defaultSelected
-                size="lg"
-                color="success"
-                thumbIcon={({ isSelected, className }) =>
-                  isSelected ? (
-                    <FaSun className={className} />
-                  ) : (
-                    <FaMoon className={className} />
-                  )
-                }
-              ></Switch>
+              <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
+            
 
             <NavbarItem>
               {user ? (

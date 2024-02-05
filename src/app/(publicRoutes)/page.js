@@ -21,6 +21,7 @@ const HomePage = () => {
       <UpcomingEventModal />
       <Accordin/>
       <FeedBack></FeedBack>
+      
     </div>
   );
 };
