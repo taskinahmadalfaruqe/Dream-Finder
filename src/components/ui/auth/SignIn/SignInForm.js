@@ -4,16 +4,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import Divider from "./Divider";
 import { Fade } from "react-awesome-reveal";
 import { RiFingerprintLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
-import SignInAnim from "./SignInAnim";
 import { Link, Spinner } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import BackToPrevState from "./BackToPrevState";
-import useContextData from "@/hooks/useContextData";
+import Divider from "@/components/shared/Divider";
+import BackToPrevState from "@/components/shared/BackToPrevState";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
+import useContextData from "@/hooks/useContextData";
+import SignInAnim from "./SignInAnim";
 
 const SignInForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
@@ -21,7 +21,7 @@ const SignInForm = () => {
   const [isEmailSingInBtnActive, setIsEmailSingInBtnActive] = useState(false);
   const [err, setErr] = useState("");
   const router = useRouter();
-  const axioxPublic= useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   // context data
   const { logIn, googleLogin } = useContextData();
@@ -36,7 +36,6 @@ const SignInForm = () => {
   const onSubmit = async data => {
     setIsEmailSingInBtnActive(true);
     const { email, password } = data;
- 
 
     // sign in using firebase
     logIn(email, password)
@@ -64,7 +63,7 @@ const SignInForm = () => {
         };
         ////////////////////////////
         // if user not exist in db, then create user in db by there information.
-        await axioxPublic.post("/create/user", userData);
+        await axiosPublic.post("/create/user", userData);
         ////////////////////////////
         console.log("google authentication successfully.");
         router.push("/Find-Jobs");

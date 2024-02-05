@@ -10,20 +10,16 @@ import { FaRegUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import { Spinner } from "@nextui-org/react";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 const CompanyRegisterForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [err, setErr] = useState("");
   const [isEmailSingInBtnActive, setIsEmailSingInBtnActive] = useState(false);
   const router = useRouter();
+  const axiosPublic = useAxiosPublic();
 
   // context data
-  const {
-    createUser,
-    profileUpdate,
-    updateUserData,
-    setProfileUpdate,
-    logOut,
-  } = useContextData();
+  const { createUser, logOut } = useContextData();
 
   // hook form
   const {
@@ -39,23 +35,24 @@ const CompanyRegisterForm = () => {
     const { email, password, name, photoUrl } = data;
     console.log(email, password);
 
-    // sign up / create user using firebase
+    // sign up / create company entries using firebase
     createUser(email, password)
-      .then(res => {
-        console.log(res.user);
-        updateUserData(name, photoUrl)
-          .then(res => {
-            console.log(res);
-            setProfileUpdate(!profileUpdate);
-            logOut().then();
-            reset();
-            router.push("/auth/signin");
-            setIsEmailSingInBtnActive(false);
-          })
-          .catch(err => {
-            console.log(err);
-            setIsEmailSingInBtnActive(false);
-          });
+      .then(async res => {
+        console.log(res);
+        const companyInfo = {
+          companyName: name,
+          companyEmail: email,
+          companyLogo: photoUrl,
+          isRecruiter: true,
+        };
+        ////////////////////////////
+        // if company not exist in db, then create company in db by there information.
+        await axiosPublic.post("/create/company", companyInfo);
+        ////////////////////////////
+        router.push("/auth/signin");
+        await logOut();
+        reset();
+        setIsEmailSingInBtnActive(false);
       })
       .catch(err => {
         console.log(err);
