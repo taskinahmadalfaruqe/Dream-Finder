@@ -4,13 +4,15 @@ import { Button, Link, Spinner, Tooltip } from "@nextui-org/react";
 import { useState } from "react";
 import { Bounce, Fade } from "react-awesome-reveal";
 import { FcGoogle } from "react-icons/fc";
-import Divider from "./Divider";
-import SignUpAnim from "./SignUpAnim";
-import Form from "./Form";
-import CompanyRegisterForm from "./CompanyRegisterForm";
-import BackToPrevState from "./BackToPrevState";
+// import Divider from "./Divider";
+// import BackToPrevState from "./BackToPrevState";
 import useContextData from "@/hooks/useContextData";
 import { useRouter } from "next/navigation";
+import Form from "./Form";
+import SignUpAnim from "./SignUpAnim";
+import CompanyRegisterForm from "./CompanyRegisterForm";
+import BackToPrevState from "@/components/shared/BackToPrevState";
+import Divider from "@/components/shared/Divider";
 
 export default function SignUpForm() {
   // state
@@ -48,26 +50,26 @@ export default function SignUpForm() {
 
   return (
     <Fade triggerOnce={true}>
-      {isEmailSignUpPage && (
-        <BackToPrevState
-          setState={setIsEmailSignUpPage}
-          state={isEmailSignUpPage}
-        />
-      )}
-      {questionPage || isEmailSignUpPage || (
-        <BackToPrevState setState={setQuestionPage} state={questionPage} />
-      )}
-      {recruiterPage && (
-        <BackToPrevState state={recruiterPage} setState={setRecruiterPage} />
-      )}
-      {isEmailSignUpPage ||
-        recruiterPage ||
-        (questionPage && <BackToPrevState />)}
       <main
         className={`px-5 lg:flex items-center justify-center ${
           isEmailSignUpPage || "min-h-screen"
         }`}
       >
+        {isEmailSignUpPage && (
+          <BackToPrevState
+            setState={setIsEmailSignUpPage}
+            state={isEmailSignUpPage}
+          />
+        )}
+        {questionPage || isEmailSignUpPage || (
+          <BackToPrevState setState={setQuestionPage} state={questionPage} />
+        )}
+        {recruiterPage && (
+          <BackToPrevState state={recruiterPage} setState={setRecruiterPage} />
+        )}
+        {isEmailSignUpPage ||
+          recruiterPage ||
+          (questionPage && <BackToPrevState />)}
         <div className="max-lg:hidden  max-lg:w-1/2">
           <SignUpAnim />
         </div>
