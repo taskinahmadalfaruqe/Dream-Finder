@@ -5,7 +5,7 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 export default function AccordinCard() {
 
     return (
-        <div className="pb-6">
+        <div className="pb-20">
             <Accordion variant="bordered">
                 <AccordionItem key="1" aria-label="Accordion 1" title="Will Dream Finder integrate with job search platforms or company career pages?">
                     <p>Yes, Dream Finder integrates with popular job boards, allowing users to import job details directly into their tracker.</p>

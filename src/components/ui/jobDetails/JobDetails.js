@@ -6,7 +6,6 @@ import { FaCheckSquare } from "react-icons/fa";
 import { VscDebugBreakpointDataUnverified } from "react-icons/vsc";
 import CommonButton from "@/components/shared/CommonButton";
 import ApplicationSubmissionForm from "../ApplicationSubmissionForm/ApplicationSubmissionForm";
-import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
 
 export default function JobDetails({ id }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -19,11 +18,10 @@ export default function JobDetails({ id }) {
   }, [id]);
 
   return (
-    <ProtectedRoute>
       <div className="container my-10 mb-40 p-5">
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
-          <h3 className="text-xl md:text-2xl text-secondaryColor font-bold mb-5 text-center  mx-auto">
+          <h3 className="text-xl md:text-2xl text-secondaryColor dark:text-primaryColor font-bold mb-5 text-center  mx-auto">
             EduTech Solution
           </h3>
           <div className=" flex items-center rounded-xl w-full jobDetailsBanner">
@@ -44,10 +42,10 @@ export default function JobDetails({ id }) {
         </CardHeader>
         <CardBody className="overflow-visible py-2 md:px-10 lg:px-20 ">
           <div>
-            <h3 className="text-xl md:text-2xl text-darkColor font-bold mt-3">
+            <h3 className="text-xl md:text-2xl text-darkColor dark:text-primaryColor font-bold mt-3">
               About This Job
             </h3>
-            <p className="text-secondaryColor mt-1 text-justify">
+            <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
               We are looking for enthusiastic and energetic individuals with an
               interest in a wide range of web software technologies and
               architectures. Applicants must have the mindset to get their hands
@@ -60,7 +58,7 @@ export default function JobDetails({ id }) {
           <div className="lg:flex lg:justify-between mt-5 lg:space-x-10">
             <div className="lg:flex-1">
               <div>
-                <h3 className="text-2xl text-darkColor font-bold mt-3">
+                <h3 className="text-2xl text-darkColor dark:text-primaryColor font-bold mt-3">
                   Requirements
                 </h3>
                 <div className="text-justify">
@@ -137,10 +135,10 @@ export default function JobDetails({ id }) {
 
             <div className="lg:flex-1 mt-10 lg:mt-0">
               <div className="lg:ml-10">
-                <h3 className="text-xl text-darkColor font-bold mt-3">
+                <h3 className="text-xl text-darkColor dark:text-primaryColor font-bold mt-3">
                   Employment Status
                 </h3>
-                <p className="text-secondaryColor mt-1 text-justify">
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
                     style={{
                       display: "inline-block",
@@ -151,7 +149,7 @@ export default function JobDetails({ id }) {
                   />{" "}
                   Full Time
                 </p>
-                <p className="text-secondaryColor mt-1 text-justify">
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
                     style={{
                       display: "inline-block",
@@ -165,10 +163,10 @@ export default function JobDetails({ id }) {
               </div>
 
               <div className="lg:ml-10 mt-5">
-                <h3 className="text-xl  text-darkColor font-bold mt-3">
+                <h3 className="text-xl  text-darkColor dark:text-primaryColor font-bold mt-3">
                   Salary
                 </h3>
-                <p className="text-secondaryColor mt-1 text-justify">
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
                     style={{
                       display: "inline-block",
@@ -182,10 +180,10 @@ export default function JobDetails({ id }) {
               </div>
 
               <div className="lg:ml-10 mt-5">
-                <h3 className="text-xl  text-darkColor font-bold mt-3">
+                <h3 className="text-xl  text-darkColor dark:text-primaryColor font-bold mt-3">
                   Educational Requirements
                 </h3>
-                <p className="text-secondaryColor mt-1 text-justify">
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
                     style={{
                       display: "inline-block",
@@ -200,10 +198,10 @@ export default function JobDetails({ id }) {
               </div>
 
               <div className="lg:ml-10 mt-5">
-                <h3 className="text-xl text-darkColor font-bold mt-3">
+                <h3 className="text-xl text-darkColor dark:text-primaryColor font-bold mt-3">
                   Job Location
                 </h3>
-                <p className="text-secondaryColor mt-1 text-justify">
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
                     style={{
                       display: "inline-block",
@@ -218,10 +216,10 @@ export default function JobDetails({ id }) {
 
               <div className="lg:ml-10 mt-5 flex gap-5">
                 <div className="">
-                  <h3 className="text-xl text-darkColor font-bold mt-3">
+                  <h3 className="text-xl text-darkColor dark:text-primaryColor font-bold mt-3">
                     Vacancy
                   </h3>
-                  <p className="text-secondaryColor mt-1 text-justify">
+                  <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                     <VscDebugBreakpointDataUnverified
                       style={{
                         display: "inline-block",
@@ -234,10 +232,10 @@ export default function JobDetails({ id }) {
                   </p>
                 </div>
                 <div className="">
-                  <h3 className="text-xl text-darkColor font-bold mt-3">
+                  <h3 className="text-xl text-darkColor dark:text-primaryColor font-bold mt-3">
                     Number Of Application
                   </h3>
-                  <p className="text-secondaryColor mt-1 text-justify">
+                  <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                     <VscDebugBreakpointDataUnverified
                       style={{
                         display: "inline-block",
@@ -264,6 +262,5 @@ export default function JobDetails({ id }) {
         jobInfo={{id:job._id, company_name:job.company_name, category:job.category}}
       />
     </div>
-    </ProtectedRoute>
   );
 }

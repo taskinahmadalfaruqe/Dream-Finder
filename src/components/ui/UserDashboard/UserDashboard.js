@@ -14,6 +14,7 @@ import { RiProfileLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
 import { Fade } from "react-awesome-reveal";
 import "./userDashboard.css";
+import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
 
 const UserDashboard = () => {
   const router = useRouter();
@@ -39,7 +40,8 @@ const UserDashboard = () => {
  },[isActive, pathname])
 
   return (
-    <div>
+   <ProtectedRoute>
+     <div>
       <Disclosure as="nav">
         <Disclosure.Button
           className="absolute top-4 right-4 lg:hidden inline-flex items-center peer justify-center rounded-md p-2
@@ -131,6 +133,7 @@ const UserDashboard = () => {
         </div>
       </Disclosure>
     </div>
+   </ProtectedRoute>
   );
 };
 
