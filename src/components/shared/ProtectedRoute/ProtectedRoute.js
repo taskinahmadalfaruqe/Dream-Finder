@@ -1,28 +1,25 @@
 "use client"
 
-
-import {  useEffect } from 'react';
-import useContextData from '@/hooks/useContextData';
 import { useRouter } from 'next/navigation';
+import useContextData from '@/hooks/useContextData';
 
 const ProtectedRoute = ({ children }) => {
-  const { user, setLoading } = useContextData();
+  const { user, Loading } = useContextData();
   const router = useRouter();
 
-  useEffect(() => {
+  // If authentication is still loading, you can show a loading indicator
+  if (Loading) {
+    return <div>Loading...</div>;
+  }
 
-    // Check if user is not authenticated
-    if (!user) {
+  // Redirect to login if user is not authenticated
+  if (!user) {
+    router.replace('/auth/signin');
+    return null;
+  }
 
-      // Redirect to login page
-      router.replace('/auth/signin');
-    }
-    setLoading(false); 
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  return user ? <>{children}</> : null;
+  // Render the protected content if the user is authenticated
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
