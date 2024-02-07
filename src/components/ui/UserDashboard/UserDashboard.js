@@ -67,7 +67,7 @@ const UserDashboard = () => {
           <Link href="/">
             <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
               <IoHomeOutline className="text-2xl" />
-              <h1 className={` font-bold text-2xl `}>Go Home</h1>
+              <h1 className={` font-bold text-lg `}>Go Home</h1>
             </div>
           </Link>
 
@@ -80,7 +80,7 @@ const UserDashboard = () => {
                 flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg`}
               >
                 <RxDashboard className="text-2xl" />
-                <h1 className={` font-bold text-2xl `}>Dashboard</h1>
+                <h1 className={` font-bold text-lg `}>Dashboard</h1>
               </div>
             </Link>
           </div>
@@ -94,7 +94,7 @@ const UserDashboard = () => {
                 flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg`}
               >
                 <RiProfileLine className="text-2xl" />
-                <h1 className={` font-bold text-2xl `}>Profile</h1>
+                <h1 className={` font-bold text-lg `}>Profile</h1>
               </div>
             </Link>
           </div>
@@ -105,7 +105,7 @@ const UserDashboard = () => {
             <Link href="/dashboard/appliedJob">
               <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
                 <FaRegFileAlt className="text-2xl" />
-                <h1 className={` font-bold text-2xl `}>Applied Job</h1>
+                <h1 className={` font-bold text-lg `}>Applied Job</h1>
               </div>
             </Link>
           </div>
@@ -115,7 +115,7 @@ const UserDashboard = () => {
             <Link href="/dashboard/bookmark">
               <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
                 <FaBookmark className="text-2xl" />
-                <h1 className={` font-bold text-2xl `}>Save Posts</h1>
+                <h1 className={` font-bold text-lg `}>Save Posts</h1>
               </div>
             </Link>
           </div>
@@ -124,7 +124,7 @@ const UserDashboard = () => {
           <Link href="/logout">
             <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
               <IoMdLogOut className="text-2xl" />
-              <h1 className={` font-bold text-2xl `}>Logout</h1>
+              <h1 className={` font-bold text-lg `}>Logout</h1>
             </div>
           </Link>
           </div>

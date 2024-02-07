@@ -10,7 +10,7 @@ const ProfilePage = () => {
             <div className='p-6 border mt-4 border-primaryColor shadow-xl rounded-lg'>
                 <div className='pb-2'>
                 <Image className="" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU' height={70} width={70} alt="Profile image" />
-                <Link href='/profile' className='flex gap-2 my-2 font-bold hover:text-blue-600 rounded p-2 items-center'> 
+                <Link href='/dashboard/editProfile' className='flex gap-2 my-2 font-bold hover:text-blue-600 rounded p-2 items-center'> 
                 <FaRegEdit className='text-xl ' /> Edit Profile</Link>
                 </div>
                 <hr />

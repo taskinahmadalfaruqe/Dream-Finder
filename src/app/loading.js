@@ -1,8 +1,8 @@
 "use client";
 const LoadingPage = () => {
     return (
-        <div>
-            Loading......
+        <div className="min-h-[70vh] flex items-center justify-center">
+            <span className="loader"></span>
         </div>
     );
 };
