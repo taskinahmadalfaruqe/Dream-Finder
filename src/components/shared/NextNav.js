@@ -32,8 +32,8 @@ const NextNavbar = () => {
 
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
-
   const { user } = useContextData();
+  const [isActive, setIsActive] = useState(0)
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;

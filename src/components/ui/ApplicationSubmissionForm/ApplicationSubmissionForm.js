@@ -18,45 +18,69 @@ import axios from "axios";
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const { isOpen, onOpenChange } = actions;
   const { id, company_name, category } = jobInfo;
+ 
   const textareaRef = useRef(null);
-  const [file, setFile] = useState(null);
-  const [letter, setLetter] = useState("");
-  const {user} = useContext(AuthContext)
-
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target
-    const coverLetterContent = textareaRef.current.value;
-    const formData = new FormData();
-    formData.append("pdf", file);
-    formData.append("coverLetter", coverLetterContent);
-    formData.append("user", user?.email);
-    formData.append("jobId", id)
-    formData.append("appliedDate", new Date())
-    setLetter(coverLetterContent);
-
+  const { user } = useContext(AuthContext);
+  const [selectedFile, setSelectedFile] = useState(null);
  
 
-   fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
-      method: "POST",
-      body: formData,
-      
-    })
-      .then((response) => {
-        console.log(response);
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+   
+  };
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+    if (!selectedFile) {
+      console.log("No file selected.");
+      return;
+    }
+    const form = event.target;
+    const coverLetterContent = textareaRef.current.value;
+
+    const fileReader = new FileReader();
+    fileReader.onload = async (event) => {
+      const binaryString = event.target.result;
+      const data = {
+        resume: binaryString,
+        coverLetter: coverLetterContent,
+        user: user?.email,
+        appliedDate: new Date(),
+        jobId: id,
+        category,
+        company_name,
+        status:"pending",
+        fileName:selectedFile?.name,
+        size:selectedFile?.size
+      };
+      fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error("Error uploading file:", error);
-      });
-   form.reset()
-   setFile(null)
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+    };
+
+    fileReader.readAsBinaryString(selectedFile);
+
+    //  fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
+    //     method: "POST",
+    //     body: formData,
+
+    //   })
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error uploading file:", error);
+    //     });
+    //  form.reset()
+    //  setFile(null)
   };
 
   return (
@@ -71,7 +95,9 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 bg-lightPrimaryColor ">
-                <h2 className="text-2xl text-whiteColor">Applying For {category}</h2>
+                <h2 className="text-2xl text-whiteColor">
+                  Applying For {category}
+                </h2>
                 <h3 className="text-xl text-whiteColor"> {company_name}</h3>
               </ModalHeader>
               <form onSubmit={handleSubmit}>
@@ -81,6 +107,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                   <textarea
                     id="coverLetter"
                     ref={textareaRef}
+                    required
                     className=" p-3 border-2 border-secondaryColor focus:outline-primaryColor w-full h-72 rounded-md"
                   ></textarea>
                   <br />
@@ -94,10 +121,15 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                         <FiUpload />
                         <p> Upload Resume</p>
                       </div>
-                      <input id="inputTag" type="file" className="border" accept="application/pdf" />
+                      <input
+                        id="inputTag"
+                        type="file"
+                        className="border"
+                        accept="application/pdf"
+                      />
                     </label>
                   </div>
-                  <p>&nbsp; {file?.name}</p>
+                  <p>&nbsp; {selectedFile?.name}</p>
                 </ModalBody>
                 <ModalFooter>
                   <div onClick={onClose}>
