@@ -7,21 +7,21 @@ const JobApplyCard = ({ job }) => {
   return (
     <div
       key={job._id}
-      className="max-w-96  flex justify-between flex-col bg-whiteColor w-full duration-300 rounded-md p-6 hover:shadow-xl border max-md:max-w-md max-md:w-full md:min-h-72 lg:max-w-md lg:p-10"
+      className="max-w-96  flex justify-between flex-col bg-whiteColor dark:bg-lightDarkColor w-full duration-300 rounded-md p-6 hover:shadow-xl border border-lightPrimaryColor max-md:max-w-md max-md:w-full md:min-h-72 lg:max-w-md lg:p-10"
     >
       {/* company details div */}
       <div className="flex items-center gap-5">
-        <Skeleton className="w-14 h-14 border-2 rounded-md lg:h-16 lg:w-16"></Skeleton>
+        <Skeleton className="w-14 h-14 border-1 border-primaryColor  rounded-md lg:h-16 lg:w-16"></Skeleton>
         <div className="space-y-1">
-          <p className="text-lg font-semibold lg:text-xl">{job.companyName}</p>
-          <p className="text-sm text-secondaryColor">{job.location}</p>
+          <p className="text-lg font-semibold dark:text-lightPrimaryColor lg:text-xl">{job.companyName}</p>
+          <p className="text-sm text-secondaryColor dark:text-lightWhiteColor">{job.location}</p>
         </div>
       </div>
       {/* job details div */}
       <div className="space-y-2 2xl:space-y-5 my-5 grow">
         <h2 className="text-xl font-bold">{job.position}</h2>
         <p className="text-primaryColor font-bold text-sm">{job.jobType}</p>
-        <p className="text-sm text-secondaryColor">
+        <p className="text-sm text-secondaryColor dark:text-lightWhiteColor">
           {job.skill.map((skill, idx, allSkill) => (
             <span key={skill + idx}>
               {allSkill.length !== idx + 1 ? skill + ", " : skill + "."}
