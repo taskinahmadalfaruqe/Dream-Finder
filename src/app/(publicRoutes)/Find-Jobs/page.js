@@ -5,7 +5,7 @@ export const metadata= {
   };
 const page = ({searchParams }) => {
     const category = searchParams?.category || ""
-    
+  
     return (
         <div className="container space-y-10">
             <JobPageBanner />
