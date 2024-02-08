@@ -14,7 +14,7 @@
 
 .navLinkHover:hover{
     background: linear-gradient(0deg,transparent,  #00BE6370 );
-    border-top: 2px solid #00BE63;
+    border-top: 1px solid #00BE63;
     border-bottom: 0;
     border-radius: 5px 5px 0 0;
 

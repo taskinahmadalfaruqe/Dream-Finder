@@ -13,20 +13,26 @@ import { useContext, useRef, useState } from "react";
 import "./applicationSubmissionForm.css";
 import { FiUpload } from "react-icons/fi";
 import { AuthContext } from "@/providers/AuthProvider";
-import axios from "axios";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const { isOpen, onOpenChange } = actions;
   const { id, company_name, category } = jobInfo;
- 
+  const router = useRouter()
+  console.log(router);
+
+
   const textareaRef = useRef(null);
   const { user } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState("")
  
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
-   
+    const newFileName = event.target.files[0].name
+    setFileName(<p>&nbsp;{newFileName}</p>)
   };
 
   const handleSubmit = (event) => {
@@ -34,6 +40,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     event.preventDefault();
     if (!selectedFile) {
       console.log("No file selected.");
+      setFileName(<p className="text-redColor">&nbsp; This Field Is Required</p>)
       return;
     }
     const form = event.target;
@@ -62,25 +69,25 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         body: JSON.stringify(data),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) =>{
+          console.log(data)
+          Swal.fire({
+            title: "Applied Successfully",
+            text:"You have successfully applied for this job. Have patience for requiter's response.",
+            icon: "success",
+            confirmButtonColor:"#00BE63"
+          });
+          onClose()
+          router.push("/Find-Jobs")
+        })
         .catch((error) => console.log(error));
     };
 
     fileReader.readAsBinaryString(selectedFile);
 
-    //  fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
-    //     method: "POST",
-    //     body: formData,
 
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error uploading file:", error);
-    //     });
-    //  form.reset()
-    //  setFile(null)
+     form.reset()
+     setFileName(null)
   };
 
   return (
@@ -129,7 +136,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                       />
                     </label>
                   </div>
-                  <p>&nbsp; {selectedFile?.name}</p>
+                 <>{fileName}</>
                 </ModalBody>
                 <ModalFooter>
                   <div onClick={onClose}>
