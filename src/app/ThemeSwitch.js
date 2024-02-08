@@ -1,49 +1,38 @@
-"use client"
-import { Switch } from '@nextui-org/react';
-import { useTheme } from 'next-themes';
-import React, { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+"use client";
+import { Switch } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { BsToggle2On, BsToggle2Off  } from "react-icons/bs";
 
 const ThemeSwitch = () => {
+  const { theme, setTheme } = useTheme();
 
-    const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
+  // set mounted
 
-    const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    // set mounted
+  if (!mounted) {
+    return null;
+  }
 
-    useEffect(() => {
-        setMounted(true);
-    }, [])
-
-    if (!mounted) {
-        return null;
-    }
-
-    return (
-        <div>
-
-
-            <Switch
-                defaultSelected
-                size="lg"
-                color="success"
-                thumbIcon={({ isSelected, className }) =>
-                    isSelected ? (
-                        <button onClick={() => setTheme('light')}><FaSun className={className} /></button>
-                    ) : (
-                        <button onClick={() => setTheme('dark')}><FaMoon className={className} /></button>
-                    )
-                }
-            ></Switch>
-
-
-            {theme === 'light' ? <button onClick={() => setTheme('dark')}><FaMoon className='text-xl' /></button> :
-                <button onClick={() => setTheme('light')}><FaSun className='text-2xl text-primaryColor' /></button>}
-
-        </div>
-    );
+  return (
+    <div>
+      {theme === "light" ? (
+        <button onClick={() => setTheme("dark")}>
+          <BsToggle2Off className="text-4xl text-primaryColor" />
+        </button>
+      ) : (
+        <button onClick={() => setTheme("light")}>
+          <BsToggle2On className="text-4xl text-primaryColor" />
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default ThemeSwitch;
