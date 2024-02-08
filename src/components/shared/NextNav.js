@@ -25,14 +25,14 @@ import "./navbar.css"
 
 
 const NextNavbar = () => {
-
+  const pathName = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
   const { user } = useContextData();
-  const [isActive, setIsActive] = useState(null)
+  
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
@@ -53,21 +53,7 @@ const NextNavbar = () => {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
-    if(path.includes("")){
-      setIsActive(0)
-    }
-    if(path.includes("Find-Jobs")){
-      setIsActive(1)
-    }
-    if(path.includes("contact")){
-      setIsActive(2)
-    }
-    if(path.includes("subscription")){
-      setIsActive(3)
-    }
-    if(path.includes("upcoming-event")){
-      setIsActive(4)
-    }
+  
 
   
     return () => {
@@ -100,7 +86,7 @@ const NextNavbar = () => {
             <NavbarItem className="">
               <Link
                 href="/"
-                style={{ background: isActive === 0 &&  "linear-gradient(0deg,  transparent, #00BE6370)", borderTop: isActive === 0 && "2px solid #00BE63",borderBottom:  isActive === 0 && 0, borderRadius:  isActive === 0 && "5px"}}
+                style={{ background: pathName === "/" &&  "linear-gradient(0deg,  transparent, #00BE6370)", borderTop: pathName === "/" && "1px solid #00BE63",borderBottom:   pathName === "/" && 0, borderRadius:  pathName === "/" && "5px"}}
                 className={`text-black navLinkHover  dark:text-white border border-transparent  py-1 px-3  font-medium`}
               >
                 Home
@@ -109,7 +95,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/Find-Jobs"
-                className={`${isActive === 1 && "activeNavlink"} navLinkHover text-black dark:text-white border border-transparent  py-1 px-3 rounded-md font-medium`}
+                className={`${pathName === "/Find-Jobs" ? "activeNavlink":""} navLinkHover text-black dark:text-white border border-transparent  py-1 px-3 rounded-md font-medium`}
               >
                 All Jobs
               </Link>
@@ -117,7 +103,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/contact"
-                className={ `${isActive === 2 && "activeNavlink"} text-black dark:text-white navLinkHover py-1 px-3 border border-transparent font-medium`}
+                className={ `${pathName === "/contact"  ? "activeNavlink" :""} text-black dark:text-white navLinkHover py-1 px-3 border border-transparent font-medium`}
               >
                 Contact Us
               </Link>
@@ -125,7 +111,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/subscription"
-                className={` ${isActive === 3 && "activeNavlink"} text-black dark:text-white navLinkHover py-1 px-3  border border-transparent font-medium`}
+                className={` ${pathName === "/subscription" && "activeNavlink"} text-black dark:text-white navLinkHover py-1 px-3  border border-transparent font-medium`}
               >
                 Subscription
               </Link>
@@ -133,7 +119,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/upcoming-event"
-                className={`${isActive === 4 && "activeNavlink"} text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
+                className={`${pathName === "/upcoming-event" && "activeNavlink"} text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
               >
                 Upcoming Event
               </Link>

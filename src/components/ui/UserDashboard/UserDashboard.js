@@ -3,11 +3,10 @@ import CommonButton from "@/components/shared/CommonButton";
 import { Disclosure } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { FaBookmark } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaRegFileAlt } from "react-icons/fa";
+import { FaRegFileAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import { IoHomeOutline, IoReorderThreeSharp } from "react-icons/io5";
 import { RiProfileLine } from "react-icons/ri";
@@ -18,26 +17,6 @@ import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
 
 const UserDashboard = () => {
   const pathname = usePathname();
-  const [isActive, setIsActive] = useState();
-  
-  
- useEffect(()=>{
-  if(pathname.includes("/dashboard")){
-    setIsActive(0)
-  }
-  if(pathname.includes("/dashboard/profile")){
-    setIsActive(1)
-  }
-  if(pathname.includes("/dashboard/profile")){
-    setIsActive(1)
-  }
-  if(pathname.includes("/dashboard/appliedJob")){
-    setIsActive(2)
-  }
-  if(pathname.includes("/dashboard/bookmark")){
-    setIsActive(3)
-  }
- },[isActive, pathname])
 
   return (
    <ProtectedRoute>
@@ -57,9 +36,10 @@ const UserDashboard = () => {
             peer:transition ease-out delay-150 duration-200 px-0"
         >
           <Fade direction="up" cascade>
-            <div className="flex  items-center ">
+            <div className="flex items-center ">
               <Image alt="dashboardLogo" width={50} height={50} src="/icon.png" />
               <h1 className={` font-bold text-lg lg:text-xl `}>Dream Finder</h1>
+
             </div>
           </Fade>
           <div className="my-4 border"></div>
@@ -72,7 +52,7 @@ const UserDashboard = () => {
           </Link>
 
           <div
-            className={`${isActive == 0 && "active "}`}
+            className={`${pathname == "/dashboard" && "active "}`}
           >
             <Link href="/dashboard">
               <div
@@ -86,7 +66,7 @@ const UserDashboard = () => {
           </div>
 
           <div
-            className={`${isActive == 1 && "active"}`}
+            className={`${pathname == "/dashboard/profile" && "active"}`}
           >
             <Link href="/dashboard/profile">
               <div
@@ -100,7 +80,7 @@ const UserDashboard = () => {
           </div>
 
           <div
-            className={`${isActive == 2 && "active"}`}
+            className={`${pathname == "/dashboard/appliedJob" && "active"}`}
           >
             <Link href="/dashboard/appliedJob">
               <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
@@ -110,7 +90,7 @@ const UserDashboard = () => {
             </Link>
           </div>
           <div
-            className={`${isActive == 3 && "active"}`}
+            className={`${pathname == "/dashboard/bookmark" && "active"}`}
           >
             <Link href="/dashboard/bookmark">
               <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
