@@ -74,7 +74,7 @@ const NextNavbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
-console.log(isActive);
+
   return (
     <>
       {path.includes("auth") || (
@@ -164,7 +164,7 @@ console.log(isActive);
                     onClick={onOpen}
                     color="success"
                     variant="flat"
-                    style={{borderRadius: "5px"}}
+                    style={{borderRadius: "5px",}}
                     className="font-bold border border-primaryColor"
                   >
                     Sign out

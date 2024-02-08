@@ -17,9 +17,9 @@ import "./userDashboard.css";
 import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
 
 const UserDashboard = () => {
-  const router = useRouter();
   const pathname = usePathname();
   const [isActive, setIsActive] = useState();
+  
   
  useEffect(()=>{
   if(pathname.includes("/dashboard")){
@@ -58,10 +58,8 @@ const UserDashboard = () => {
         >
           <Fade direction="up" cascade>
             <div className="flex  items-center ">
-              {/* <RxDashboard className='text-xl' /> */}
               <Image alt="dashboardLogo" width={50} height={50} src="/icon.png" />
               <h1 className={` font-bold text-lg lg:text-xl `}>Dream Finder</h1>
-          
             </div>
           </Fade>
           <div className="my-4 border"></div>
