@@ -22,10 +22,10 @@ import useBookmarkDelete from "@/hooks/useBookmarkDelete";
 const JobCard = ({ job }) => {
   const { user, Loading } = useContext(AuthContext);
   const [isShow, setIsShow] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false)
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
   const { handleBookmarkDelete } = useBookmarkDelete();
-  const [deleteState, setDeleteState] = useState(false)
+  const [deleteState, setDeleteState] = useState(false);
   const {
     company_name,
     category,
@@ -37,28 +37,32 @@ const JobCard = ({ job }) => {
     _id,
     company_logo,
     posted_date,
+    appliedCount
   } = job;
 
   const handleSaveToBookmark = () => {
     const bookmark = { ...job, user: user?.email, jobId: _id };
     axios
-      .post(`https://dream-finder-file-upload-server.vercel.app/bookmark`, bookmark)
+      .post(
+        `https://dream-finder-file-upload-server.vercel.app/bookmark`,
+        bookmark
+      )
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
 
-
-  
   useEffect(() => {
     if (!Loading) {
-      fetch(`https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`)
+      fetch(
+        `https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => setBookmarks(data));
     }
-     const bookmarked = bookmarks?.find(bookmark => bookmark.jobId === _id)
-     if(bookmarked){
-      setIsBookmarked(true)
-     }
+    const bookmarked = bookmarks?.find((bookmark) => bookmark.jobId === _id);
+    if (bookmarked) {
+      setIsBookmarked(true);
+    }
   }, [Loading, deleteState, bookmarks]);
 
   return (
@@ -78,12 +82,28 @@ const JobCard = ({ job }) => {
         </Button>
         {user && (
           <div>
-            {
-             isBookmarked ? <div title="Remove from Bookmark" onClick={()=> {
-              handleBookmarkDelete(_id)
-              setIsBookmarked(false)
-             }}><FaBookmark style={{color:"#00BE63", fontSize: 22, cursor:"pointer"}}  /></div>:<div title="Add To Bookmark"  onClick={()=> handleSaveToBookmark()}><FaRegBookmark style={{color:"#00BE63", fontSize: 22, cursor:"pointer"}} /></div>
-            }
+            {isBookmarked ? (
+              <div
+                title="Remove from Bookmark"
+                onClick={() => {
+                  handleBookmarkDelete(_id);
+                  setIsBookmarked(false);
+                }}
+              >
+                <FaBookmark
+                  style={{ color: "#00BE63", fontSize: 22, cursor: "pointer" }}
+                />
+              </div>
+            ) : (
+              <div
+                title="Add To Bookmark"
+                onClick={() => handleSaveToBookmark()}
+              >
+                <FaRegBookmark
+                  style={{ color: "#00BE63", fontSize: 22, cursor: "pointer" }}
+                />
+              </div>
+            )}
           </div>
         )}
       </CardHeader>
@@ -128,6 +148,9 @@ const JobCard = ({ job }) => {
               </span>
             </div>
           </div>
+          <div>
+            <p className=" mt-3 text-sm md:text-lg mb-0">{appliedCount} People Applied For this Job</p>
+          </div>
         </div>
       </CardBody>
       <Divider />
@@ -135,9 +158,14 @@ const JobCard = ({ job }) => {
         <div>
           <p className=" flex items-center">
             <FaClock className="font-bold mr-1" />
-            <span>Posted Date</span>
+            <span>Posted</span>
           </p>
-          <span className="text-secondaryColor ml-1">{posted_date}</span>
+          <span className="text-secondaryColor ml-1">
+            {Math.floor(
+              (new Date() - new Date(posted_date)) / (1000 * 60 * 60 * 24)
+            )}{" "}
+            Days Ago
+          </span>
         </div>
       </div>
       <div
