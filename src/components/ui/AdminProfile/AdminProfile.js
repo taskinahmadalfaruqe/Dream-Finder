@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import profileImage from "@/assets/team/team1.jpg"
+import profileImage from "@/assets/team/team4.jpg"
 
 const AdminProfile = () => {
     return (
@@ -14,7 +14,7 @@ const AdminProfile = () => {
             <div className="flex justify-center items-center flex-col space-y-2 text-lg font-medium leading-6">
                
                 <div className="my-5">
-                <h3 className="text-primaryColor">Halima tus Sadia</h3>
+                <h3 className="text-primaryColor">Taskin Ahmad Al Faruqe</h3>
                 <p className="text-secondaryColor">Web Developer</p>
                 </div>
 

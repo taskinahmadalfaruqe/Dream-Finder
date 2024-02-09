@@ -13,13 +13,13 @@ import { RiProfileLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
 import { Fade } from "react-awesome-reveal";
 import "./userDashboard.css";
-import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
+// import ProtectedRoute from "@/components/shared/ProtectedRoute/ProtectedRoute";
 
 const UserDashboard = () => {
   const pathname = usePathname();
 
   return (
-   <ProtectedRoute>
+  //  <ProtectedRoute>
      <div>
       <Disclosure as="nav">
         <Disclosure.Button
@@ -111,7 +111,7 @@ const UserDashboard = () => {
         </div>
       </Disclosure>
     </div>
-   </ProtectedRoute>
+  //  </ProtectedRoute>
   );
 };
 
