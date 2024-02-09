@@ -17,23 +17,22 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { Badge } from "@nextui-org/react";
 import { FaBell, FaMoon, FaSun } from "react-icons/fa";
-import { Switch } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
 import ThemeSwitch from "@/app/ThemeSwitch";
+import "./navbar.css"
 
 
 const NextNavbar = () => {
-
+  const pathName = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
-
   const { user } = useContextData();
+  
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
@@ -54,7 +53,9 @@ const NextNavbar = () => {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
+  
 
+  
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -67,6 +68,7 @@ const NextNavbar = () => {
           maxWidth={navbarSize}
           shouldHideOnScroll={true}
           onMenuOpenChange={setIsMenuOpen}
+          className="navbarCustomDesign"
         >
           <NavbarContent>
             <NavbarMenuToggle
@@ -76,16 +78,16 @@ const NextNavbar = () => {
             <NavbarBrand className="hidden md:flex">
               <Link href="/">
                 <Image src="/logo.png" className="hidden lg:flex" width={100}  alt="logo" />
-                {/* <p className="font-bold text-inherit">Dream Finder</p> */}
               </Link>
             </NavbarBrand>
           </NavbarContent>
 
           <NavbarContent className="hidden lg:flex gap-4">
-            <NavbarItem>
+            <NavbarItem className="">
               <Link
                 href="/"
-                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                style={{ background: pathName === "/" &&  "linear-gradient(0deg,  transparent, #00BE6370)", borderTop: pathName === "/" && "1px solid #00BE63",borderBottom:   pathName === "/" && 0, borderRadius:  pathName === "/" && "5px"}}
+                className={`text-black navLinkHover  dark:text-white border border-transparent  py-1 px-3  font-medium`}
               >
                 Home
               </Link>
@@ -93,7 +95,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/Find-Jobs"
-                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className={`${pathName === "/Find-Jobs" ? "activeNavlink":""} navLinkHover text-black dark:text-white border border-transparent  py-1 px-3 rounded-md font-medium`}
               >
                 All Jobs
               </Link>
@@ -101,7 +103,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/contact"
-                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className={ `${pathName === "/contact"  ? "activeNavlink" :""} text-black dark:text-white navLinkHover py-1 px-3 border border-transparent font-medium`}
               >
                 Contact Us
               </Link>
@@ -109,7 +111,7 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/subscription"
-                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className={` ${pathName === "/subscription" && "activeNavlink"} text-black dark:text-white navLinkHover py-1 px-3  border border-transparent font-medium`}
               >
                 Subscription
               </Link>
@@ -117,9 +119,9 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/upcoming-event"
-                className="text-black dark:text-white hover:text-white hover:bg-blue-600 p-2 rounded-md font-medium"
+                className={`${pathName === "/upcoming-event" && "activeNavlink"} text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
               >
-                Upcomming Event
+                Upcoming Event
               </Link>
             </NavbarItem>
 
@@ -148,12 +150,13 @@ const NextNavbar = () => {
                     onClick={onOpen}
                     color="success"
                     variant="flat"
-                    className="font-bold"
+                    style={{borderRadius: "5px",}}
+                    className="font-bold border border-primaryColor"
                   >
                     Sign out
                   </Button>
                   {user && (
-                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
+                    <Avatar src={user?.photoURL} className="ml-3 " size="md" />
                   )}
                 </>
               ) : (
@@ -162,7 +165,8 @@ const NextNavbar = () => {
                   href="/auth/signin"
                   color="success"
                   variant="flat"
-                  className="font-bold"
+                  style={{borderRadius: "5px"}}
+                  className="font-bold rounded border border-primaryColor"
                 >
                   Sign in
                 </Button>
