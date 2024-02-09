@@ -2,6 +2,7 @@
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react';
+// import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -29,7 +30,13 @@ const CheckoutForm = () => {
             alert(error.message);
         }
         else{
-            alert('successfull payment');
+            // Swal.fire({
+            //     position: "top-end",
+            //     icon: "success",
+            //     title: "Your payment has been received successfully!",
+            //     showConfirmButton: false,
+            //     timer: 1500
+            //   });
             console.log('payment method', paymentMethod)
         }
     }
