@@ -6,7 +6,7 @@ const DashboardLayout = ({ children }) => {
       <div className="col-span-12 lg:col-span-3">
         <UserDashboard></UserDashboard>
         </div>
-        <div className="md:p-10 col-span-12 lg:col-span-9 my-20">{children}</div>
+        <div className=" col-span-12 lg:col-span-9 min-h-lvh ">{children}</div>
     </div>
   );
 };
