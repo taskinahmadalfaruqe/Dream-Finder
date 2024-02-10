@@ -3,7 +3,7 @@ import AppliedJobTable from "@/components/ui/ApplyedJobTable/ApplyedJobTable";
 
 const AppliedJobPage = () => {
   return (
-    <div className="my-6 overflow-x-scroll md:overflow-x-hidden ">
+    <div className="">
       <AppliedJobTable></AppliedJobTable>
     </div>
   );
