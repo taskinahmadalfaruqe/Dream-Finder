@@ -21,18 +21,18 @@ export default function App() {
     <>
       {appliedJobs?.length ? (
         <>
-          <h2 className="font-bold text-3xl text-primaryColor text-center">
-            My submissions
+          <h2 className="font-bold text-3xl text-primaryColor md:text-center mt-16 md:mt-10 ">
+            MY SUBMISSION
           </h2>
-          <div className="shadow-2xl mt-10">
-            <table className="w-full table-auto overflow-scroll lg:overflow-hidden">
-              <thead className="bg-lightPrimaryColor  border-b-2 border-primaryColor">
+          <div className=" mt-7 shadow-2xl overflow-x-scroll md:overflow-x-hidden ">
+            <table className="w-full table-auto">
+              <thead className="bg-lightPrimaryColor dark:bg-primaryColor  border border-b-2 border-primaryColor">
                 <tr className="text-start ">
-                  <th className="text-start py-3 pl-3 flex"><p>COMPANY NAME</p></th>
-                  <th className="text-start">ROLE</th>
-                  <th className="text-start">STATUS</th>
-                  <th className="text-start">APPLY DATE</th>
-                  <th className="text-center"><p>Review</p></th>
+                  <th className="text-start py-3 pl-3 whitespace-nowrap">COMPANY NAME</th>
+                  <th className="text-start whitespace-nowrap px-5 lg:px-0">ROLE</th>
+                  <th className="text-start whitespace-nowrap px-5 lg:px-0">STATUS</th>
+                  <th className="text-start whitespace-nowrap px-5 lg:px-0">APPLY DATE</th>
+                  <th className="text-center whitespace-nowrap px-5 lg:px-0"><p>Review</p></th>
                 </tr>
               </thead>
 
