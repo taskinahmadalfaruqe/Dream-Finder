@@ -23,7 +23,6 @@
     "framer-motion": "^10.18.0",
     "json-server": "^1.0.0-alpha.21",
     "lottie-react": "^2.4.0",
-    "mongoose": "^8.1.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
@@ -34,7 +33,6 @@
     "react-hook-form": "^7.49.3",
     "react-icons": "^5.0.1",
     "react-pdf": "^7.7.0",
-    "react-simple-typewriter": "^5.0.1",
     "sweetalert2": "^11.6.13",
     "swiper": "^11.0.5"
   },
