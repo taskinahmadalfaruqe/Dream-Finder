@@ -37,9 +37,15 @@ const UserDashboard = () => {
           >
             <Fade direction="up" cascade>
               <div className="flex items-center ">
-                <Image alt="dashboardLogo" width={50} height={50} src="/icon.png" />
-                <h1 className={` font-bold text-lg lg:text-xl `}>Dream Finder</h1>
-
+                <Image
+                  alt="dashboardLogo"
+                  width={50}
+                  height={50}
+                  src="/icon.png"
+                />
+                <h1 className={` font-bold text-lg lg:text-xl `}>
+                  Dream Finder
+                </h1>
               </div>
             </Fade>
             <div className="my-4 border"></div>
@@ -51,9 +57,7 @@ const UserDashboard = () => {
               </div>
             </Link>
 
-            <div
-              className={`${pathname == "/dashboard" && "active "}`}
-            >
+            <div className={`${pathname == "/dashboard" && "active "}`}>
               <Link href="/dashboard">
                 <div
                   className={`
@@ -65,9 +69,7 @@ const UserDashboard = () => {
               </Link>
             </div>
 
-            <div
-              className={`${pathname == "/dashboard/profile" && "active"}`}
-            >
+            <div className={`${pathname == "/dashboard/profile" && "active"}`}>
               <Link href="/dashboard/profile">
                 <div
                   className={` 
@@ -89,13 +91,29 @@ const UserDashboard = () => {
                 </div>
               </Link>
             </div>
-            <div
-              className={`${pathname == "/dashboard/bookmark" && "active"}`}
-            >
+            <div className={`${pathname == "/dashboard/bookmark" && "active"}`}>
               <Link href="/dashboard/bookmark">
                 <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
                   <FaBookmark className="text-2xl" />
                   <h1 className={` font-bold text-lg `}>Save Posts</h1>
+                </div>
+              </Link>
+            </div>
+            <div className={`${pathname == "/dashboard/post-job" && "active"}`}>
+              <Link href="/dashboard/post-job">
+                <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
+                  <RiProfileLine className="text-2xl" />
+                  <h1 className={` font-bold text-lg `}>Post Job</h1>
+                </div>
+              </Link>
+            </div>
+            <div
+              className={`${pathname == "/dashboard/manage-jobs" && "active"}`}
+            >
+              <Link href="/dashboard/manage-jobs">
+                <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
+                  <RiProfileLine className="text-2xl" />
+                  <h1 className={` font-bold text-lg `}>Manage Jobs</h1>
                 </div>
               </Link>
             </div>
