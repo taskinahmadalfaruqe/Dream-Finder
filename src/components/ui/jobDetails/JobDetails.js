@@ -6,6 +6,7 @@ import { FaCheckSquare } from "react-icons/fa";
 import { VscDebugBreakpointDataUnverified } from "react-icons/vsc";
 import CommonButton from "@/components/shared/CommonButton";
 import ApplicationSubmissionForm from "../ApplicationSubmissionForm/ApplicationSubmissionForm";
+import SuccessToast from "@/components/shared/SuccessToast";
 
 export default function JobDetails({ id }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -19,6 +20,7 @@ export default function JobDetails({ id }) {
 
   return (
       <div className="container my-10 mb-40 p-5">
+        <SuccessToast />
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
           <h3 className="text-xl md:text-2xl text-secondaryColor dark:text-primaryColor font-bold mb-5 text-center  mx-auto">
