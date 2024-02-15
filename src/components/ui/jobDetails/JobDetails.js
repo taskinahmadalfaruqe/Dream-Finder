@@ -13,7 +13,7 @@ export default function JobDetails({ id }) {
   const [job, setJob] = useState({})
 
   useEffect(() => {
-    fetch(`https://dream-finder-file-upload-server.vercel.app/jobDetails/${id}`)
+    fetch(`https://dream-finder-server.vercel.app/jobDetails/${id}`)
     .then(res => res.json())
     .then(data => setJob(data))
   }, [id]);

@@ -10,7 +10,7 @@ export default function App() {
    
   useEffect(() => {
     if(user){
-      fetch(`https://dream-finder-file-upload-server.vercel.app/retrieveResume?user=${user?.email}`)
+      fetch(`https://dream-finder-server.vercel.app/retrieveResume?user=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setAppliedJobs(data));
     }

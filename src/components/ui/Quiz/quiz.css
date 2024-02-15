@@ -1,0 +1,12 @@
+.quiz{
+    min-height:  calc(100vh - 50px);;
+}
+
+.right{
+    background-color: #00BE63;
+    color: white
+}
+.wrong{
+    background-color: red;
+    color: white
+}
