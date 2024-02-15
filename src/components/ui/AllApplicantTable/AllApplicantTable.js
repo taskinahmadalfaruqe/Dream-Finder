@@ -3,6 +3,9 @@
 
 import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { FaTrashAlt } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
+
 
 export default function App() {
   return (
@@ -12,6 +15,7 @@ export default function App() {
         <TableColumn>EMAIL</TableColumn>
         <TableColumn>STATUS</TableColumn>
         <TableColumn>JOIN DATE</TableColumn>
+        <TableColumn>ACTION</TableColumn>
       </TableHeader>
       <TableBody>
         <TableRow key="1">
@@ -19,6 +23,12 @@ export default function App() {
           <TableCell>taskin@gmail.com</TableCell>
           <TableCell>Premium</TableCell>
           <TableCell>30/01/2024</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="2">
@@ -26,12 +36,24 @@ export default function App() {
           <TableCell>Khaleda@gmail.com</TableCell>
           <TableCell>Normal</TableCell>
           <TableCell>25/01/2024</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
         </TableRow>
         <TableRow key="3">
           <TableCell>Siam Islam Sagor</TableCell>
           <TableCell>siam@gmail.com</TableCell>
           <TableCell>Normal</TableCell>
           <TableCell>20/01/2024</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="4">
@@ -39,6 +61,12 @@ export default function App() {
           <TableCell>sadia@gmail.com</TableCell>
           <TableCell>Premium</TableCell>
           <TableCell>20/01/2024</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="5">
@@ -46,6 +74,12 @@ export default function App() {
           <TableCell>moin@gmail.com</TableCell>
           <TableCell>Normal</TableCell>
           <TableCell>20/01/2024</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
       </TableBody>
