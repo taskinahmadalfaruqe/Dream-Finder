@@ -129,6 +129,6 @@ const dashboardLinks = [
 const activeLinkStyle =
   "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl p-5 lg:p-3 px-6 lg:px-7 my-2 bg-primaryColor text-primaryColor font-semibold bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-primaryColor before:h-[50px] lg:before:h-[40px] duration-300 before:rounded-r-2xl before:duration-300 before:w-2 before:left-0 overflow-x-hidden w-64";
 const normalLinkStyle =
-  "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl p-5 lg:p-3 my-2 hover:bg-secondaryColor dark:opacity-70 duration-300 text-secondaryColorxxxxxxxxxxxxxx dark:opacity-70 font-semibold hover:bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-secondaryColor dark:opacity-70 before:h-0 before:w-0 hover:before:h-[20px] hover:before:w-1.5 before:rounded-r-2xl before:duration-300 before:left-0 overflow-x-hidden w-64";
+  "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl p-5 lg:p-3 my-2 hover:bg-secondaryColor dark:opacity-70 duration-300 text-secondaryColor dark:text-white dark:opacity-70 font-semibold hover:bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-secondaryColor dark:opacity-70 before:h-0 before:w-0 hover:before:h-[20px] hover:before:w-1.5 before:rounded-r-2xl before:duration-300 before:left-0 overflow-x-hidden w-64";
 
 export default DashDeskSidebar;
