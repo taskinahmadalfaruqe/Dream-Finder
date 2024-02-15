@@ -23,7 +23,7 @@ const Bookmarks = () => {
   useEffect(() => {
     if (!Loading) {
       fetch(
-        `https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`
+        `https://dream-finder-server.vercel.app/bookmark/${user?.email}`
       )
         .then(res => res.json())
         .then(data => setBookmarks(data));

@@ -22,7 +22,7 @@ const JobsContainer = ({ category: queryCategory }) => {
 
   useEffect(() => {
     fetch(
-      `https://dream-finder-file-upload-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&minSalary=${minSalary}&maxSalary=${maxSalary}&preference=${preference}&page=${page}&postedDate=${postedDate}`
+      `https://dream-finder-server.vercel.app/api/v1/jobs?category=${category}&location=${location}&type=${type}&minSalary=${minSalary}&maxSalary=${maxSalary}&preference=${preference}&page=${page}&postedDate=${postedDate}`
     )
       .then((res) => res.json())
       .then((data) => {
