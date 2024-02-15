@@ -8,7 +8,7 @@ const AppliedJobDetails = ({ id, date }) => {
   const [appliedJobDetails, setAppliedJobDetails] = useState([]);
 
   useEffect(() => {
-    fetch(`https://dream-finder-file-upload-server.vercel.app/retrieveResume/${id}`)
+    fetch(`https://dream-finder-server.vercel.app/retrieveResume/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setAppliedJobDetails(data.result)

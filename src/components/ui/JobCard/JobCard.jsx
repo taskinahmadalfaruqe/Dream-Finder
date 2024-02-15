@@ -58,7 +58,7 @@ const JobCard = ({ job }) => {
     };
     axios
       .post(
-        `https://dream-finder-file-upload-server.vercel.app/bookmark`,
+        `https://dream-finder-server.vercel.app/bookmark`,
         bookmark
       )
       .then((res) => {
@@ -70,7 +70,7 @@ const JobCard = ({ job }) => {
   const handleBookmarkDelete = () => {
     axios
       .delete(
-        `https://dream-finder-file-upload-server.vercel.app/bookmarkDelete?id=${_id}&user=${user?.email}`
+        `https://dream-finder-server.vercel.app/bookmarkDelete?id=${_id}&user=${user?.email}`
       )
       .then((res) => {
         console.log(res.data);
@@ -82,7 +82,7 @@ const JobCard = ({ job }) => {
   useEffect(() => {
     if (user) {
       fetch(
-        `https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`
+        `https://dream-finder-server.vercel.app/bookmark/${user?.email}`
       )
         .then((res) => res.json())
         .then((data) => setBookmarks(data));
