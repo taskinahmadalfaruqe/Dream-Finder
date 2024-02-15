@@ -4,6 +4,8 @@
 import React from "react";
 import Image from 'next/image';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { MdBlock } from "react-icons/md";
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function App() {
   return (
@@ -13,6 +15,7 @@ export default function App() {
         <TableColumn>NAME</TableColumn>
         <TableColumn>EMAIL</TableColumn>
         <TableColumn>LOCATION</TableColumn>
+        <TableColumn>ACTION</TableColumn>
       </TableHeader>
       <TableBody>
         <TableRow key="1">
@@ -23,6 +26,12 @@ export default function App() {
           <TableCell>programming hero</TableCell>
           <TableCell>programminghero@gmail.com</TableCell>
           <TableCell>Dhaka</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="2">
@@ -33,6 +42,12 @@ export default function App() {
           <TableCell>programming hero</TableCell>
           <TableCell>programminghero@gmail.com</TableCell>
           <TableCell>Dhaka</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
         </TableRow>
         <TableRow key="3">
         <TableCell>
@@ -42,6 +57,12 @@ export default function App() {
           <TableCell>programming hero</TableCell>
           <TableCell>programminghero@gmail.com</TableCell>
           <TableCell>Dhaka</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="4">
@@ -52,6 +73,12 @@ export default function App() {
           <TableCell>programming hero</TableCell>
           <TableCell>programminghero@gmail.com</TableCell>
           <TableCell>Dhaka</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
         <TableRow key="5">
@@ -62,6 +89,12 @@ export default function App() {
           <TableCell>programming hero</TableCell>
           <TableCell>programminghero@gmail.com</TableCell>
           <TableCell>Dhaka</TableCell>
+          <TableCell>
+          <div className="flex item-center gap-3">
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
+            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            </div>
+          </TableCell>
           
         </TableRow>
       </TableBody>
