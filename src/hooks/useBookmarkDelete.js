@@ -6,7 +6,7 @@ const useBookmarkDelete = () => {
   const [deleteState, setDeleteState] = useState(false);
   const handleBookmarkDelete = (id) => {
     axios
-      .delete(`https://dream-finder-file-upload-server.vercel.app/bookmark/${id}`)
+      .delete(`https://dream-finder-server.vercel.app/bookmark/${id}`)
       .then((res) => setDeleteState(!deleteState))
       .catch((error) => console.log(error));
   };
