@@ -74,29 +74,33 @@ const Page = () => {
   }, []);
 
   return (
-    <Table
-      color="success"
-      selectionMode="single"
-      aria-label="Example table with custom cells"
-    >
-      <TableHeader columns={columns}>
-        {column => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
-          >
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={users}>
-        {item => (
-          <TableRow key={item.id}>
-            {columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">
+      <Table
+        color="success"
+        selectionMode="single"
+        aria-label="Example table with custom cells"
+      >
+        <TableHeader columns={columns}>
+          {column => (
+            <TableColumn
+              key={column.uid}
+              align={column.uid === "actions" ? "center" : "start"}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={users}>
+          {item => (
+            <TableRow key={item.id}>
+              {columnKey => (
+                <TableCell>{renderCell(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

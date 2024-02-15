@@ -66,6 +66,16 @@ li {
   box-shadow: 30px 0 0 #00be63;
 }
 
+/* dashboard mobile navigation clip path */
+
+.act_lnk_light::after {
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%);
+}
+
+.nrm_lnk_light::after {
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%);
+}
+
 /* keyframe must be bottom of the file. */
 
 @keyframes rotate {
