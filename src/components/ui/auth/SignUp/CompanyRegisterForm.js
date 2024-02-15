@@ -43,7 +43,7 @@ const CompanyRegisterForm = () => {
           companyName: name,
           companyEmail: email,
           companyLogo: photoUrl,
-          isRecruiter: true,
+          role: "hr",
         };
         ////////////////////////////
         // if company not exist in db, then create company in db by there information.
