@@ -99,24 +99,32 @@ const UserDashboard = () => {
                 </div>
               </Link>
             </div>
-            <div className={`${pathname == "/dashboard/post-job" && "active"}`}>
-              <Link href="/dashboard/post-job">
-                <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
-                  <RiProfileLine className="text-2xl" />
-                  <h1 className={` font-bold text-lg `}>Post Job</h1>
+            {isHr && (
+              <>
+                <div
+                  className={`${pathname == "/dashboard/post-job" && "active"}`}
+                >
+                  <Link href="/dashboard/post-job">
+                    <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
+                      <RiProfileLine className="text-2xl" />
+                      <h1 className={` font-bold text-lg `}>Post Job</h1>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-            <div
-              className={`${pathname == "/dashboard/manage-jobs" && "active"}`}
-            >
-              <Link href="/dashboard/manage-jobs">
-                <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
-                  <RiProfileLine className="text-2xl" />
-                  <h1 className={` font-bold text-lg `}>Manage Jobs</h1>
+                <div
+                  className={`${
+                    pathname == "/dashboard/manage-jobs" && "active"
+                  }`}
+                >
+                  <Link href="/dashboard/manage-jobs">
+                    <div className="flex gap-x-2 items-center px-2 py-4 mb-2 hover:bg-lightPrimaryColor hover:rounded-lg">
+                      <RiProfileLine className="text-2xl" />
+                      <h1 className={` font-bold text-lg `}>Manage Jobs</h1>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
+              </>
+            )}
 
             <div>
               <Link href="/logout">

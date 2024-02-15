@@ -289,6 +289,10 @@ const menuItems = [
     title: "Resister",
     path: "/auth/signup",
   },
+  {
+    title: "Dashboard",
+    path: "/dashboard",
+  },
 ];
 
 export default NextNavbar;
