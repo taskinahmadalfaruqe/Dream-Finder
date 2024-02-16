@@ -36,10 +36,10 @@ const Page = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // validation
-    if (!isFullTime && !isPartTime && !isHybrid) {
+    if (!isFullTime && !isPartTime) {
       setFormErr("please select job type");
       return;
-    } else if (!isOnSite && !isRemote) {
+    } else if (!isOnSite && !isRemote && !isHybrid) {
       setFormErr("please select job location");
       return;
     } else {
@@ -50,7 +50,7 @@ const Page = () => {
       category,
       description: jobDescription,
       educationalRequirements: form["educational requirements"].value,
-      allRequirements: requirements.map(rqm => form[`${rqm}`].value),
+      requirements: requirements.map(rqm => form[`${rqm}`].value),
       type: [
         isFullTime ? "Full Time" : "",
         isPartTime ? "Part Time" : "",
@@ -63,6 +63,10 @@ const Page = () => {
       posted_date: new Date().toISOString().slice(0, 10),
       posted_time: new Date().toLocaleTimeString(),
       appliedCount: 0,
+      company_logo:
+        "https://images.pexels.com/photos/430205/pexels-photo-430205.jpeg?auto=compress&cs=tinysrgb&w=600",
+      company_name: "TechHub Solutions",
+      viewCount: 40,
     };
     console.log(formData);
   };
@@ -85,8 +89,8 @@ const Page = () => {
                   isRequired
                   items={categories}
                   label="Select Job Category."
-                  placeholder="Select an animal"
-                  selectedKeys={[categories]}
+                  placeholder="Select an Category"
+                  // selectedKeys={[categories]}
                   onChange={e => setCategory(e.target.value)}
                 >
                   {categories.map(ctg => (
@@ -156,11 +160,6 @@ const Page = () => {
                   </Checkbox>
                 </div>
                 <div className="w-1/3 px-3 ">
-                  <Checkbox isSelected={isHybrid} onValueChange={setIsHybrid}>
-                    Hybrid
-                  </Checkbox>
-                </div>
-                <div className="w-1/3 px-3 ">
                   <Checkbox
                     isSelected={isPartTime}
                     onValueChange={setIsPartTime}
@@ -183,24 +182,25 @@ const Page = () => {
                     On Site
                   </Checkbox>
                 </div>
+                <div className="w-1/3 px-3 ">
+                  <Checkbox isSelected={isHybrid} onValueChange={setIsHybrid}>
+                    Hybrid
+                  </Checkbox>
+                </div>
               </div>
 
-              {isOnSite && (
-                <>
-                  <div className="w-full px-3">
-                    <p>Job location</p>
-                  </div>
-                  <div className="w-full px-3">
-                    <Input
-                      isRequired
-                      name="job location"
-                      variant="flat"
-                      label="Job location "
-                      size="lg"
-                    />
-                  </div>
-                </>
-              )}
+              <div className="w-full px-3">
+                <p>Job location</p>
+              </div>
+              <div className="w-full px-3">
+                <Input
+                  isRequired
+                  name="job location"
+                  variant="flat"
+                  label="Job location "
+                  size="lg"
+                />
+              </div>
 
               <div className="w-full px-3 max-sm:pb-4">
                 <p>Required requirements</p>
