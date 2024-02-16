@@ -1,5 +1,6 @@
 "use client";
 
+import useContextData from "@/hooks/useContextData";
 import {
   Avatar,
   Dropdown,
@@ -10,6 +11,7 @@ import {
 import React from "react";
 
 const UserDropDown = () => {
+  const { user } = useContextData();
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -19,7 +21,11 @@ const UserDropDown = () => {
           className="transition-transform ml-1"
           color="success"
           size="sm"
-          src="https://avatars.githubusercontent.com/u/30373425?v=4"
+          src={
+            user?.photoURL
+              ? user?.photoURL
+              : "https://avatars.githubusercontent.com/u/30373425?v=4"
+          }
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
