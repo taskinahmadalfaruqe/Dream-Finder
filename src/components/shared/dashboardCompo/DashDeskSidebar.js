@@ -5,21 +5,105 @@ import Link from "next/link";
 import React from "react";
 
 import { RxDashboard } from "react-icons/rx";
-import { MdAddTask, MdAddToQueue } from "react-icons/md";
+import {
+  MdAddTask,
+  MdAddToQueue,
+  MdOutlinePlaylistAddCheck,
+  MdOutlineAddIcCall,
+} from "react-icons/md";
 import { GoHome } from "react-icons/go";
 import { PiNoteDuotone } from "react-icons/pi";
 import { LuUser2, LuPencilLine } from "react-icons/lu";
+import { FaListOl } from "react-icons/fa";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+
 import { usePathname } from "next/navigation";
 import { Fade } from "react-awesome-reveal";
 import Divider from "../Divider";
+import useHr from "@/hooks/useHr";
 
 const DashDeskSidebar = () => {
   const currentPathname = usePathname();
+  const [isHr] = useHr();
+  console.log(isHr);
 
   return (
     <>
       <ScrollShadow hideScrollBar className="h-[65vh]">
-        {dashboardLinks.map((link, index) => (
+        {isHr ? (
+          <>
+            {dashboardHrLinks.map((link, index) => (
+              <Fade delay={index * 50} key={link.heading}>
+                <Link href={`${link.path}`}>
+                  <div className="overflow-hidden">
+                    <div
+                      className={
+                        currentPathname === link.path
+                          ? activeLinkStyle
+                          : normalLinkStyle
+                      }
+                    >
+                      {
+                        <link.icon className=" max-sm:text-lg sm:text-3xl max-lg:hidden ml-4 mr-0" />
+                      }
+                      <Tooltip
+                        className="font-medium text-whiteColor capitalize lg:hidden"
+                        showArrow
+                        color="success"
+                        placement="right"
+                        content={link.heading}
+                      >
+                        <div>
+                          {
+                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-1" />
+                          }
+                        </div>
+                      </Tooltip>
+                      {link.heading}
+                    </div>
+                  </div>
+                </Link>
+              </Fade>
+            ))}
+          </>
+        ) : (
+          <>
+            {dashboardLinks.map((link, index) => (
+              <Fade delay={index * 50} key={link.heading}>
+                <Link href={`${link.path}`}>
+                  <div className="overflow-hidden">
+                    <div
+                      className={
+                        currentPathname === link.path
+                          ? activeLinkStyle
+                          : normalLinkStyle
+                      }
+                    >
+                      {
+                        <link.icon className=" max-sm:text-lg sm:text-3xl max-lg:hidden ml-4 mr-0" />
+                      }
+                      <Tooltip
+                        className="font-medium text-whiteColor capitalize lg:hidden"
+                        showArrow
+                        color="success"
+                        placement="right"
+                        content={link.heading}
+                      >
+                        <div>
+                          {
+                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-1" />
+                          }
+                        </div>
+                      </Tooltip>
+                      {link.heading}
+                    </div>
+                  </div>
+                </Link>
+              </Fade>
+            ))}
+          </>
+        )}
+        {/* {dashboardLinks.map((link, index) => (
           <Fade delay={index * 50} key={link.heading}>
             <Link href={`${link.path}`}>
               <div className="overflow-hidden">
@@ -51,7 +135,7 @@ const DashDeskSidebar = () => {
               </div>
             </Link>
           </Fade>
-        ))}
+        ))} */}
       </ScrollShadow>
 
       <div className="max-lg:hidden mt-10">
@@ -112,17 +196,49 @@ const dashboardLinks = [
     path: "/dashboard/bookmark",
     icon: PiNoteDuotone,
   },
+];
 
+const dashboardHrLinks = [
+  {
+    heading: "Dashboard",
+    path: "/dashboard",
+    icon: RxDashboard,
+  },
+  {
+    heading: "Profile",
+    path: "/dashboard/profile",
+    icon: LuUser2,
+  },
   {
     heading: "Post Job",
     path: "/dashboard/post-job",
     icon: MdAddToQueue,
   },
-
   {
     heading: "Manage Jobs",
     path: "/dashboard/manage-jobs",
     icon: LuPencilLine,
+  },
+  // ////////
+  {
+    heading: "Sort List",
+    path: "/dashboard/sort-list",
+    icon: FaListOl,
+  },
+  {
+    heading: "Task",
+    path: "/dashboard/task",
+    icon: MdOutlinePlaylistAddCheck,
+  },
+  {
+    heading: "Interview call",
+    path: "/dashboard/interview-call",
+    icon: MdOutlineAddIcCall,
+  },
+  {
+    heading: "Hired",
+    path: "/dashboard/hired",
+    icon: IoCheckmarkDoneCircleOutline,
   },
 ];
 

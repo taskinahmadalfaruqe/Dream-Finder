@@ -30,6 +30,8 @@ const DashboardLayout = ({ children }) => {
 export default DashboardLayout;
  */
 
+"use client";
+
 import { RxDashboard } from "react-icons/rx";
 import { MdAddTask } from "react-icons/md";
 import { GoTasklist } from "react-icons/go";
@@ -39,35 +41,64 @@ import UserDropDown from "@/components/shared/dashboardCompo/UserDropDown";
 import DashNav from "@/components/shared/dashboardCompo/DashNav";
 import DashMobileNav from "@/components/shared/dashboardCompo/DashMobileNav";
 import DashDeskSidebar from "@/components/shared/dashboardCompo/DashDeskSidebar";
+import useContextData from "@/hooks/useContextData";
+import useHr from "@/hooks/useHr";
+import AdminDashboard from "@/components/ui/AdminDashboard/AdminDashboard";
 
 const DashboardLayout = ({ children }) => {
+  const { user } = useContextData();
+  const [isHr] = useHr();
   return (
-    <div className="min-h-screen max-w-[1920px] mx-auto">
-      <div className="sm:flex gap10 min-h-screen">
-        {/* sidebar */}
-        <div className="max-w-72 max-lg:max-w-[65px] duration-500 w-full h-screen overflow-hidden sticky top-0 max-sm:hidden  shadow-2xl">
-          <div className="max-w-64">
-            {/* logo */}
-            <div className="my-10 px-[15px] lg:flex items-center gap-3">
-              <UserDropDown />
-              <div className="max-lg:hidden text-sm text-secondaryColor font-medium">
-                <p>MD SIAM ISLAM SAGOR</p>
-                <p className="text-xs ">msiamislam12345@gmail.com</p>
-              </div>
-            </div>
-            {/* desktop and tablet sidebar navigation */}
-            <DashDeskSidebar />
+    <>
+      {user?.email === "msiamislam12345@gmail.com" ? (
+        <div className="container grid grid-cols-12 dark:bg-slate-900">
+          <div className="col-span-12 lg:col-span-3">
+            {user?.email === "msiamislam12345@gmail.com" && (
+              <AdminDashboard></AdminDashboard>
+            )}
+          </div>
+          <div className="md:p-10 col-span-12 lg:col-span-9 my-20 min-h-lvh">
+            {children}
           </div>
         </div>
-        {/* max-sm navigation bar */}
-        <div className="w-full bg-whiteColor dark:bg-darkColor">
-          <DashNav />
-          {children}
-          <DashMobileNav />
-          <div className="lg:hidden h-24 sm:h-36 relative"></div>
+      ) : (
+        <div className="min-h-screen max-w-[1920px] mx-auto">
+          <div className="sm:flex gap10 min-h-screen">
+            {/* sidebar */}
+            <div className="max-w-72 max-lg:max-w-[65px] duration-500 w-full h-screen overflow-hidden sticky top-0 max-sm:hidden  shadow-2xl">
+              <div className="max-w-64">
+                {/* logo */}
+                <div className="my-10 px-[15px] lg:flex items-center gap-3">
+                  <UserDropDown />
+                  {isHr && (
+                    <div className="max-lg:hidden text-sm text-secondaryColor font-medium">
+                      <p>GREENWAR</p>
+                      <p className="text-xs ">green@war.com</p>
+                    </div>
+                  )}
+                  {isHr ||
+                    (user && (
+                      <div className="max-lg:hidden text-sm text-secondaryColor font-medium">
+                        <p>{user.displayName}</p>
+                        <p className="text-xs ">{user.email}</p>
+                      </div>
+                    ))}
+                </div>
+                {/* desktop and tablet sidebar navigation */}
+                <DashDeskSidebar />
+              </div>
+            </div>
+            {/* max-sm navigation bar */}
+            <div className="w-full bg-whiteColor dark:bg-darkColor">
+              <DashNav />
+              {children}
+              <DashMobileNav />
+              <div className="lg:hidden h-24 sm:h-36 relative"></div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

@@ -41,8 +41,8 @@ const SignInForm = () => {
     logIn(email, password)
       .then(res => {
         console.log(res.user);
-        reset();
         router.push("/Find-Jobs");
+        reset();
         setIsEmailSingInBtnActive(false);
       })
       .catch(err => {
@@ -57,6 +57,7 @@ const SignInForm = () => {
     setIsGoogleAuthBtnActive(true);
     googleLogin()
       .then(async res => {
+        router.push("/Find-Jobs");
         const userData = {
           email: res?.user?.email,
           name: res?.user?.displayName,
@@ -66,7 +67,7 @@ const SignInForm = () => {
         await axiosPublic.post("/create/user", userData);
         ////////////////////////////
         console.log("google authentication successfully.");
-        router.push("/Find-Jobs");
+
         setIsGoogleAuthBtnActive(false);
       })
       .catch(error => {
