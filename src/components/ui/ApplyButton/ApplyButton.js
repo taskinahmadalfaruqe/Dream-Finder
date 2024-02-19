@@ -9,7 +9,7 @@ const {user} = useContext(AuthContext)
 const [isApplied,setIsApplied] = useState(null)
 
 useEffect(()=>{
-    fetch(`https://dream-finder-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`)
+    fetch(`https://dream-finder-file-upload-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`)
     .then(res => res.json())
     .then(data => {
         if(data.isApplied){
@@ -19,7 +19,8 @@ useEffect(()=>{
         }
     })
     .catch(err => console.log(err))
-},[user,id])
+},[user,id, isApplied])
+
 
   return (
     <div className="">

@@ -1,11 +1,11 @@
-import Quiz from '@/components/ui/Quiz/Quiz';
+import Quiz from "@/components/ui/Quiz/Quiz";
 
 const page = () => {
-    return (
-        <>
-            <Quiz />
-        </>
-    );
+  return (
+    <>
+      <Quiz />
+    </>
+  );
 };
 
 export default page;

@@ -25,15 +25,15 @@ const Bookmarks = () => {
       fetch(
         `https://dream-finder-server.vercel.app/bookmark/${user?.email}`
       )
-        .then((res) => res.json())
-        .then((data) => setBookmarks(data));
+        .then(res => res.json())
+        .then(data => setBookmarks(data));
     }
   }, [Loading, deleteState]);
 
   return (
-    <div className=" space-y-10">
+    <div className=" space-y-10  max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">
       {bookmarks.length ? (
-        bookmarks?.map((bookmark) => (
+        bookmarks?.map(bookmark => (
           <Card key={bookmark?._id} className="border p-2 rounded-none">
             <CardBody>
               <div className="lg:flex gap-5 space-y-5 lg:space-y-0">
@@ -46,10 +46,10 @@ const Bookmarks = () => {
                 </div>
                 <div className=" flex flex-1 justify-between relative">
                   <div>
-                    <h1 className="text-2xl text-darkColor font-semibold">
+                    <h1 className="text-2xl  font-semibold">
                       {bookmark?.category}
                     </h1>
-                    <h3 className="text-lg text-darkColor font-semibold">
+                    <h3 className="text-lg  font-semibold">
                       {bookmark?.company_name}
                     </h3>
 

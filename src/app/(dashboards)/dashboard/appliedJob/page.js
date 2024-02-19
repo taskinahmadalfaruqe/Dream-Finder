@@ -3,7 +3,7 @@ import AppliedJobTable from "@/components/ui/ApplyedJobTable/ApplyedJobTable";
 
 const AppliedJobPage = () => {
   return (
-    <div className="">
+    <div className="container">
       <AppliedJobTable></AppliedJobTable>
     </div>
   );
