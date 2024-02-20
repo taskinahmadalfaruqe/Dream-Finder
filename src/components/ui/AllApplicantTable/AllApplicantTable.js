@@ -5,6 +5,8 @@ import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import { FaTrashAlt } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
+import { MdBlock } from "react-icons/md";
+
 
 
 export default function App() {
@@ -24,8 +26,9 @@ export default function App() {
           <TableCell>Premium</TableCell>
           <TableCell>30/01/2024</TableCell>
           <TableCell>
-          <div className="flex item-center gap-3">
+          <div className="flex item-center gap-4">
             <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
             <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
@@ -37,8 +40,9 @@ export default function App() {
           <TableCell>Normal</TableCell>
           <TableCell>25/01/2024</TableCell>
           <TableCell>
-          <div className="flex item-center gap-3">
+          <div className="flex item-center gap-4">
             <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
             <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
@@ -49,8 +53,9 @@ export default function App() {
           <TableCell>Normal</TableCell>
           <TableCell>20/01/2024</TableCell>
           <TableCell>
-          <div className="flex item-center gap-3">
+          <div className="flex item-center gap-4">
             <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
             <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
@@ -62,8 +67,9 @@ export default function App() {
           <TableCell>Premium</TableCell>
           <TableCell>20/01/2024</TableCell>
           <TableCell>
-          <div className="flex item-center gap-3">
+          <div className="flex item-center gap-4">
             <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
             <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
@@ -75,8 +81,9 @@ export default function App() {
           <TableCell>Normal</TableCell>
           <TableCell>20/01/2024</TableCell>
           <TableCell>
-          <div className="flex item-center gap-3">
+          <div className="flex item-center gap-4">
             <button  title="Make Admin"><RiAdminFill className="text-3xl" /></button>
+            <button  title="Block"><MdBlock className="text-3xl" /></button>
             <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
