@@ -1,12 +1,30 @@
 "use client";
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React from 'react';
+import { redirect, useParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({price}) => {
+  // console.log(price)
     const stripe = useStripe();
     const elements = useElements();
+    
+    const [clientSecret, setClientSecret] = useState('');
+
+    useEffect( () =>{
+      fetch("http://localhost:5000/createPayment", {     //192.168.0.88
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({price})
+      })
+      
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.clientSecret);
+        setClientSecret(data.clientSecret)
+      });
+    },[])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,6 +62,7 @@ const CheckoutForm = () => {
                 timer: 1500
               });
             console.log('payment method', paymentMethod)
+            // redirect('/');
         }
     }
 
@@ -65,11 +84,14 @@ const CheckoutForm = () => {
           },
         }}
       />
-         <Button type='submit' color="success" disabled={!stripe} className='my-4'>
+         <Button type='submit' color="success" disabled={!stripe || !clientSecret} className='my-4'>
         Pay
       </Button>
         </form>
     );
 };
+
+
+
 
 export default CheckoutForm;

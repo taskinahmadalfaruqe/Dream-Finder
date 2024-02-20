@@ -1,10 +1,13 @@
+import PaymentDynamicPage from '@/app/payment/[subsPaymentId]/page';
 import React from 'react';
-import Payment from '@/components/ui/Payment/Payment';
+// import PaymentPage from '@/components/ui/Subscribe/[subsId]/page';
 const PaymentPage = () => {
     return (
         <div>
-            <h2 className='text-3xl font-bold text-center my-8'>Give Your Payment Here !</h2>
-            <Payment></Payment>
+            
+           
+            {/* <Payment></Payment> */}
+            <PaymentDynamicPage></PaymentDynamicPage>
             
         </div>
     );
