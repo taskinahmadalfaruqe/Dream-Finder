@@ -69,7 +69,6 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
       })
         .then((res) => res.json())
         .then((data) =>{
-          console.log(data)
           router.push("/Find-Jobs")
           onOpenSuccess()
         })
@@ -77,8 +76,6 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     };
 
     fileReader.readAsBinaryString(selectedFile);
-
-
      form.reset()
      setFileName(null)
   };

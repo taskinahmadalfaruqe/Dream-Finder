@@ -28,6 +28,7 @@ const JobSearchSection = ({ state }) => {
     setSubmit,
     setPostedDate,
     postedDate,
+    setPage
   } = state;
   const category = [
     "all",
@@ -238,7 +239,10 @@ const JobSearchSection = ({ state }) => {
                   ))}
               </Select>
             </div>
-            <div onClick={() => setSubmit(!submit)} className="mt-10 ">
+            <div onClick={() => 
+           { setSubmit(!submit)
+            setPage(1)}
+            } className="mt-10 ">
               <CommonButton buttonName={"Search"} />
             </div>
           </div>

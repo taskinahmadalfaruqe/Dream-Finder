@@ -3,20 +3,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppliedRow from "../AppliedJobRow/AppliedRow";
 import { AuthContext } from "@/providers/AuthProvider";
+import { Pagination } from "@nextui-org/react";
 
 export default function App() {
   const { user } = useContext(AuthContext);
   const [appliedJobs, setAppliedJobs] = useState([]);
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (user) {
       fetch(
-        `https://dream-finder-file-upload-server.vercel.app/retrieveResume?user=${user?.email}`
+        `https://dream-finder-file-upload-server.vercel.app/retrieveResume?user=${user?.email}&page=${page}`
       )
-        .then(res => res.json())
-        .then(data => setAppliedJobs(data));
+        .then((res) => res.json())
+        .then((data) => {
+          setAppliedJobs(data.ids);
+          setCount(data.count);
+        });
     }
-  }, [user]);
+  }, [user, page]);
 
   return (
     <>
@@ -54,6 +60,17 @@ export default function App() {
                   ))}
               </tbody>
             </table>
+          </div>
+          <div className="py-10">
+            <Pagination
+              onChange={(e) => setPage(e)}
+              color="success"
+              radius="sm"
+              isCompact
+              showControls
+              total={Math.ceil(count / 8)}
+              initialPage={1}
+            />
           </div>
         </div>
       ) : (
