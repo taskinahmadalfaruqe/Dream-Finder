@@ -26,6 +26,9 @@ const JobSearchSection = ({ state }) => {
     setPreference,
     submit,
     setSubmit,
+    setPostedDate,
+    postedDate,
+    setPage
   } = state;
   const category = [
     "all",
@@ -40,6 +43,26 @@ const JobSearchSection = ({ state }) => {
     "Engineering",
     "Finance",
     "IT",
+  ];
+
+  const dateLimit = [
+    {
+      value: 7,
+      text: "PAST WEEK",
+    },
+    {
+      value: 15,
+      text: "PAST 2 WEEK",
+    },
+    {
+      value: 30,
+      text: "PAST MONTH",
+    },
+    {
+      value: "",
+      text: "ALL"
+    },
+
   ];
 
   const handleCategory = (e) => {
@@ -66,14 +89,16 @@ const JobSearchSection = ({ state }) => {
     setMaxSalary([value[1]]);
   };
 
+  const handlePostedDate = (event) => {
+   setPostedDate(event.target.value)
+  };
   return (
     <Card className="sectionSearchSection h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  ">
       <CardBody className="p-5">
         <ScrollShadow
           hideScrollBar
-          offset={100}
-          orientation="horizontal"
-          className=""
+          offset={60}
+          size={200}
         >
           <div className="">
             <div className="md:flex lg:block md:gap-3 lg:gap-0">
@@ -200,7 +225,24 @@ const JobSearchSection = ({ state }) => {
                 }}
               />
             </div>
-            <div onClick={() => setSubmit(!submit)} className="mt-10 ">
+
+            <div className="mt-5">
+              <Select
+                label="Posted Date"
+                className="md:w-full border border-primaryColor rounded-xl"
+                onChange={handlePostedDate}
+              >
+                    {dateLimit.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      {item.text.toUpperCase()}
+                    </SelectItem>
+                  ))}
+              </Select>
+            </div>
+            <div onClick={() => 
+           { setSubmit(!submit)
+            setPage(1)}
+            } className="mt-10 ">
               <CommonButton buttonName={"Search"} />
             </div>
           </div>

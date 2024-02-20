@@ -39,14 +39,24 @@ const CompanyRegisterForm = () => {
     createUser(email, password)
       .then(async res => {
         console.log(res);
+
+        const userData = {
+          name,
+          email,
+          role: "hr",
+        };
+        ////////////////////////////
+        // if user not exist in db, then create user in db by there information.
+        await axiosPublic.post("/create/user", userData);
+        ////////////////////////////
+
         const companyInfo = {
           companyName: name,
           companyEmail: email,
           companyLogo: photoUrl,
-          isRecruiter: true,
+          role: "hr",
         };
-        ////////////////////////////
-        // if company not exist in db, then create company in db by there information.
+
         await axiosPublic.post("/create/company", companyInfo);
         ////////////////////////////
         router.push("/auth/signin");

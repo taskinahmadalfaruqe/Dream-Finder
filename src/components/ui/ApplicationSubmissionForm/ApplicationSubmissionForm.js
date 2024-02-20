@@ -13,21 +13,17 @@ import { useContext, useRef, useState } from "react";
 import "./applicationSubmissionForm.css";
 import { FiUpload } from "react-icons/fi";
 import { AuthContext } from "@/providers/AuthProvider";
-import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import {useDisclosure} from "@nextui-org/react";
+import SuccessToast from "@/components/shared/SuccessToast";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
+  const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
   const { isOpen, onOpenChange } = actions;
   const { id, company_name, category } = jobInfo;
-  const router = useRouter()
-  console.log(router);
-
-
   const textareaRef = useRef(null);
   const { user } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState("")
- 
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -35,7 +31,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     setFileName(<p>&nbsp;{newFileName}</p>)
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, onClose) => {
 
     event.preventDefault();
     if (!selectedFile) {
@@ -70,22 +66,14 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
       })
         .then((res) => res.json())
         .then((data) =>{
-          console.log(data)
-          Swal.fire({
-            title: "Applied Successfully",
-            text:"You have successfully applied for this job. Have patience for requiter's response.",
-            icon: "success",
-            confirmButtonColor:"#00BE63"
-          });
-          onClose()
-          router.push("/Find-Jobs")
+          // onClose()
+          onOpenSuccess()
+        
         })
         .catch((error) => console.log(error));
     };
 
     fileReader.readAsBinaryString(selectedFile);
-
-
      form.reset()
      setFileName(null)
   };
@@ -107,7 +95,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                 </h2>
                 <h3 className="text-xl text-whiteColor"> {company_name}</h3>
               </ModalHeader>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e)=> handleSubmit(e, onClose)}>
                 <ModalBody>
                   <label htmlFor="coverLetter">Cover Letter</label>
 
@@ -146,6 +134,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
                     className="rounded-md w-32 h-[49px] text-whiteColor font-bold "
                     color="success"
                     type="submit"
+                    
                   >
                     Submit
                   </Button>
@@ -154,6 +143,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
             </>
           )}
         </ModalContent>
+        <SuccessToast isOpenSuccess={isOpenSuccess} onOpenSuccess={onOpenSuccess} onOpenChangeSuccess={onOpenChangeSuccess}/>
       </Modal>
     </>
   );

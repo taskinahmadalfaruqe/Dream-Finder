@@ -8,7 +8,7 @@ const JobSection = async () => {
     /* next: {
       revalidate: 5,
     }, */
-  /* const res = await fetch("http://localhost:5000/recent-jobs", {
+  /* const res = await fetch("https://dream-finder-server.vercel.app/recent-jobs", {
     
     cache: "no-store",
   });

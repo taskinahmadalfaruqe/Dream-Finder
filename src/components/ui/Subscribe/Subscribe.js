@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react';
 import Aos from 'aos';
@@ -11,6 +11,9 @@ import { FaRightFromBracket } from 'react-icons/fa6';
 
 
 const Subscribe = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
     useEffect(() => {
         Aos.init();
@@ -124,7 +127,5 @@ const subsInfo = [
         disc4: "Get Interview Directly",
     },
 ]
-
-
 
 export default Subscribe;

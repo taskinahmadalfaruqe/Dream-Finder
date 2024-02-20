@@ -18,52 +18,85 @@ import { TbCashBanknote } from "react-icons/tb";
 import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
 import useBookmarkDelete from "@/hooks/useBookmarkDelete";
+import ApplyButton from "../ApplyButton/ApplyButton";
 
 const JobCard = ({ job }) => {
   const { user, Loading } = useContext(AuthContext);
   const [isShow, setIsShow] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
-  const { handleBookmarkDelete } = useBookmarkDelete();
-  const [deleteState, setDeleteState] = useState(false);
+
   const {
     company_name,
     category,
-    type,
+    viewCount,
     description,
     minSalary,
     maxSalary,
     location,
     _id,
+    type,
     company_logo,
     posted_date,
-    appliedCount
+    appliedCount,
   } = job;
 
   const handleSaveToBookmark = () => {
-    const bookmark = { ...job, user: user?.email, jobId: _id };
+    const bookmark = {
+      category,
+      viewCount,
+      description,
+      minSalary,
+      maxSalary,
+      location,
+      type,
+      company_logo,
+      posted_date,
+      appliedCount,
+      user: user?.email,
+      jobId: _id,
+    };
     axios
       .post(
-        `https://dream-finder-file-upload-server.vercel.app/bookmark`,
+        `https://dream-finder-server.vercel.app/bookmark`,
         bookmark
       )
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+      })
       .catch((err) => console.log(err));
   };
 
+  const handleBookmarkDelete = () => {
+    axios
+      .delete(
+        `https://dream-finder-server.vercel.app/bookmarkDelete?id=${_id}&user=${user?.email}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
-    if (!Loading) {
+    if (user) {
       fetch(
-        `https://dream-finder-file-upload-server.vercel.app/bookmark/${user?.email}`
+        `https://dream-finder-server.vercel.app/bookmark/${user?.email}`
       )
         .then((res) => res.json())
         .then((data) => setBookmarks(data));
+      const bookmarked = bookmarks?.find((bookmark) => bookmark.jobId === _id);
+
+      if (bookmarked) {
+        setIsBookmarked(true);
+      }else{
+        setIsBookmarked(false);
+      }
     }
-    const bookmarked = bookmarks?.find((bookmark) => bookmark.jobId === _id);
-    if (bookmarked) {
-      setIsBookmarked(true);
-    }
-  }, [Loading, deleteState, bookmarks]);
+  }, [user, isBookmarked, bookmarks, _id]);
+
+  
 
   return (
     <Card
@@ -81,30 +114,36 @@ const JobCard = ({ job }) => {
           Actively Hiring
         </Button>
         {user && (
-          <div>
-            {isBookmarked ? (
-              <div
-                title="Remove from Bookmark"
-                onClick={() => {
-                  handleBookmarkDelete(_id);
-                  setIsBookmarked(false);
-                }}
-              >
-                <FaBookmark
-                  style={{ color: "#00BE63", fontSize: 22, cursor: "pointer" }}
-                />
-              </div>
-            ) : (
-              <div
-                title="Add To Bookmark"
-                onClick={() => handleSaveToBookmark()}
-              >
-                <FaRegBookmark
-                  style={{ color: "#00BE63", fontSize: 22, cursor: "pointer" }}
-                />
-              </div>
-            )}
-          </div>
+          <div
+          title="Remove from Bookmark"
+          onClick={() => {
+            if (isBookmarked) {
+              handleBookmarkDelete();
+              setIsBookmarked(false);
+            } else {
+              handleSaveToBookmark();
+              setIsBookmarked(true);
+            }
+          }}
+        >
+          {isBookmarked ? (
+            <FaBookmark
+              style={{
+                color: "#00BE63",
+                fontSize: 22,
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <FaRegBookmark
+              style={{
+                color: "#00BE63",
+                fontSize: 22,
+                cursor: "pointer",
+              }}
+            />
+          )}
+        </div>
         )}
       </CardHeader>
       <Divider />
@@ -149,7 +188,9 @@ const JobCard = ({ job }) => {
             </div>
           </div>
           <div>
-            <p className=" mt-3 text-sm md:text-lg mb-0">{appliedCount} People Applied For this Job</p>
+            <p className=" mt-3 text-sm md:text-lg mb-0">
+              {appliedCount} People Applied For this Job
+            </p>
           </div>
         </div>
       </CardBody>
@@ -174,11 +215,7 @@ const JobCard = ({ job }) => {
         }`}
       >
         <div className="absolute h-full w-full top-0 left-0 bg-lightSkyBlue z-20  opacity-80  flex justify-center items-center">
-          <div className=" space-x-5">
-            <Link href={`/Find-Jobs/${_id}`}>
-              <CommonButton buttonName={"Apply Now"}></CommonButton>
-            </Link>
-          </div>
+          <ApplyButton id={_id} />
         </div>
       </div>
     </Card>

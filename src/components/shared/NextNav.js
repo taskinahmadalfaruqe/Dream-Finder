@@ -21,18 +21,16 @@ import { usePathname } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
 import ThemeSwitch from "@/app/ThemeSwitch";
-import "./navbar.css"
-
+import "./navbar.css";
 
 const NextNavbar = () => {
-  const pathName = usePathname()
+  const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
   const { user } = useContextData();
-  
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
@@ -48,14 +46,11 @@ const NextNavbar = () => {
     }
   }, []);
 
-
   // side effect
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
-  
 
-  
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -77,7 +72,12 @@ const NextNavbar = () => {
             />
             <NavbarBrand className="hidden md:flex">
               <Link href="/">
-                <Image src="/logo.png" className="hidden lg:flex" width={100}  alt="logo" />
+                <Image
+                  src="/logo.png"
+                  className="hidden lg:flex"
+                  width={100}
+                  alt="logo"
+                />
               </Link>
             </NavbarBrand>
           </NavbarContent>
@@ -86,7 +86,14 @@ const NextNavbar = () => {
             <NavbarItem className="">
               <Link
                 href="/"
-                style={{ background: pathName === "/" &&  "linear-gradient(0deg,  transparent, #00BE6370)", borderTop: pathName === "/" && "1px solid #00BE63",borderBottom:   pathName === "/" && 0, borderRadius:  pathName === "/" && "5px"}}
+                style={{
+                  background:
+                    pathName === "/" &&
+                    "linear-gradient(0deg,  transparent, #00BE6370)",
+                  borderTop: pathName === "/" && "1px solid #00BE63",
+                  borderBottom: pathName === "/" && 0,
+                  borderRadius: pathName === "/" && "5px",
+                }}
                 className={`text-black navLinkHover  dark:text-white border border-transparent  py-1 px-3  font-medium`}
               >
                 Home
@@ -95,7 +102,9 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/Find-Jobs"
-                className={`${pathName === "/Find-Jobs" ? "activeNavlink":""} navLinkHover text-black dark:text-white border border-transparent  py-1 px-3 rounded-md font-medium`}
+                className={`${
+                  pathName === "/Find-Jobs" ? "activeNavlink" : ""
+                } navLinkHover text-black dark:text-white border border-transparent  py-1 px-3 rounded-md font-medium`}
               >
                 All Jobs
               </Link>
@@ -103,7 +112,9 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/contact"
-                className={ `${pathName === "/contact"  ? "activeNavlink" :""} text-black dark:text-white navLinkHover py-1 px-3 border border-transparent font-medium`}
+                className={`${
+                  pathName === "/contact" ? "activeNavlink" : ""
+                } text-black dark:text-white navLinkHover py-1 px-3 border border-transparent font-medium`}
               >
                 Contact Us
               </Link>
@@ -111,7 +122,9 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/subscription"
-                className={` ${pathName === "/subscription" && "activeNavlink"} text-black dark:text-white navLinkHover py-1 px-3  border border-transparent font-medium`}
+                className={` ${
+                  pathName === "/subscription" && "activeNavlink"
+                } text-black dark:text-white navLinkHover py-1 px-3  border border-transparent font-medium`}
               >
                 Subscription
               </Link>
@@ -119,11 +132,25 @@ const NextNavbar = () => {
             <NavbarItem>
               <Link
                 href="/upcoming-event"
-                className={`${pathName === "/upcoming-event" && "activeNavlink"} text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
+                className={`${
+                  pathName === "/upcoming-event" && "activeNavlink"
+                } text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
               >
                 Upcoming Event
               </Link>
             </NavbarItem>
+            {user && (
+              <NavbarItem>
+                <Link
+                  href="/dashboard"
+                  className={`${
+                    pathName === "/dashboard" && "activeNavlink"
+                  } text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
+                >
+                  Dashboard
+                </Link>
+              </NavbarItem>
+            )}
 
             {/* navbar content */}
             <NavbarItem>
@@ -150,7 +177,7 @@ const NextNavbar = () => {
                     onClick={onOpen}
                     color="success"
                     variant="flat"
-                    style={{borderRadius: "5px",}}
+                    style={{ borderRadius: "5px" }}
                     className="font-bold border border-primaryColor"
                   >
                     Sign out
@@ -165,7 +192,7 @@ const NextNavbar = () => {
                   href="/auth/signin"
                   color="success"
                   variant="flat"
-                  style={{borderRadius: "5px"}}
+                  style={{ borderRadius: "5px" }}
                   className="font-bold rounded border border-primaryColor"
                 >
                   Sign in
@@ -191,7 +218,6 @@ const NextNavbar = () => {
             <NavbarItem>
               <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
-            
 
             <NavbarItem>
               {user ? (
@@ -262,6 +288,10 @@ const menuItems = [
   {
     title: "Resister",
     path: "/auth/signup",
+  },
+  {
+    title: "Dashboard",
+    path: "/dashboard",
   },
 ];
 
