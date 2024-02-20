@@ -54,7 +54,8 @@ const JobsContainer = ({ category: queryCategory }) => {
               setPreference,
               submit,
               setSubmit,
-              setPostedDate
+              setPostedDate,
+              setPage
             }}
           />
         </div>

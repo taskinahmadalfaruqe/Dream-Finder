@@ -2,8 +2,6 @@
 import React, { useRef, useState } from "react";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import "./quiz.css";
-
-import { data } from "@/utils/QuizQuestions";
 import { newData } from "@/utils/Quize";
 
 const Quiz = () => {
@@ -12,6 +10,7 @@ const Quiz = () => {
   const [questions, setQuestions] = useState(
     newData[categoryIndex].questions[index]
   );
+
   const [lock, setLock] = useState(false);
   const [correctAns, setCorrectAns] = useState(0);
 
@@ -48,21 +47,43 @@ const Quiz = () => {
       });
     }
   };
-  console.log(newData[categoryIndex].questions.length);
 
-  if (index == newData[categoryIndex].questions.length) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-       <div>
-       <Card className="w-[400px] rounded-md">
-          <CardBody>
-            <p className="text-center text-2xl">You Have Got <span className={`text-3xl  ${correctAns === 0 ? "text-redColor": "text-primaryColor"}`}>{correctAns}</span> Out Of <span className="text-primaryColor text-3xl">5</span></p>
-          </CardBody>
-        </Card>
-       </div>
-      </div>
-    );
-  }
+  const nextCategory = (idx) => {
+    setIndex(0);
+    setCategoryIndex(idx);
+    setQuestions(newData[idx].questions[0]);
+    setLock(false);
+    setCorrectAns(0);
+    options.map((option) => {
+      option?.current?.classList?.remove("right");
+      option?.current?.classList?.remove("wrong");
+      return null;
+    });
+  };
+
+  // if (index == newData[categoryIndex].questions.length) {
+  //   return (
+  //     <div className="flex justify-center items-center h-screen">
+  //       <div>
+  //         <Card className="w-[400px] rounded-md">
+  //           <CardBody>
+  //             <p className="text-center text-2xl">
+  //               You Have Got{" "}
+  //               <span
+  //                 className={`text-3xl  ${
+  //                   correctAns === 0 ? "text-redColor" : "text-primaryColor"
+  //                 }`}
+  //               >
+  //                 {correctAns}
+  //               </span>{" "}
+  //               Out Of <span className="text-primaryColor text-3xl">5</span>
+  //             </p>
+  //           </CardBody>
+  //         </Card>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -73,17 +94,13 @@ const Quiz = () => {
               {newData?.map((data, idx) => (
                 <li
                   onClick={() => {
-                    setIndex(0)
-                    setQuestions(newData[categoryIndex].questions[index]);
-                    setCategoryIndex(idx);
-                    setLock(false)
-                    setCorrectAns(0)
-                    
-                    options.map((option) => {
-                      option.current.classList.remove("right");
-                      option.current.classList.remove("wrong");
-                      return null;
-                    });
+                    nextCategory(idx);
+
+                    // options.map((option) => {
+                    //   option.current.classList.remove("right");
+                    //   option.current.classList.remove("wrong");
+                    //   return null;
+                    // });
                   }}
                   className={`p-3 cursor-pointer border-b-2 py-4 ${
                     categoryIndex == idx &&
@@ -98,60 +115,85 @@ const Quiz = () => {
           </div>
 
           <div className="quiz w-9/12  flex justify-center items-center">
-            <Card className="max-w-[600px]  min-w-[600px] rounded-tl-3xl rounded-br-3xl rounded-tr-none rounded-bl-none px-5 border-2 border-lightPrimaryColor">
-              <CardHeader className="flex gap-3"></CardHeader>
-              {/* <Divider style={{ border: "1px solid #00BE63" }} /> */}
-              <CardBody className="px-0 my-5">
-                <p className="text-xl font-semibold mt-3">
-                  {index + 1}. {questions.question}
-                </p>
-                <ul className="block">
-                  <li
-                    ref={option1}
-                    onClick={(e) => checkAns(e, 1)}
-                    className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 mt-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
-                  >
-                    {questions.option1}
-                  </li>
-                  <li
-                    ref={option2}
-                    onClick={(e) => checkAns(e, 2)}
-                    className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
-                  >
-                    {questions.option2}
-                  </li>
-                  <li
-                    ref={option3}
-                    onClick={(e) => checkAns(e, 3)}
-                    className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
-                  >
-                    {questions.option3}
-                  </li>
-                  <li
-                    ref={option4}
-                    onClick={(e) => checkAns(e, 4)}
-                    className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
-                  >
-                    {questions.option4}
-                  </li>
-                </ul>
-                <div className="flex justify-end">
-                  <button
-                    onClick={next}
-                    disabled={lock ? false : true}
-                    className={` h-14 text-whiteColor font-semibold w-28 rounded-md ${
-                      lock ? "bg-primaryColor" : "bg-lightSkyBlue"
-                    }`}
-                  >
-                    NEXT
-                  </button>
+            {index == newData[categoryIndex].questions.length ? (
+              <div className="flex justify-center items-center h-screen">
+                <div>
+                  <Card className="w-[400px] rounded-md">
+                    <CardBody>
+                      <p className="text-center text-2xl">
+                        You Have Got{" "}
+                        <span
+                          className={`text-3xl  ${
+                            correctAns === 0
+                              ? "text-redColor"
+                              : "text-primaryColor"
+                          }`}
+                        >
+                          {correctAns}
+                        </span>{" "}
+                        Out Of{" "}
+                        <span className="text-primaryColor text-3xl">5</span>
+                      </p>
+                    </CardBody>
+                  </Card>
                 </div>
-              </CardBody>
-              {/* <Divider style={{border:"1px solid #00BE63"}} /> */}
-              <CardFooter>
-                <p>{index + 1} No Question out of 5</p>
-              </CardFooter>
-            </Card>
+              </div>
+            ) : (
+              <Card className="max-w-[600px]  min-w-[600px] rounded-tl-3xl rounded-br-3xl rounded-tr-none rounded-bl-none px-5 border-2 border-lightPrimaryColor">
+                <CardHeader className="flex gap-3"></CardHeader>
+
+                <CardBody className="px-0 my-5">
+                  <p className="text-xl font-semibold mt-3">
+                    {index + 1}. {questions.question}
+                  </p>
+                  <ul className="block">
+                    <li
+                      ref={option1}
+                      onClick={(e) => checkAns(e, 1)}
+                      className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 mt-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
+                    >
+                      {questions.option1}
+                    </li>
+                    <li
+                      ref={option2}
+                      onClick={(e) => checkAns(e, 2)}
+                      className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
+                    >
+                      {questions.option2}
+                    </li>
+                    <li
+                      ref={option3}
+                      onClick={(e) => checkAns(e, 3)}
+                      className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
+                    >
+                      {questions.option3}
+                    </li>
+                    <li
+                      ref={option4}
+                      onClick={(e) => checkAns(e, 4)}
+                      className="h-14 border border-secondaryColor rounded-md pl-5 flex items-center mb-5 text-lg cursor-pointer hover:bg-gradient-to-l from-whiteColor to-primaryColor hover:text-whiteColor"
+                    >
+                      {questions.option4}
+                    </li>
+                  </ul>
+                  <div className="flex justify-end">
+                    <button
+                      onClick={next}
+                      disabled={lock ? false : true}
+                      className={` h-14 text-whiteColor font-semibold w-28 rounded-md ${
+                        lock ? "bg-primaryColor" : "bg-lightSkyBlue"
+                      }`}
+                    >
+                      NEXT
+                    </button>
+                  </div>
+                </CardBody>
+
+                <CardFooter>
+                  <p>{index + 1} No Question out of 5</p>
+                </CardFooter>
+              </Card>
+            )}
           </div>
         </div>
       }
