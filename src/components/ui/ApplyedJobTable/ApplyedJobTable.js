@@ -31,7 +31,7 @@ export default function App() {
           <h2 className="font-bold text-3xl text-primaryColor md:text-center mt-16 md:mt-10 ">
             MY SUBMISSION
           </h2>
-          <div className=" mt-7 shadow-2xl overflow-x-scroll md:overflow-x-hidden ">
+          <div className=" mt-7 shadow-2xl overflow-x-scroll md:overflow-x-hidden">
             <table className="w-full table-auto">
               <thead className="bg-lightPrimaryColor dark:bg-primaryColor  border border-b-2 border-primaryColor">
                 <tr className="text-start ">
@@ -65,11 +65,15 @@ export default function App() {
             <Pagination
               onChange={(e) => setPage(e)}
               color="success"
-              radius="sm"
+              radius="full"
+              variant="flat"
+              className="gap-5"
+              showShadow
               isCompact
               showControls
               total={Math.ceil(count / 8)}
               initialPage={1}
+              
             />
           </div>
         </div>
