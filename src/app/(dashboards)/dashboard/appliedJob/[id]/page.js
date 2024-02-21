@@ -3,7 +3,7 @@ import AppliedJobDetails from "@/components/ui/AppliedJobDetails/AppliedJobDetai
 
 const page =  ({params, searchParams}) => {
   return (
-    <div className="py-10">
+    <div className="py-10 container">
       <AppliedJobDetails date={searchParams?.date} id={params?.id}/>
     </div>
   );
