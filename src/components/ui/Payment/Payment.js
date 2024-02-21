@@ -2,9 +2,7 @@
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import React, { useContext } from 'react';
 import CheckoutForm from './CheckoutForm';
-import { AuthContext } from '@/providers/AuthProvider';
 
 // TODO: create .env.local file and send pk there and then import.mete.env.file_name
 
@@ -20,7 +18,7 @@ const Payment = ({subsPaymentId}) => {
     return (
         <div>
            <Elements stripe={stripePromis}>
-            <CheckoutForm price={allItem.price} ></CheckoutForm>
+            <CheckoutForm price={allItem.price} title={allItem.title} limit={allItem.limit} ></CheckoutForm>
            </Elements>
         </div>
     );

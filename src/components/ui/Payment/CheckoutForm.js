@@ -1,19 +1,20 @@
 "use client";
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { redirect, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = ({price}) => {
+const CheckoutForm = ({price, title, limit}) => {
   // console.log(price)
     const stripe = useStripe();
     const elements = useElements();
-    
     const [clientSecret, setClientSecret] = useState('');
+    const router = useRouter();
+
 
     useEffect( () =>{
-      fetch("http://localhost:5000/createPayment", {     //192.168.0.88
+      fetch("http://localhost:5000/createPayment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({price})
@@ -21,7 +22,7 @@ const CheckoutForm = ({price}) => {
       
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.clientSecret);
+        // console.log(data.clientSecret);
         setClientSecret(data.clientSecret)
       });
     },[])
@@ -45,7 +46,7 @@ const CheckoutForm = ({price}) => {
 
         if(error){
             console.log('payment error');
-            // alert(error.message);
+            
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -57,18 +58,18 @@ const CheckoutForm = ({price}) => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Your payment has been received successfully!",
+                title: `Welcome ! Now you're a ${limit} ${title} user.`,
                 showConfirmButton: false,
                 timer: 1500
               });
             console.log('payment method', paymentMethod)
-            // redirect('/');
+            router.push('/');
         }
     }
 
     return (
         <form onSubmit={handleSubmit} className='w-2/3 mx-auto my-10'>
-             <CardElement
+             <CardElement className='border-2 border-red-500 shadow-xl rounded p-10'
         options={{
           style: {
             base: {
@@ -84,9 +85,11 @@ const CheckoutForm = ({price}) => {
           },
         }}
       />
-         <Button type='submit' color="success" disabled={!stripe || !clientSecret} className='my-4'>
-        Pay
-      </Button>
+      {!stripe && !clientSecret ? <Button type='submit' className='my-4' disabled>Pay</Button> 
+      : <Button type='submit' color="success" className='my-4'>
+      Pay
+    </Button>}
+         
         </form>
     );
 };

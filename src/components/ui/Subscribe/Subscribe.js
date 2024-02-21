@@ -19,38 +19,7 @@ const Subscribe = () => {
         Aos.init();
     }, [])
 
-    const  handleButton = (price) =>{
-        console.log(price);
-        fetch("http://localhost:5000/createPayment", {     //192.168.0.88
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({price})
-      })
-      
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // setClientSecret(data.clientSecret)
-      });
-    }
-
-    // const [clientSecret, setClientSecret] = useState('');
-
-    // const paymentInfo = {name: "khaleda"}
-
-    // useEffect( () =>{
-    //   fetch("http://localhost:5000/createPayment", {     //192.168.0.88
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({price: subsInfo.reduce((total, current) => total + current.price, 0)})
-    //   })
-      
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     // setClientSecret(data.clientSecret)
-    //   });
-    // },[])
+   
 
     return (
         <div
