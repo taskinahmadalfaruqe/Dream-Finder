@@ -135,7 +135,7 @@ const JobSearchSection = ({ state }) => {
                 <div className="flex flex-col md:flex-row lg:flex-col md:gap-5 lg:gap-1">
                   <Checkbox
                     checked={true}
-                    onChange={() => handleType("on-sight")}
+                    onChange={() => handleType("on-site")}
                     color="success"
                   >
                     On-Sight
