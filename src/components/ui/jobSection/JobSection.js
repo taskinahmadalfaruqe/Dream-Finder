@@ -19,8 +19,8 @@ const JobSection = async () => {
       <div className="">
         {/* section heading */}
         <SectionHeading
-          heading="Recent Job Circulars"
-          subHeading="here we publish recent posted job circulars for you"
+          heading="Top 15 Jobs"
+          subHeading="Top 15 highest viewed and popular jobs"
         />
         {/* job cards grid container */}
         <div className="grid gap-10 justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
