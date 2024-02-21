@@ -2,17 +2,17 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import { Button } from "@nextui-org/react";
 import React from "react";
 import JobApplyCard from "./JobApplyCard";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 const JobSection = async () => {
   // const res = await fetch("http://localhost:3000/recent-jobs", {
-    /* next: {
+  /* next: {
       revalidate: 5,
     }, */
-  /* const res = await fetch("https://dream-finder-server.vercel.app/recent-jobs", {
-    
-    cache: "no-store",
-  });
-  const recentJobs = await res.json(); */
+  const axiosPublic = useAxiosPublic();
+  const res = await axiosPublic.get("/api/v1/most-viewed15-jobs");
+  const recentJobsOriginal = await res.data;
+  console.log(recentJobsOriginal);
 
   return (
     <section className="container">
@@ -25,7 +25,7 @@ const JobSection = async () => {
         {/* job cards grid container */}
         <div className="grid gap-10 justify-items-center grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {/* job card */}
-          {recentJobs?.map(job => (
+          {recentJobsOriginal?.map(job => (
             <JobApplyCard key={job._id} job={job} />
           ))}
         </div>
