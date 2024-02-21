@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import PropTypes from "prop-types";
 import { Skeleton } from "@nextui-org/react";
-import CommonButton from "@/components/shared/CommonButton";
+// import CommonButton from "@/components/shared/CommonButton";
+import Image from "next/image";
+import ApplyButton from "../ApplyButton/ApplyButton";
 
 const JobApplyCard = ({ job }) => {
   return (
@@ -11,31 +14,35 @@ const JobApplyCard = ({ job }) => {
     >
       {/* company details div */}
       <div className="flex items-center gap-5">
-        <Skeleton className="w-14 h-14 border-1 border-primaryColor  rounded-md lg:h-16 lg:w-16"></Skeleton>
+        <div className="border-1 border-lightPrimaryColor rounded-md">
+          <Image 
+          className="rounded-md"
+            src={job.company_logo}
+            width={64}
+            height={64}
+            alt="Picture of the author"
+          />
+        </div>
         <div className="space-y-1">
-          <p className="text-lg font-semibold dark:text-lightPrimaryColor lg:text-xl">{job.companyName}</p>
+          <p className="text-lg font-semibold dark:text-lightPrimaryColor lg:text-xl">{job.company_name}</p>
           <p className="text-sm text-secondaryColor dark:text-lightWhiteColor">{job.location}</p>
         </div>
       </div>
       {/* job details div */}
       <div className="space-y-2 2xl:space-y-5 my-5 grow">
-        <h2 className="text-xl font-bold">{job.position}</h2>
-        <p className="text-primaryColor font-bold text-sm">{job.jobType}</p>
+        <h2 className="text-xl font-bold">{job.category}</h2>
+        <p className="text-primaryColor font-bold text-sm">{job.type}</p>
         <p className="text-sm text-secondaryColor dark:text-lightWhiteColor">
-          {job.skill.map((skill, idx, allSkill) => (
-            <span key={skill + idx}>
-              {allSkill.length !== idx + 1 ? skill + ", " : skill + "."}
-            </span>
-          ))}
+          {job.description}
         </p>
       </div>
       {/* CTA div */}
       <div className="flex items-center justify-between mt-auto gap-5 ">
         <p>
-          <span className="text-[16px] font-medium">{job.salary}</span>
+          <span className="text-[16px] font-medium">{job.minSalary}</span>
           <span className="text-sm text-secondaryColor">/monthly</span>
         </p>
-        <CommonButton buttonName={"Apply"}></CommonButton>
+        <ApplyButton id={job._id}></ApplyButton>
       </div>
     </div>
   );

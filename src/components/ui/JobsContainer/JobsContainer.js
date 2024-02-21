@@ -31,7 +31,7 @@ const JobsContainer = ({ category: queryCategory }) => {
       });
   }, [submit, page]);
 
-  const lastPage = Math.floor(jobsCount / 5);
+  const lastPage = Math.floor(jobsCount / 9);
 
   return (
     <div>
