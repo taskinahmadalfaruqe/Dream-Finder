@@ -9,14 +9,14 @@ import CheckoutForm from './CheckoutForm';
 const stripePromis = loadStripe('pk_test_51OEQAXCnHb1beKhZcqkAC2KQw9HRaVVLvO4HbwoL9idNmZJQzrZ9waXzhVLmf1ng9GDYRND9r8Hh8I1mEcsW2hNj002phSnHGo');
 
 const Payment = ({subsPaymentId}) => {
-    
+    console.log(subsPaymentId);
     const allItem = subsInfo.find((item) => item.id == subsPaymentId);
     // console.log(allItem.price);
 
     return (
         <div>
            <Elements stripe={stripePromis}>
-            <CheckoutForm price={allItem.price} title={allItem.title} limit={allItem.limit} ></CheckoutForm>
+            <CheckoutForm price={allItem?.price} title={allItem?.title} limit={allItem?.limit} ></CheckoutForm>
            </Elements>
         </div>
     );

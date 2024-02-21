@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = async ({price, title, limit}) => {
+const CheckoutForm = ({price, title, limit}) => {
   // console.log(price)
     const stripe = useStripe();
     const elements = useElements();
@@ -83,6 +83,11 @@ const CheckoutForm = async ({price, title, limit}) => {
 
         if(confirmError){
           console.log('confirm error', confirmError.message)
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: (confirmError.message),
+          });
         }
         else{
           console.log('payment intent', paymentIntent);
@@ -92,7 +97,7 @@ const CheckoutForm = async ({price, title, limit}) => {
 
     return (
         <form onSubmit={handleSubmit} className='w-2/3 mx-auto my-10'>
-             <CardElement className='border-2 border-red-500 shadow-xl rounded p-10'
+             <CardElement 
         options={{
           style: {
             base: {
@@ -108,11 +113,6 @@ const CheckoutForm = async ({price, title, limit}) => {
           },
         }}
       />
-      {/* {!stripe && !clientSecret ? <Button type='submit' className='my-4' disabled>Pay</Button> 
-      : <Button type='submit' color="success" className='my-4'>
-      Pay
-    </Button>} */}
-
 <Button type='submit' color="success" disabled={!stripe || !clientSecret} className='my-4'>
       Pay
     </Button>
