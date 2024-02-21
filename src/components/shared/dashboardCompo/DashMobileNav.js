@@ -39,14 +39,15 @@ const DashMobileNav = () => {
         size={0}
         className="flex items-center justify-start gap-6 p-2 w-screen backdrop-blur-[80px] bg-white dark:bg-black rounded-t-3xl shadow-2xl relative border-t-8  dark:border-none border-opacity-10"
       >
+        {/* dashboard navigation skeleton  */}
         {(isAdminLoading || isHrLoading) &&
           Array.from({ length: 8 }).map((_, index) => (
             <Fade delay={index * 50} key={index * 444}>
               <NavigationSkeleton />
             </Fade>
           ))}
-
-        {user && !isAdminLoading && !isHrLoading && isHr ? (
+        {/* hr route */}
+        {!isAdminLoading && !isHrLoading && isHr && (
           <>
             {" "}
             {dashboardHrLinks.map(link => (
@@ -81,7 +82,9 @@ const DashMobileNav = () => {
               </Link>
             ))}
           </>
-        ) : (
+        )}
+        {/* user route */}
+        {!isAdminLoading && !isHrLoading && !isHr && !isAdmin && (
           <>
             {dashboardLinks.map(link => (
               <Link

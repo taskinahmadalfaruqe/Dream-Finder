@@ -37,14 +37,15 @@ const DashDeskSidebar = () => {
   return (
     <>
       <ScrollShadow hideScrollBar className="h-[65vh]">
+        {/* dashboard navigation skeleton  */}
         {(isAdminLoading || isHrLoading) &&
           Array.from({ length: 8 }).map((_, index) => (
             <Fade delay={index * 50} key={index * 444}>
               <NavigationSkeleton />
             </Fade>
           ))}
-
-        {user && !isAdminLoading && !isHrLoading && isHr ? (
+        {/* hr route */}
+        {!isAdminLoading && !isHrLoading && isHr && (
           <>
             {dashboardHrLinks.map((link, index) => (
               <Fade delay={index * 50} key={link.heading}>
@@ -80,7 +81,9 @@ const DashDeskSidebar = () => {
               </Fade>
             ))}
           </>
-        ) : (
+        )}
+        {/* user route */}
+        {!isAdminLoading && !isHrLoading && !isHr && !isAdmin && (
           <>
             {dashboardLinks.map((link, index) => (
               <Fade delay={index * 50} key={link.heading}>
