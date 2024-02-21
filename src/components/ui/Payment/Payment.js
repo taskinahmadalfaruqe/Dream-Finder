@@ -9,9 +9,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromis = loadStripe('pk_test_51OEQAXCnHb1beKhZcqkAC2KQw9HRaVVLvO4HbwoL9idNmZJQzrZ9waXzhVLmf1ng9GDYRND9r8Hh8I1mEcsW2hNj002phSnHGo');
 
 const Payment = ({subsPaymentId}) => {
-    // const {user} = useContext(AuthContext);
-    // console.log(user);
-
+    
     const allItem = subsInfo.find((item) => item.id == subsPaymentId);
     // console.log(allItem.price);
 

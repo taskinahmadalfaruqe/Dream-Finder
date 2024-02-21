@@ -1,16 +1,19 @@
 "use client";
+import { AuthContext } from '@/providers/AuthProvider';
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = ({price, title, limit}) => {
+const CheckoutForm = async ({price, title, limit}) => {
   // console.log(price)
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('');
     const router = useRouter();
+    const {user} = useContext(AuthContext);
+    console.log(user);
 
 
     useEffect( () =>{
@@ -60,11 +63,31 @@ const CheckoutForm = ({price, title, limit}) => {
                 icon: "success",
                 title: `Welcome ! Now you're a ${limit} ${title} user.`,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
               });
             console.log('payment method', paymentMethod)
             router.push('/');
+        };
+
+        // confirm payment
+        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+            billing_details:{
+              email: user?.email || 'annonymous',
+              name: user?.name || 'annonymous',
+            }
+          }
+
+        })
+
+        if(confirmError){
+          console.log('confirm error', confirmError.message)
         }
+        else{
+          console.log('payment intent', paymentIntent);
+        }
+
     }
 
     return (
