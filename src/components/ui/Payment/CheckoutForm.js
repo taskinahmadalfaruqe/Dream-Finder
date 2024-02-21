@@ -1,12 +1,34 @@
 "use client";
+import { AuthContext } from '@/providers/AuthProvider';
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({price, title, limit}) => {
+  // console.log(price)
     const stripe = useStripe();
     const elements = useElements();
+    const [clientSecret, setClientSecret] = useState('');
+    const router = useRouter();
+    const {user} = useContext(AuthContext);
+    console.log(user);
+
+
+    useEffect( () =>{
+      fetch("http://localhost:5000/createPayment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({price})
+      })
+      
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data.clientSecret);
+        setClientSecret(data.clientSecret)
+      });
+    },[])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,7 +49,7 @@ const CheckoutForm = () => {
 
         if(error){
             console.log('payment error');
-            // alert(error.message);
+            
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -39,17 +61,43 @@ const CheckoutForm = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Your payment has been received successfully!",
+                title: `Welcome ! Now you're a ${limit} ${title} user.`,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
               });
             console.log('payment method', paymentMethod)
+            router.push('/');
+        };
+
+        // confirm payment
+        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+            billing_details:{
+              email: user?.email || 'annonymous',
+              name: user?.name || 'annonymous',
+            }
+          }
+
+        })
+
+        if(confirmError){
+          console.log('confirm error', confirmError.message)
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: (confirmError.message),
+          });
         }
+        else{
+          console.log('payment intent', paymentIntent);
+        }
+
     }
 
     return (
         <form onSubmit={handleSubmit} className='w-2/3 mx-auto my-10'>
-             <CardElement
+             <CardElement 
         options={{
           style: {
             base: {
@@ -65,11 +113,15 @@ const CheckoutForm = () => {
           },
         }}
       />
-         <Button type='submit' color="success" disabled={!stripe} className='my-4'>
-        Pay
-      </Button>
+<Button type='submit' color="success" disabled={!stripe || !clientSecret} className='my-4'>
+      Pay
+    </Button>
+         
         </form>
     );
 };
+
+
+
 
 export default CheckoutForm;
