@@ -85,10 +85,14 @@ const CheckoutForm = ({price, title, limit}) => {
           },
         }}
       />
-      {!stripe && !clientSecret ? <Button type='submit' className='my-4' disabled>Pay</Button> 
+      {/* {!stripe && !clientSecret ? <Button type='submit' className='my-4' disabled>Pay</Button> 
       : <Button type='submit' color="success" className='my-4'>
       Pay
-    </Button>}
+    </Button>} */}
+
+<Button type='submit' color="success" disabled={!stripe || !clientSecret} className='my-4'>
+      Pay
+    </Button>
          
         </form>
     );
