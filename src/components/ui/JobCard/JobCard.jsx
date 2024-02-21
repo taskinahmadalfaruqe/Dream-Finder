@@ -161,6 +161,7 @@ const JobCard = ({ job }) => {
               src={company_logo}
               width={100}
               height={50}
+              className="h-10 w-10 rounded-full"
               alt="Picture of the author"
             />
           </div>
