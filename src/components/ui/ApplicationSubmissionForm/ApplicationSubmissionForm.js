@@ -19,6 +19,7 @@ import SuccessToast from "@/components/shared/SuccessToast";
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
   const { isOpen, onOpenChange } = actions;
+
   const { id, company_name, category } = jobInfo;
   const textareaRef = useRef(null);
   const { user } = useContext(AuthContext);
@@ -30,6 +31,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     const newFileName = event.target.files[0].name
     setFileName(<p>&nbsp;{newFileName}</p>)
   };
+
 
   const handleSubmit = (event, onClose) => {
 
@@ -67,8 +69,18 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         .then((res) => res.json())
         .then((data) =>{
           // onClose()
-          onOpenSuccess()
-        
+          fetch(`https://dream-finder-server.vercel.app/incrementAppliedCount/${jobInfo?.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+          .then(res => res.json())
+          .then(data => {
+            onOpenSuccess()
+          })
+          .catch(error=> console.log(error))
         })
         .catch((error) => console.log(error));
     };
