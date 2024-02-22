@@ -18,7 +18,7 @@ const UserDropDown = () => {
         <Avatar
           isBordered
           as="button"
-          className="transition-transform ml-1"
+          className="transition-transform"
           color="success"
           size="sm"
           src={
