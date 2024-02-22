@@ -8,9 +8,11 @@ const AdminCharts = () => {
   const [dataStat, setDataStat] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/admin-stats").then((res) => {
-      setDataStat(res.data);
-    });
+    axios
+      .get("https://dream-finder-server.vercel.app/admin-stats")
+      .then((res) => {
+        setDataStat(res.data);
+      });
   }, []);
 
   const chartData = [
@@ -31,7 +33,6 @@ const AdminCharts = () => {
 
   return (
     <div>
-     
       <section className=" py-6 bg-whiteColor text-primaryColor">
         <div className="container grid grid-cols-1 gap-4 mx-auto sm:grid-cols-3 xl:grid-cols-5">
           <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 ">
