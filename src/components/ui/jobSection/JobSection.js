@@ -3,6 +3,8 @@ import { Button } from "@nextui-org/react";
 import React from "react";
 import JobApplyCard from "./JobApplyCard";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
+import CommonButton from "@/components/shared/CommonButton";
+import Link from "next/link";
 
 const JobSection = async () => {
   // const res = await fetch("http://localhost:3000/recent-jobs", {
@@ -28,6 +30,11 @@ const JobSection = async () => {
           {recentJobsOriginal?.map(job => (
             <JobApplyCard key={job._id} job={job} />
           ))}
+        </div>
+        <div className="max-w-80 mx-auto my-20">
+          <Link href={"/Find-Jobs"}>
+            <CommonButton buttonName={"Show All Jobs"} />
+          </Link>
         </div>
       </div>
     </section>
