@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Modal,
@@ -15,6 +15,7 @@ const SuccessToast = ({
   onOpenChangeSuccess,
 }) => {
   const router = useRouter()
+
   return (
 
     <>
