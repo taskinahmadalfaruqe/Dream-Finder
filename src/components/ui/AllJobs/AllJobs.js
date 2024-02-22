@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -11,84 +11,100 @@ import {
 } from "@nextui-org/react";
 import { FcApproval } from "react-icons/fc";
 import { FaTrashAlt } from "react-icons/fa";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function App() {
+
+  const [allJob, setAllJob] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/get/jobs").then((res) => {
+      setAllJob(res.data);
+    });
+  }, []);
+
+
+  const handleApprove = id =>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to approve",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, approve it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+        Swal.fire({
+          title: "Approved!",
+          text: "Job has been approved.",
+          icon: "success",
+        });
+    }
+  });
+  };
+
+
+  const handleDeleted =(id) =>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .delete(`http://localhost:5000/get/jobs/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            const remaining = allJob.filter((item) => item._id !== id);
+            setAllJob(remaining);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Job has been deleted.",
+              icon: "success",
+            });
+          }
+          console.log(res.data);
+        });
+    }
+  });
+  };
+
+
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>
         <TableColumn>POSITION</TableColumn>
         <TableColumn>COMPANY NAME</TableColumn>
         <TableColumn>VACANCY</TableColumn>
-        <TableColumn>START DATE</TableColumn>
-        <TableColumn>END DATE</TableColumn>
+        <TableColumn>POSTED DATE</TableColumn>
+        <TableColumn>LOCATION</TableColumn>
         <TableColumn>ACTION</TableColumn>
       </TableHeader>
       <TableBody>
-        <TableRow key="1">
-          <TableCell>React Developer </TableCell>
-          <TableCell>Programming hero</TableCell>
-          <TableCell>05</TableCell>
-          <TableCell>30/01/2024</TableCell>
-          <TableCell>30/02/2024</TableCell>
+        
+        {
+          allJob?.map((item,index)=><TableRow key={index+1}>
+          <TableCell>{item?.category} </TableCell>
+          <TableCell>{item?.company_name}</TableCell>
+          <TableCell>{item?.vacancy}</TableCell>
+          <TableCell>{item?.posted_date}</TableCell>
+          <TableCell>{item?.location}</TableCell>
           <TableCell >
           <div className="flex item-center gap-3">
-            <button  title="Approval"><FcApproval className="text-3xl" /></button>
-            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
+            <button  onClick={()=>handleApprove(item?._id)} title="Approval"><FcApproval className="text-3xl" /></button>
+            <button  onClick={()=>handleDeleted(item?._id)}  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
             </div>
           </TableCell>
-        </TableRow>
-        <TableRow key="2">
-          <TableCell>Fullstack Developer </TableCell>
-          <TableCell>Programming hero</TableCell>
-          <TableCell>05</TableCell>
-          <TableCell>30/01/2024</TableCell>
-          <TableCell>30/02/2024</TableCell>
-          <TableCell>
-          <div className="flex item-center gap-3">
-            <button  title="Approval"><FcApproval className="text-3xl" /></button>
-            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
-            </div>
-          </TableCell>
-        </TableRow>
-        <TableRow key="3">
-          <TableCell>Frontend developer </TableCell>
-          <TableCell>spectrum</TableCell>
-          <TableCell>06</TableCell>
-          <TableCell>07/01/2024</TableCell>
-          <TableCell>30/02/2024</TableCell>
-          <TableCell>
-            <div className="flex item-center gap-3">
-            <button  title="Approval"><FcApproval className="text-3xl" /></button>
-            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
-            </div>
-          </TableCell>
-        </TableRow>
-        <TableRow key="4">
-          <TableCell>Junior MERN developer </TableCell>
-          <TableCell>Solutia</TableCell>
-          <TableCell>02</TableCell>
-          <TableCell>14/01/2024</TableCell>
-          <TableCell>22/02/2024</TableCell>
-          <TableCell>
-          <div className="flex item-center gap-3">
-            <button  title="Approval"><FcApproval className="text-3xl" /></button>
-            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
-            </div>
-          </TableCell>
-        </TableRow>
-        <TableRow key="5">
-          <TableCell>Node Developer </TableCell>
-          <TableCell>Team code Riders</TableCell>
-          <TableCell>06</TableCell>
-          <TableCell>20/01/2024</TableCell>
-          <TableCell>10/02/2024</TableCell>
-          <TableCell>
-          <div className="flex item-center gap-3">
-            <button  title="Approval"><FcApproval className="text-3xl" /></button>
-            <button  title="Delete"><FaTrashAlt className="text-xl text-red-400" /></button>
-            </div>
-          </TableCell>
-        </TableRow>
+        </TableRow>)
+        }
+
       </TableBody>
     </Table>
   );
