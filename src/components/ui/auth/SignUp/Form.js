@@ -42,6 +42,7 @@ const Form = () => {
         console.log(res.user);
         updateUserData(name, photoUrl)
           .then(async res => {
+            router.push("/auth/signin");
             console.log(res);
             const userInfo = {
               name,
@@ -52,7 +53,6 @@ const Form = () => {
             await axiosPublic.post("/create/user", userInfo);
             ////////////////////////////
             await logOut();
-            router.push("/auth/signin");
             setIsEmailSingInBtnActive(false);
             reset();
           })
