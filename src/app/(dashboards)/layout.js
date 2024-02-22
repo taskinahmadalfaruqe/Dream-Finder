@@ -44,18 +44,23 @@ import DashDeskSidebar from "@/components/shared/dashboardCompo/DashDeskSidebar"
 import useContextData from "@/hooks/useContextData";
 import useHr from "@/hooks/useHr";
 import AdminDashboard from "@/components/ui/AdminDashboard/AdminDashboard";
+import useAdmin from "@/hooks/useAdmin";
+import SignOutModal from "@/components/shared/LogoutModal";
+import { useDisclosure } from "@nextui-org/react";
 
 const DashboardLayout = ({ children }) => {
   const { user } = useContextData();
   const [isHr] = useHr();
+  const [isAdmin] = useAdmin();
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   return (
     <>
-      {user?.email === "msiamislam12345@gmail.com" ? (
+      {isAdmin ? (
         <div className="container grid grid-cols-12 dark:bg-slate-900">
           <div className="col-span-12 lg:col-span-3">
-            {user?.email === "msiamislam12345@gmail.com" && (
-              <AdminDashboard></AdminDashboard>
-            )}
+            {isAdmin && <AdminDashboard></AdminDashboard>}
           </div>
           <div className="md:p-10 col-span-12 lg:col-span-9 my-20 min-h-lvh">
             {children}
@@ -69,18 +74,22 @@ const DashboardLayout = ({ children }) => {
               <div className="max-w-64">
                 {/* logo */}
                 <div className="my-10 px-[15px] lg:flex items-center gap-3">
-                  <UserDropDown />
+                  <div className="">
+                    <UserDropDown onOpen={onOpen} />
+                  </div>
                   {isHr && (
-                    <div className="max-lg:hidden text-sm text-secondaryColor font-medium">
-                      <p>GREENWAR</p>
-                      <p className="text-xs ">green@war.com</p>
+                    <div className="max-lg:hidden text-sm text-secondaryColor font-medium text-wrap lg:max-w-full">
+                      <p>
+                        {user?.displayName ? user?.displayName : "Not Given"}
+                      </p>
+                      <p className="text-xs text-wrap">{user?.email}</p>
                     </div>
                   )}
                   {isHr ||
                     (user && (
-                      <div className="max-lg:hidden text-sm text-secondaryColor font-medium">
-                        <p>{user.displayName}</p>
-                        <p className="text-xs ">{user.email}</p>
+                      <div className="max-lg:hidden text-sm text-secondaryColor font-medium text-wrap lg:max-w-full">
+                        <p>{user?.displayName}</p>
+                        <p className="text-xs text-wrap">{user?.email}</p>
                       </div>
                     ))}
                 </div>
@@ -90,9 +99,11 @@ const DashboardLayout = ({ children }) => {
             </div>
             {/* max-sm navigation bar */}
             <div className="w-full bg-whiteColor dark:bg-darkColor">
-              <DashNav />
+              <DashNav onOpen={onOpen} />
               {children}
               <DashMobileNav />
+              {/* logout modal */}
+              <SignOutModal isOpen={isOpen} onOpenChange={onOpenChange} />
               <div className="lg:hidden h-24 sm:h-36 relative"></div>
             </div>
           </div>
