@@ -57,10 +57,7 @@ const JobCard = ({ job }) => {
       jobId: _id,
     };
     axios
-      .post(
-        `https://dream-finder-server.vercel.app/bookmark`,
-        bookmark
-      )
+      .post(`https://dream-finder-server.vercel.app/bookmark`, bookmark)
       .then((res) => {
         console.log(res.data);
       })
@@ -74,29 +71,24 @@ const JobCard = ({ job }) => {
       )
       .then((res) => {
         console.log(res.data);
-        
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     if (user) {
-      fetch(
-        `https://dream-finder-server.vercel.app/bookmark/${user?.email}`
-      )
+      fetch(`https://dream-finder-server.vercel.app/bookmark/${user?.email}`)
         .then((res) => res.json())
-        .then((data) => setBookmarks(data));
-      const bookmarked = bookmarks?.find((bookmark) => bookmark.jobId === _id);
+        .then((data) => setBookmarks(data.bookmarks));
+      const bookmarked = bookmarks?.find((bookmark) => bookmark?.jobId === _id);
 
       if (bookmarked) {
         setIsBookmarked(true);
-      }else{
+      } else {
         setIsBookmarked(false);
       }
     }
   }, [user, isBookmarked, bookmarks, _id]);
-
-  
 
   return (
     <Card
@@ -115,35 +107,35 @@ const JobCard = ({ job }) => {
         </Button>
         {user && (
           <div
-          title="Remove from Bookmark"
-          onClick={() => {
-            if (isBookmarked) {
-              handleBookmarkDelete();
-              setIsBookmarked(false);
-            } else {
-              handleSaveToBookmark();
-              setIsBookmarked(true);
-            }
-          }}
-        >
-          {isBookmarked ? (
-            <FaBookmark
-              style={{
-                color: "#00BE63",
-                fontSize: 22,
-                cursor: "pointer",
-              }}
-            />
-          ) : (
-            <FaRegBookmark
-              style={{
-                color: "#00BE63",
-                fontSize: 22,
-                cursor: "pointer",
-              }}
-            />
-          )}
-        </div>
+            title="Remove from Bookmark"
+            onClick={() => {
+              if (isBookmarked) {
+                handleBookmarkDelete();
+                setIsBookmarked(false);
+              } else {
+                handleSaveToBookmark();
+                setIsBookmarked(true);
+              }
+            }}
+          >
+            {isBookmarked ? (
+              <FaBookmark
+                style={{
+                  color: "#00BE63",
+                  fontSize: 22,
+                  cursor: "pointer",
+                }}
+              />
+            ) : (
+              <FaRegBookmark
+                style={{
+                  color: "#00BE63",
+                  fontSize: 22,
+                  cursor: "pointer",
+                }}
+              />
+            )}
+          </div>
         )}
       </CardHeader>
       <Divider />
