@@ -31,6 +31,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
     setFileName(<p>&nbsp;{newFileName}</p>)
   };
 
+
   const handleSubmit = (event, onClose) => {
 
     event.preventDefault();
@@ -67,8 +68,12 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         .then((res) => res.json())
         .then((data) =>{
           // onClose()
-          onOpenSuccess()
-        
+          fetch(`dream-finder.vercel.app/incrementAppliedCount/${jobInfo?.id}`)
+          .then(res => res.json())
+          .then(data => {
+            onOpenSuccess()
+          })
+          .catch(err=> console.log(err))
         })
         .catch((error) => console.log(error));
     };
