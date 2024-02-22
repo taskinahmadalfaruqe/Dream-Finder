@@ -74,7 +74,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
           .then(data => {
             onOpenSuccess()
           })
-          .catch(err=> console.log(err))
+          .catch(error=> console.log(error))
         })
         .catch((error) => console.log(error));
     };
