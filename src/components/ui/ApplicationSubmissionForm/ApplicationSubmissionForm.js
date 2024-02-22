@@ -69,7 +69,13 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         .then((res) => res.json())
         .then((data) =>{
           // onClose()
-          fetch(`https://dream-finder.vercel.app/incrementAppliedCount/${jobInfo?.id}`)
+          fetch(`https://dream-finder-server.vercel.app/incrementAppliedCount/${jobInfo?.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
           .then(res => res.json())
           .then(data => {
             onOpenSuccess()
