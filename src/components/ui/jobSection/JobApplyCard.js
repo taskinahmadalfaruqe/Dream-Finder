@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import PropTypes from "prop-types";
 import { Image, Skeleton } from "@nextui-org/react";
