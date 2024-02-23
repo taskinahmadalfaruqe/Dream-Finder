@@ -84,8 +84,8 @@ const Page = () => {
     console.log(res.data);
 
     if (res?.data?.insertedId || res?.data?.acknowledged) {
-      toast.success("Job Posted successfully.", { id: toastId });
       router.push("/dashboard/manage-jobs");
+      toast.success("Job Posted successfully.", { id: toastId });
     } else {
       toast.error("Failed to post job.", { id: toastId });
     }
@@ -181,36 +181,6 @@ const Page = () => {
               <div className="w-full px-3">
                 <p>Select Job type</p>
               </div>
-
-              {/* <div className="w-full flex justify-between">
-                <div className="w-1/2 px-3 ">
-                  <Checkbox
-                    isSelected={isRemote}
-                    onValueChange={setIsRemote}
-                    color="success"
-                  >
-                    Remote
-                  </Checkbox>
-                </div>
-                <div className="w-1/2 px-3 ">
-                  <Checkbox
-                    isSelected={isOnSite}
-                    onValueChange={setIsOnSite}
-                    color="success"
-                  >
-                    On Site
-                  </Checkbox>
-                </div>
-                <div className="w-1/3 px-3 ">
-                  <Checkbox
-                    isSelected={isHybrid}
-                    onValueChange={setIsHybrid}
-                    color="success"
-                  >
-                    Hybrid
-                  </Checkbox>
-                </div>
-              </div> */}
               <div className="w-full px-3">
                 <Select
                   isRequired
@@ -246,23 +216,6 @@ const Page = () => {
               <div className="w-full px-3">
                 <p>Select Job Employment Status</p>
               </div>
-              {/* <div className="w-full flex justify-between">
-                <div className="w-1/2 px-3 ">
-                  <Checkbox isSelected={isRemote} onValueChange={setIsRemote}>
-                    Remote
-                  </Checkbox>
-                </div>
-                <div className="w-1/2 px-3 ">
-                  <Checkbox isSelected={isOnSite} onValueChange={setIsOnSite}>
-                    On Site
-                  </Checkbox>
-                </div>
-                <div className="w-1/3 px-3 ">
-                  <Checkbox isSelected={isHybrid} onValueChange={setIsHybrid}>
-                    Hybrid
-                  </Checkbox>
-                </div>
-              </div> */}
               <div className="w-full flex justify-between ">
                 <div className="w-1/2 sm:w-1/3 px-3 ">
                   <Checkbox
@@ -338,8 +291,14 @@ const Page = () => {
                 </Button>
               </div>
             </div>
-            <div className="text-center max-w-80 mx-auto">
-              <Button type="submit">Submit</Button>
+            <div className="text-center max-w-80 mx-auto my-10 mt-20">
+              <Button
+                className="text-white text-lg font-medium px-10 py-6"
+                color="success"
+                type="submit"
+              >
+                Submit
+              </Button>
               {/* <CommonButton buttonName={"Post job"}></CommonButton> */}
             </div>
           </form>

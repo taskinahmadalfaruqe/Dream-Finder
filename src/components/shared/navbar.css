@@ -1,21 +1,17 @@
-.navbarCustomDesign{
-    background: linear-gradient(0deg, #00BE6370, transparent);
-    border-bottom: 2px solid #00BE63;
+/* .navbarCustomDesign {
+  background: linear-gradient(0deg, #00be6370, transparent);
+  border-bottom: 2px solid #00be63;
 }
-.activeNavlink{
-    background: linear-gradient(0deg,transparent,  #00BE6370 );
-    border-top: 1px solid #00BE63;
-    border-bottom: 0;
-    border-radius: 5px 5px 0 0;
-    /* border-bottom: 1px solid #00BE63; */
-  
-  
+.activeNavlink {
+  background: linear-gradient(0deg, transparent, #00be6370);
+  border-top: 1px solid #00be63;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
 }
 
-.navLinkHover:hover{
-    background: linear-gradient(0deg,transparent,  #00BE6370 );
-    border-top: 1px solid #00BE63;
-    border-bottom: 0;
-    border-radius: 5px 5px 0 0;
-
-}
+.navLinkHover:hover {
+  background: linear-gradient(0deg, transparent, #00be6370);
+  border-top: 1px solid #00be63;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+} */
