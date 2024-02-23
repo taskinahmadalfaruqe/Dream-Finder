@@ -29,6 +29,7 @@ import MobileNavLink from "../ui/NavbarCompo/MobileNavLink";
 import Link from "next/link";
 import { IoCloseOutline, IoMenuOutline } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
+import UserDropDown from "./dashboardCompo/UserDropDown";
 
 const NextNavbar = () => {
   const pathName = usePathname();
@@ -178,7 +179,7 @@ const NextNavbar = () => {
                   aria-label="more than 99 notifications"
                   variant="light"
                 >
-                  <FaBell size={24} />
+                  <FaBell className="text-primaryColor" size={24} />
                 </Button>
               </Badge>
             </NavbarItem>
@@ -189,20 +190,20 @@ const NextNavbar = () => {
 
             <NavbarItem>
               {user ? (
-                <>
-                  <Button
+                <div>
+                  {/* <Button
                     onClick={onOpen}
                     color="success"
                     variant="flat"
-                    style={{ borderRadius: "5px" }}
-                    className="font-bold border border-primaryColor"
+                    className="font-bold"
                   >
                     Sign out
                   </Button>
                   {user && (
-                    <Avatar src={user?.photoURL} className="ml-3 " size="md" />
-                  )}
-                </>
+                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
+                  )} */}
+                  <UserDropDown onOpen={onOpen} />
+                </div>
               ) : (
                 <Button
                   as={Link}
@@ -218,8 +219,11 @@ const NextNavbar = () => {
             </NavbarItem>
           </NavbarContent>
 
-          <NavbarContent className="lg:hidden max-w-60">
-            <NavbarItem>
+          <NavbarContent
+            className="lg:hidden max-w-60 gap-0 items-center justify-end"
+            justify="end"
+          >
+            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
               <Badge content="99+" shape="circle" color="danger">
                 <Button
                   radius="full"
@@ -227,19 +231,19 @@ const NextNavbar = () => {
                   aria-label="more than 99 notifications"
                   variant="light"
                 >
-                  <FaBell size={24} />
+                  <FaBell className="text-primaryColor" size={24} />
                 </Button>
               </Badge>
             </NavbarItem>
 
-            <NavbarItem>
+            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
               <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
 
-            <NavbarItem>
+            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
               {user ? (
-                <>
-                  <Button
+                <div>
+                  {/* <Button
                     onClick={onOpen}
                     color="success"
                     variant="flat"
@@ -249,8 +253,9 @@ const NextNavbar = () => {
                   </Button>
                   {user && (
                     <Avatar src={user?.photoURL} className="ml-3" size="md" />
-                  )}
-                </>
+                  )} */}
+                  <UserDropDown onOpen={onOpen} />
+                </div>
               ) : (
                 <Button
                   as={Link}
