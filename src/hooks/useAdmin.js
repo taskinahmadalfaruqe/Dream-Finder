@@ -13,8 +13,10 @@ const useAdmin = () => {
     // run this code block when loading are false
     enabled: !Loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/admin-check/${user?.email}`);
-      return res.data?.admin;
+      if (user) {
+        const res = await axiosSecure.get(`/user/admin-check/${user?.email}`);
+        return res.data?.admin;
+      }
     },
   });
   return [isAdmin, isAdminLoading];
