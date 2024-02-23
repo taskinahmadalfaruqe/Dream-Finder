@@ -34,6 +34,8 @@ import UserDropDown from "./dashboardCompo/UserDropDown";
 const NextNavbar = () => {
   const pathName = usePathname();
   const [isAdmin, isAdminLoading] = useAdmin();
+  // const isAdmin = true;
+  // const isAdminLoading = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -76,13 +78,13 @@ const NextNavbar = () => {
         >
           <NavbarContent>
             <NavbarMenuToggle
-              /* icon={
+              icon={
                 isMenuOpen ? (
                   <IoCloseOutline className="text-4xl md:text-5xl duration-300  dark:text-whiteColor dark:opa7" />
                 ) : (
                   <LuMenu className="text-3xl md:text-4xl duration-300  dark:text-whiteColor dark:opa7" />
                 )
-              } */
+              }
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               className="lg:hidden w-max duration-300"
             />
@@ -191,17 +193,6 @@ const NextNavbar = () => {
             <NavbarItem>
               {user ? (
                 <div>
-                  {/* <Button
-                    onClick={onOpen}
-                    color="success"
-                    variant="flat"
-                    className="font-bold"
-                  >
-                    Sign out
-                  </Button>
-                  {user && (
-                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
-                  )} */}
                   <UserDropDown onOpen={onOpen} />
                 </div>
               ) : (
@@ -240,20 +231,13 @@ const NextNavbar = () => {
               <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
 
-            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
+            <NavbarItem
+              className={`text-center justify-end w-min ${
+                user && "max-w-12"
+              } mx-1 md:mx-2`}
+            >
               {user ? (
                 <div>
-                  {/* <Button
-                    onClick={onOpen}
-                    color="success"
-                    variant="flat"
-                    className="font-bold"
-                  >
-                    Sign out
-                  </Button>
-                  {user && (
-                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
-                  )} */}
                   <UserDropDown onOpen={onOpen} />
                 </div>
               ) : (
