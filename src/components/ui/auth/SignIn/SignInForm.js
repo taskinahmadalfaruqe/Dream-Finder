@@ -105,8 +105,8 @@ const SignInForm = () => {
             <Divider content={"or sign in with email"} />
 
             <form onSubmit={handleSubmit(onSubmit)} className="">
+              {err && <p className="tex-sm mb-2 text-red-600 mt-1">{err}</p>}
               <div className="w-full mb-4 relative">
-                {err && <p className="tex-sm mb-2 text-red-600 mt-1">{err}</p>}
                 <label className="label">
                   <span className="text-lg font-bold">Your Email</span>
                 </label>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -12,13 +12,27 @@ import {
   Tooltip,
   getKeyValue,
 } from "@nextui-org/react";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import useContextData from "@/hooks/useContextData";
 
 const Page = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContextData();
+
+  useEffect(() => {
+    axiosSecure
+      .get(`/api/v1/posted-jobs/${user?.email}`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  }, [axiosSecure, user?.email]);
+
   const renderCell = useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "name":
+      case "category":
         return (
           <User
             avatarProps={{ radius: "lg", src: user.avatar }}
@@ -28,7 +42,7 @@ const Page = () => {
             {user.email}
           </User>
         );
-      case "role":
+      case "job title":
         return (
           <div className="flex flex-col">
             <p className="text-bold text-sm capitalize">{cellValue}</p>
@@ -111,10 +125,13 @@ const statusColorMap = {
 };
 
 const columns = [
-  { name: "NAME", uid: "name" },
-  { name: "ROLE", uid: "role" },
-  { name: "STATUS", uid: "status" },
-  { name: "ACTIONS", uid: "actions" },
+  { name: "CATEGORY", uid: "category" },
+  { name: "JOB TITLE", uid: "job title" },
+  { name: "LOCATION", uid: "location" },
+  { name: "POSTED DATE", uid: "posted date" },
+  { name: "TYPE", uid: "type" },
+  { name: "VIEW COUNT", uid: "view count" },
+  { name: "ACTION", uid: "action" },
 ];
 
 const users = [
