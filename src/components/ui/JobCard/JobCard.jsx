@@ -79,7 +79,7 @@ const JobCard = ({ job }) => {
     if (user) {
       fetch(`https://dream-finder-server.vercel.app/bookmark/${user?.email}`)
         .then((res) => res.json())
-        .then((data) => setBookmarks(data.bookmarks));
+        .then((data) => setBookmarks(data));
       const bookmarked = bookmarks?.find((bookmark) => bookmark?.jobId === _id);
 
       if (bookmarked) {

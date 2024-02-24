@@ -1,4 +1,5 @@
 "use client";
+
 import { AuthContext } from '@/providers/AuthProvider';
 import { Button } from '@nextui-org/react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
@@ -17,7 +18,7 @@ const CheckoutForm = ({price, title, limit}) => {
 
 
     useEffect( () =>{
-      fetch("http://localhost:5000/createPayment", {
+      fetch("https://dream-finder-server.vercel.app/createPayment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({price})
@@ -97,7 +98,7 @@ const CheckoutForm = ({price, title, limit}) => {
 
     return (
         <form onSubmit={handleSubmit} className='w-2/3 mx-auto my-10'>
-             <CardElement 
+             <CardElement className='border-2 border-red-500 shadow-xl rounded p-10'
         options={{
           style: {
             base: {
