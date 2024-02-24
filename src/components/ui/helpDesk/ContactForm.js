@@ -11,7 +11,7 @@ export default function ContactForm() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
         try {
-            const Url = `http://localhost:5000/contacts`; 
+            const Url = `https://dream-finder-server.vercel.app/contacts`; 
 
             const res = await axios.post(Url, data);
             if(res.data.insertedId){

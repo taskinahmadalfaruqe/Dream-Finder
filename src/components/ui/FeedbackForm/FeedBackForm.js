@@ -21,8 +21,6 @@ const FeedBackForm = () => {
         reset();
     };
 
-
-
     return (
         <div>
             <div className='min-h-screen container'>
