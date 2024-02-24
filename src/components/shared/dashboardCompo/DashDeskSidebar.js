@@ -16,7 +16,7 @@ import { PiNoteDuotone } from "react-icons/pi";
 import { LuUser2, LuPencilLine } from "react-icons/lu";
 import { FaListOl } from "react-icons/fa";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
-
+import { VscFeedback } from "react-icons/vsc";
 import { usePathname } from "next/navigation";
 import { Fade } from "react-awesome-reveal";
 import Divider from "../Divider";
@@ -181,6 +181,11 @@ const dashboardLinks = [
     heading: "Saved Jobs",
     path: "/dashboard/bookmark",
     icon: PiNoteDuotone,
+  },
+  {
+    heading: "FeedBack",
+    path: "/dashboard/FeedBack",
+    icon: VscFeedback,
   },
 ];
 
