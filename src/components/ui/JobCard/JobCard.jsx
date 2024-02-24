@@ -86,7 +86,7 @@ const JobCard = ({ job }) => {
       )
         .then((res) => res.json())
         .then((data) => setBookmarks(data));
-      const bookmarked = bookmarks?.find((bookmark) => bookmark.jobId === _id);
+      const bookmarked = bookmarks?.find((bookmark) => bookmark?.jobId === _id);
 
       if (bookmarked) {
         setIsBookmarked(true);

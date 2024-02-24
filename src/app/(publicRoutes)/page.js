@@ -20,7 +20,6 @@ const HomePage = () => {
       <JobSection />
       <HelpDesk></HelpDesk>
       <UpcomingEventModal />
-      <SubscriptionAlertModal />
       <Accordin/>
       <FeedBack></FeedBack>
       
