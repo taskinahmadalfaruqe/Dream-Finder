@@ -19,7 +19,7 @@ const CompanyRegisterForm = () => {
   const axiosPublic = useAxiosPublic();
 
   // context data
-  const { createUser, logOut } = useContextData();
+  const { createUser, updateUserData, logOut } = useContextData();
 
   // hook form
   const {
@@ -39,6 +39,9 @@ const CompanyRegisterForm = () => {
     createUser(email, password)
       .then(async res => {
         console.log(res);
+        router.push("/auth/signin");
+
+        await updateUserData(name, photoUrl);
 
         const userData = {
           name,
@@ -48,18 +51,7 @@ const CompanyRegisterForm = () => {
         ////////////////////////////
         // if user not exist in db, then create user in db by there information.
         await axiosPublic.post("/create/user", userData);
-        ////////////////////////////
 
-        const companyInfo = {
-          companyName: name,
-          companyEmail: email,
-          companyLogo: photoUrl,
-          role: "hr",
-        };
-
-        await axiosPublic.post("/create/company", companyInfo);
-        ////////////////////////////
-        router.push("/auth/signin");
         await logOut();
         reset();
         setIsEmailSingInBtnActive(false);

@@ -13,7 +13,7 @@ const SignOutModal = ({ isOpen, onOpenChange }) => {
   const { logOut } = useContextData();
   return (
     <div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal placement="top-center" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {onClose => (
             <>

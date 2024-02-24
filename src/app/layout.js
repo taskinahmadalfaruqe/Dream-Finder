@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import AuthProvider from "@/providers/AuthProvider";
 import Providers from "./providers";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 const queryClient = new QueryClient();
 
@@ -16,7 +17,10 @@ export default function RootLayout({ children }) {
         <QueryClientProvider client={queryClient}>
           <NextUIProvider>
             <AuthProvider>
-              <Providers>{children}</Providers>
+              <Providers>
+                <Toaster />
+                {children}
+              </Providers>
             </AuthProvider>
           </NextUIProvider>
         </QueryClientProvider>

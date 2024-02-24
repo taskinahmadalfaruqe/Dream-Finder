@@ -25,7 +25,7 @@ export default function JobDetails({ id }) {
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
           <h3 className="text-xl md:text-2xl text-secondaryColor dark:text-primaryColor font-bold mb-5 text-center  mx-auto">
-            EduTech Solution
+           {job?.company_name}
           </h3>
           <div className=" flex items-center rounded-xl w-full jobDetailsBanner">
             <div className="uppercase py-20 grid justify-center font-bold w-full text-center rounded-xl">
@@ -37,7 +37,7 @@ export default function JobDetails({ id }) {
                 <span className="text-primaryColor">Hiring!</span>
               </h1>
               <p className="text-whiteColor mt-3 text-xl md:text-2xl">
-                Junior Web developer
+                {job?.category}
               </p>
             </div>
           </div>
@@ -49,13 +49,14 @@ export default function JobDetails({ id }) {
               About This Job
             </h3>
             <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
-              We are looking for enthusiastic and energetic individuals with an
+            {/* We are looking for enthusiastic and energetic individuals with an
               interest in a wide range of web software technologies and
               architectures. Applicants must have the mindset to get their hands
               dirty in writing code in front-end web technology stacks based on
               JavaScript as well as back-end integration. Work will range from
               solo projects to product features in sprints with remotely located
-              team members.
+              team members. */}
+              {job.description}
             </p>
           </div>
           <div className="lg:flex lg:justify-between mt-5 lg:space-x-10">
@@ -65,7 +66,7 @@ export default function JobDetails({ id }) {
                   Requirements
                 </h3>
                 <div className="text-justify">
-                  <p className="mt-5 space-x-2">
+                 { job?.requirements && job?.requirements?.map(requirement => <p key={requirement} className="mt-5 space-x-2">
                     <FaCheckSquare
                       style={{
                         display: "inline-block",
@@ -73,65 +74,9 @@ export default function JobDetails({ id }) {
                         color: "#00BE63",
                       }}
                     />
-                    Understanding of front-end technologies, such as React.js,
-                    Next.js, JavaScript, Typescript, HTML5, Bootstrap, and CSS3.
-                  </p>
-                  <p className="mt-4">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                    Backend web development experiences preferably Node.js Build
-                    and maintain applications using MERN stack
-                  </p>
-                  <p className="mt-4">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                    Clear concept about API, Preferred RESTful API development
-                    Analyze and design a relational database, preferably MySQL
-                  </p>
-                  <p className="mt-4">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                    Maintain cloud infrastructure and automated deployment of
-                    our solutions in AWS
-                  </p>
-                  <p className="mt-4">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                    Maintain analytics tools and services, preferably Google
-                    Analytics.
-                  </p>
-                  <p className="mt-4">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                    Documentation, Project plan, Solution Architecture, Design
-                    document, version control using GIT, JIRA, Trello, Teams,
-                    etc.
-                  </p>
+                   {requirement}
+                  </p>)}
+                 
                 </div>
               </div>
             </div>
@@ -150,7 +95,7 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                  Full Time
+                  {job?.employment_status}
                 </p>
                 <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
                   <VscDebugBreakpointDataUnverified
@@ -161,7 +106,7 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                  Flexible Working Hours.
+                 {job?.workingHour}
                 </p>
               </div>
 
@@ -178,7 +123,18 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                  Up to 60K BDT per month
+                  Minimum {job?.minSalary} BDT per month
+                </p>
+                <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
+                  <VscDebugBreakpointDataUnverified
+                    style={{
+                      display: "inline-block",
+                      marginRight: 5,
+                      color: "#00BE63",
+                      fontSize: 28,
+                    }}
+                  />{" "}
+                  Up to {job?.maxSalary} BDT per month
                 </p>
               </div>
 
@@ -195,8 +151,7 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                  B.Sc or M.Sc in Computer Science or related subject from a
-                  reputed university.
+                  {job?.educationalRequirements}
                 </p>
               </div>
 
@@ -213,7 +168,7 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                  Remote
+                  {job?.type}
                 </p>
               </div>
 
@@ -231,7 +186,7 @@ export default function JobDetails({ id }) {
                         fontSize: 28,
                       }}
                     />{" "}
-                    5
+                    {job?.vacancy}
                   </p>
                 </div>
                 <div className="">
@@ -247,7 +202,7 @@ export default function JobDetails({ id }) {
                         fontSize: 28,
                       }}
                     />{" "}
-                    150+ Applicants
+                    {job?.appliedCount}+ Applicants
                   </p>
                 </div>
               </div>

@@ -1,35 +1,28 @@
 "use client";
 
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
 
 const AdminCharts = () => {
-  const { data = [] } = useQuery({
-    queryKey: ["admin-stats"],
-    queryFn: async () => {
-      const res = await useAxiosSecure.get("/admin-stats");
+  const [dataStat, setDataStat] = useState([]);
 
-      return res.data;
-    },
-  });
+  useEffect(() => {
+    axios
+      .get("https://dream-finder-server.vercel.app/admin-stats")
+      .then((res) => {
+        setDataStat(res.data);
+      });
+  }, []);
 
   const chartData = [
     ["Collection", "Total"],
-    ["Applicants", data?.applicants],
-    ["Companies", data?.companies],
-    ["Applications", data?.applications],
-    ["Jobs", data?.jobs],
-    ["Bookmarks", data?.listOfBookmarks]
+    ["Applicants", dataStat?.applicants],
+    ["Companies", dataStat?.companies],
+    ["Applications", dataStat?.applications],
+    ["Jobs", dataStat?.jobs],
+    ["Bookmarks", dataStat?.listOfBookmarks],
   ];
-
-  // const chartData = [
-  //     ["Collection", "Total"],
-  //     ["Applicants", 100],
-  //     ["Jobs", 150],
-  //     ["Company", 123],
-  //   ];
 
   const options = {
     chart: {
@@ -45,40 +38,40 @@ const AdminCharts = () => {
           <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 ">
             <div className="flex  flex-col justify-center align-middle border border-primaryColor px-4 py-2 rounded-2xl rounded-tr-none rounded-bl-none">
               <p className="text-3xl text-center font-semibold ">
-                {data?.applicants}
+                {dataStat?.applicants}
               </p>
               <p className="capitalize">Applicants</p>
             </div>
           </div>
-          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 ">
             <div className="flex flex-col justify-center align-middle border border-primaryColor px-4 py-2 rounded-2xl rounded-tr-none rounded-bl-none">
               <p className="text-3xl text-center font-semibold ">
-                {data?.companies}
+                {dataStat?.companies}
               </p>
               <p className="capitalize">Companies</p>
             </div>
           </div>
-          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6">
             <div className="flex flex-col justify-center align-middle border border-primaryColor px-4 py-2 rounded-2xl rounded-tr-none rounded-bl-none">
               <p className="text-3xl text-center font-semibold ">
-                {data?.applications}
+                {dataStat?.applications}
               </p>
               <p className="capitalize">Applications</p>
             </div>
           </div>
-          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 ">
             <div className="flex flex-col justify-center align-middle border border-primaryColor px-4 py-2 rounded-2xl rounded-tr-none rounded-bl-none">
               <p className="text-3xl text-center font-semibold ">
-                {data?.jobs}
+                {dataStat?.jobs}
               </p>
               <p className="capitalize">Jobs</p>
             </div>
           </div>
 
-          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6 ">
+          <div className="flex justify-center p-4 space-x-4 rounded-lg md:space-x-6">
             <div className="flex  flex-col justify-center align-middle border border-primaryColor px-4 py-2 rounded-2xl rounded-tr-none rounded-bl-none">
               <p className="text-3xl text-center font-semibold ">
-                {data?.listOfBookmarks}
+                {dataStat?.listOfBookmarks}
               </p>
               <p className="capitalize">Bookmarks</p>
             </div>
