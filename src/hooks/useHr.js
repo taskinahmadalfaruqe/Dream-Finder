@@ -17,7 +17,7 @@ const useHr = () => {
       return res.data?.hr;
     },
   });
-  console.log("useHr pass >>>");
+  // console.log("useHr pass >>>");
 
   return [isHr, isHrLoading];
 };
