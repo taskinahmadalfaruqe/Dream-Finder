@@ -34,11 +34,8 @@ import UserDropDown from "./dashboardCompo/UserDropDown";
 const NextNavbar = () => {
   const pathName = usePathname();
   const [isAdmin, isAdminLoading] = useAdmin();
-  // const isAdmin = true;
-  // const isAdminLoading = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
   const { user } = useContextData();
