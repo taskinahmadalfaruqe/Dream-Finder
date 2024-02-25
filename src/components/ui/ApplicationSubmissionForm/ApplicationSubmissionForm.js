@@ -37,7 +37,6 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
 
     event.preventDefault();
     if (!selectedFile) {
-      console.log("No file selected.");
       setFileName(<p className="text-redColor">&nbsp; This Field Is Required</p>)
       return;
     }
