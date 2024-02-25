@@ -6,8 +6,8 @@ import useContextData from "./useContextData";
 
 const axiosSecure = axios.create({
   // baseURL: "https://dream-finder-server.vercel.app",
-  baseURL: "https://dream-finder-server.vercel.app",
   // baseURL: "https://dream-finder-server.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 const useAxiosSecure = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
 
   // request interceptors for add authorization header
   axiosSecure.interceptors.request.use(
-    (config) => {
+    config => {
       // get token
       const token = localStorage.getItem("access-token");
       console.log("INTERCEPTORS WORKING");
@@ -25,7 +25,7 @@ const useAxiosSecure = () => {
       return config;
     },
     // if error, then run this code block
-    (error) => {
+    error => {
       return Promise.reject(error);
     }
   );
@@ -33,12 +33,12 @@ const useAxiosSecure = () => {
   // response
 
   axiosSecure.interceptors.response.use(
-    (response) => {
+    response => {
       // return the response
       return response;
     },
     // if error, then run this code block
-    async (error) => {
+    async error => {
       // get status code form error message
       const status = error?.response?.status;
       console.log("STATUS CODE ERROR IN THE INTERCEPTORS==>", status);

@@ -52,15 +52,14 @@ const Page = () => {
 
     const form = e.target;
     const formData = {
-      company_name: "TechHub Solutions",
+      company_name: user?.displayName,
       category,
       type: jobType,
       description: jobDescription,
       minSalary: form["min salary"].value / 1,
       maxSalary: form["max salary"].value / 1,
       viewCount: 0,
-      company_logo:
-        "https://st3.depositphotos.com/43745012/44906/i/450/depositphotos_449066958-stock-photo-financial-accounting-logo-financial-logo.jpg",
+      company_logo: user?.photoURL,
       company_email: user?.email,
       posted_date: new Date().toISOString().slice(0, 10),
       location: form["Job-location"]?.value ? form["Job-location"]?.value : "",

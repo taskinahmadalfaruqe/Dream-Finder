@@ -11,15 +11,20 @@ import {
   Chip,
   Tooltip,
   getKeyValue,
+  Button,
 } from "@nextui-org/react";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useContextData from "@/hooks/useContextData";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Page = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContextData();
 
   const [postedJob, setPostedJob] = useState([]);
+
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     axiosSecure
@@ -29,83 +34,137 @@ const Page = () => {
         setPostedJob(res?.data);
       })
       .catch(err => console.log(err));
-  }, [axiosSecure, user?.email]);
+  }, [axiosSecure, user?.email, reload]);
 
-  const renderCell = useCallback((job, columnKey) => {
-    let cellValue = job[columnKey];
-    if (columnKey.includes(",")) {
-      const x = columnKey.split(",");
-      cellValue = `$${job[x[0]]}-$${job[x[1]]}`;
-    }
-    console.log(columnKey);
+  const renderCell = useCallback(
+    (job, columnKey) => {
+      const handleDeleteJob = async id => {
+        const toastId = toast.loading("processing...");
+        const res = await axiosSecure.delete(`/api/v1/delete-job/${id}`);
+        if (res?.data?.deletedCount) {
+          setReload(!reload);
+          toast.success("Job deleted successfully.", { id: toastId });
+        } else {
+          console.log(res);
+          toast.error("Failed to delete job.", { id: toastId });
+        }
+      };
 
-    switch (columnKey) {
-      case "category":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "jobTitle":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "location":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "posted_date":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "type":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "minSalary,maxSalary":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "viewCount":
-        return (
-          <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
-      case "action":
-        return (
-          <div className="relative flex items-center gap-2 justify-between">
-            <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EyeIcon />
-              </span>
-            </Tooltip>
-            <Tooltip content="Edit job">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
-              </span>
-            </Tooltip>
-            <Tooltip color="danger" content="Delete job">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
-              </span>
-            </Tooltip>
+      const handleDeleteJobWarning = async id => {
+        toast(t => (
+          <div>
+            <span>
+              Are you sure! you want to <b>delete</b> this job?
+            </span>
+            <div className="flex items-center justify-end gap-5 mt-3">
+              <Button
+                size="sm"
+                color="success"
+                variant="light"
+                onClick={() => {
+                  toast.dismiss(t.id);
+                }}
+                className="px-2 rounded-md font-semibold"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                color="success"
+                variant="shadow"
+                onClick={() => {
+                  toast.dismiss(t.id);
+                  handleDeleteJob(id);
+                }}
+                className="bg-primaryColor px-2 rounded-md text-white  font-semibold"
+              >
+                Proceed
+              </Button>
+            </div>
           </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+        ));
+      };
+
+      let cellValue = job[columnKey];
+      if (columnKey.includes(",")) {
+        const x = columnKey.split(",");
+        cellValue = `$${job[x[0]]}-$${job[x[1]]}`;
+      }
+
+      switch (columnKey) {
+        case "category":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "jobTitle":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "location":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "posted_date":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "type":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "minSalary,maxSalary":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "viewCount":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "action":
+          return (
+            <div className="relative flex items-center gap-2 justify-between">
+              <Link href={`/Find-Jobs/${job?._id}`}>
+                <Tooltip content="Details">
+                  <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                    <EyeIcon />
+                  </span>
+                </Tooltip>
+              </Link>
+              <Tooltip content="Edit job">
+                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                  <EditIcon />
+                </span>
+              </Tooltip>
+              <Tooltip color="danger" content="Delete job">
+                <span
+                  onClick={() => handleDeleteJobWarning(job?._id)}
+                  className="text-lg text-danger cursor-pointer active:opacity-50"
+                >
+                  <DeleteIcon />
+                </span>
+              </Tooltip>
+            </div>
+          );
+        default:
+          return cellValue;
+      }
+    },
+    [axiosSecure, reload]
+  );
 
   return (
     <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto ">
@@ -147,12 +206,6 @@ const Page = () => {
   );
 };
 
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
-
 const columns = [
   { name: "CATEGORY", uid: "category" },
   { name: "JOB TITLE", uid: "jobTitle" },
@@ -162,59 +215,6 @@ const columns = [
   { name: "SALARY", uid: ["minSalary", "maxSalary"] },
   { name: "VIEW COUNT", uid: "viewCount" },
   { name: "ACTION", uid: "action" },
-];
-
-const users = [
-  {
-    id: 1,
-    name: "Tony Reichert",
-    role: "CEO",
-    team: "Management",
-    status: "active",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "tony.reichert@example.com",
-  },
-  {
-    id: 2,
-    name: "Zoey Lang",
-    role: "Technical Lead",
-    team: "Development",
-    status: "paused",
-    age: "25",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    email: "zoey.lang@example.com",
-  },
-  {
-    id: 3,
-    name: "Jane Fisher",
-    role: "Senior Developer",
-    team: "Development",
-    status: "active",
-    age: "22",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-    email: "jane.fisher@example.com",
-  },
-  {
-    id: 4,
-    name: "William Howard",
-    role: "Community Manager",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-  {
-    id: 5,
-    name: "Kristen Copper",
-    role: "Sales Manager",
-    team: "Sales",
-    status: "active",
-    age: "24",
-    avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-    email: "kristen.cooper@example.com",
-  },
 ];
 
 const EditIcon = props => (
