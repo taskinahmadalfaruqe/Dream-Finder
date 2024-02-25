@@ -1,5 +1,6 @@
 import Accordin from "@/components/ui/Accordion/Accordin";
 import Categories from "@/components/ui/Category/Categories";
+import FacebookChat from "@/components/ui/FacebookChat/FacebookChat";
 import FeedBack from "@/components/ui/FeedBack/FeedBack";
 import HomePageBanner from "@/components/ui/HomePageBanner/page";
 import SubscriptionAlertModal from "@/components/ui/Subscribe/SubscriptionAlertModal";
@@ -20,10 +21,9 @@ const HomePage = () => {
       <JobSection />
       <HelpDesk></HelpDesk>
       <UpcomingEventModal />
-      <SubscriptionAlertModal />
       <Accordin/>
       <FeedBack></FeedBack>
-      
+      <FacebookChat></FacebookChat>
     </div>
   );
 };

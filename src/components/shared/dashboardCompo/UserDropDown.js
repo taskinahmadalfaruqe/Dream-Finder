@@ -8,9 +8,10 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 
-const UserDropDown = () => {
+const UserDropDown = ({ onOpen }) => {
   const { user } = useContextData();
   return (
     <Dropdown>
@@ -18,7 +19,7 @@ const UserDropDown = () => {
         <Avatar
           isBordered
           as="button"
-          className="transition-transform ml-1"
+          className="transition-transform"
           color="success"
           size="sm"
           src={
@@ -29,16 +30,19 @@ const UserDropDown = () => {
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key={"user?.displayName"}>
-          {"user?.displayName"}
+        <DropdownItem key={user?.displayName ? user?.displayName : "Not Given"}>
+          {user?.displayName ? user?.displayName : "Not Given"}
         </DropdownItem>
-        <DropdownItem key={"user?.email"}>{"user?.email"}</DropdownItem>
-        <DropdownItem key={"option 3"}>{"option 3"}</DropdownItem>
-        <DropdownItem key={"option 4"}>{"option 4"}</DropdownItem>
-        <DropdownItem key={"option 5"}>{"option 5"}</DropdownItem>
-        <DropdownItem key={"---------"}>{"---------"}</DropdownItem>
-        <DropdownItem key={"---------2"}>{"---------"}</DropdownItem>
-        <DropdownItem key="sign out" className="text-danger" color="danger">
+        <DropdownItem key={user?.email}>{user?.email}</DropdownItem>
+        <DropdownItem key={"profile edit"}>
+          <Link href={"/dashboard/editProfile"}>Edit Profile</Link>
+        </DropdownItem>
+        <DropdownItem
+          onClick={onOpen}
+          key="sign out"
+          className="text-danger"
+          color="danger"
+        >
           Sign Out
         </DropdownItem>
       </DropdownMenu>

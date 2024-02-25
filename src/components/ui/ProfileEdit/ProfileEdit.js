@@ -5,8 +5,12 @@ import { useForm } from "react-hook-form";
 
 import { Input } from "@nextui-org/react";
 import { Button, ButtonGroup } from "@nextui-org/react";
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 const ProfileEditPage = () => {
+
+    const router = useRouter();
 
     const {
         register,
@@ -15,7 +19,15 @@ const ProfileEditPage = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data)
+        console.log(data);
+        Swal.fire({
+            position: "bottom-end",
+            icon: "success",
+            title: "Profile is Updated Successfully.",
+            showConfirmButton: false,
+            timer: 2000
+          });
+          router.push('/dashboard/profile');
     };
 
     return (

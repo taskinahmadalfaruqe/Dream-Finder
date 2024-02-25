@@ -13,7 +13,7 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import UserDropDown from "./UserDropDown";
 import ThemeSwitch from "@/app/ThemeSwitch";
 
-const DashNav = () => {
+const DashNav = ({ onOpen }) => {
   return (
     <Navbar
       maxWidth="xl"
@@ -68,7 +68,7 @@ const DashNav = () => {
           </Button>
         </Tooltip>
         <div className="sm:hidden">
-          <UserDropDown />
+          <UserDropDown onOpen={onOpen} />
         </div>
       </NavbarContent>
     </Navbar>

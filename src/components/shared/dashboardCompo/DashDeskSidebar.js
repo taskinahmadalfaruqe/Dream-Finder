@@ -16,21 +16,36 @@ import { PiNoteDuotone } from "react-icons/pi";
 import { LuUser2, LuPencilLine } from "react-icons/lu";
 import { FaListOl } from "react-icons/fa";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
-
+import { VscFeedback } from "react-icons/vsc";
 import { usePathname } from "next/navigation";
 import { Fade } from "react-awesome-reveal";
 import Divider from "../Divider";
 import useHr from "@/hooks/useHr";
+import useAdmin from "@/hooks/useAdmin";
+import NavigationSkeleton from "./NavigationSkeleton";
+import useContextData from "@/hooks/useContextData";
 
 const DashDeskSidebar = () => {
   const currentPathname = usePathname();
-  const [isHr] = useHr();
-  console.log(isHr);
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isHr, isHrLoading] = useHr();
+  const { user } = useContextData();
+
+  // console.log("is Hr?", isHr, "hr loading?", isHrLoading);
+  // console.log("is Admin?", isAdmin, "Admin loading?", isAdminLoading);
 
   return (
     <>
       <ScrollShadow hideScrollBar className="h-[65vh]">
-        {isHr ? (
+        {/* dashboard navigation skeleton  */}
+        {(isAdminLoading || isHrLoading) &&
+          Array.from({ length: 8 }).map((_, index) => (
+            <Fade delay={index * 50} key={index * 444}>
+              <NavigationSkeleton />
+            </Fade>
+          ))}
+        {/* hr route */}
+        {!isAdminLoading && !isHrLoading && isHr && (
           <>
             {dashboardHrLinks.map((link, index) => (
               <Fade delay={index * 50} key={link.heading}>
@@ -66,7 +81,9 @@ const DashDeskSidebar = () => {
               </Fade>
             ))}
           </>
-        ) : (
+        )}
+        {/* user route */}
+        {!isAdminLoading && !isHrLoading && !isHr && !isAdmin && (
           <>
             {dashboardLinks.map((link, index) => (
               <Fade delay={index * 50} key={link.heading}>
@@ -103,39 +120,6 @@ const DashDeskSidebar = () => {
             ))}
           </>
         )}
-        {/* {dashboardLinks.map((link, index) => (
-          <Fade delay={index * 50} key={link.heading}>
-            <Link href={`${link.path}`}>
-              <div className="overflow-hidden">
-                <div
-                  className={
-                    currentPathname === link.path
-                      ? activeLinkStyle
-                      : normalLinkStyle
-                  }
-                >
-                  {
-                    <link.icon className=" max-sm:text-lg sm:text-3xl max-lg:hidden ml-4 mr-0" />
-                  }
-                  <Tooltip
-                    className="font-medium text-whiteColor capitalize lg:hidden"
-                    showArrow
-                    color="success"
-                    placement="right"
-                    content={link.heading}
-                  >
-                    <div>
-                      {
-                        <link.icon className="text-2xl sm:text-3xl lg:hidden mr-1" />
-                      }
-                    </div>
-                  </Tooltip>
-                  {link.heading}
-                </div>
-              </div>
-            </Link>
-          </Fade>
-        ))} */}
       </ScrollShadow>
 
       <div className="max-lg:hidden mt-10">
@@ -152,15 +136,17 @@ const DashDeskSidebar = () => {
             color="success"
             placement="right"
           >
-            <Button
-              isIconOnly
-              color="success"
-              aria-label="Light"
-              variant="light"
-              className="bg-primaryColor text-secondaryColor hover:text-primaryColor   bg-opacity-0 hover:bg-opacity-25 active:scale-95 duration-400 lg:hidden"
-            >
-              <GoHome className="max-sm:text-4xl sm:text-7xl dark:text-white dark:opacity-70 cursor-pointer rounded-md p-1" />
-            </Button>
+            <Link href={"/"}>
+              <Button
+                isIconOnly
+                color="success"
+                aria-label="Light"
+                variant="light"
+                className="bg-primaryColor text-secondaryColor hover:text-primaryColor   bg-opacity-0 hover:bg-opacity-25 active:scale-95 duration-400 lg:hidden"
+              >
+                <GoHome className="max-sm:text-4xl sm:text-7xl dark:text-white dark:opacity-70 cursor-pointer rounded-md p-1" />
+              </Button>
+            </Link>
           </Tooltip>
           <Link
             href={"/"}
@@ -195,6 +181,11 @@ const dashboardLinks = [
     heading: "Saved Jobs",
     path: "/dashboard/bookmark",
     icon: PiNoteDuotone,
+  },
+  {
+    heading: "FeedBack",
+    path: "/dashboard/FeedBack",
+    icon: VscFeedback,
   },
 ];
 
@@ -245,6 +236,6 @@ const dashboardHrLinks = [
 const activeLinkStyle =
   "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl p-5 lg:p-3 px-6 lg:px-7 my-2 bg-primaryColor text-primaryColor font-semibold bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-primaryColor before:h-[50px] lg:before:h-[40px] duration-300 before:rounded-r-2xl before:duration-300 before:w-2 before:left-0 overflow-x-hidden w-64";
 const normalLinkStyle =
-  "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl p-5 lg:p-3 my-2 hover:bg-secondaryColor dark:opacity-70 duration-300 text-secondaryColor dark:text-white dark:opacity-70 font-semibold hover:bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-secondaryColor dark:opacity-70 before:h-0 before:w-0 hover:before:h-[20px] hover:before:w-1.5 before:rounded-r-2xl before:duration-300 before:left-0 overflow-x-hidden w-64";
+  "flex items-center gap-3 max-sm:text-base max-md:text-lg md:text-xl py-5 px-[18px] lg:p-3 my-2 hover:bg-secondaryColor dark:opacity-70 duration-300 text-secondaryColor dark:text-white dark:opacity-70 font-semibold hover:bg-opacity-10 rounded-r-full active_btn relative before:absolute before:content-[''] before:bg-secondaryColor dark:opacity-70 before:h-0 before:w-0 hover:before:h-[20px] hover:before:w-1.5 before:rounded-r-2xl before:duration-300 before:left-0 overflow-x-hidden w-64";
 
 export default DashDeskSidebar;

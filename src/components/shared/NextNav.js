@@ -5,7 +5,7 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
+  // Link,
   Button,
   NavbarMenuToggle,
   NavbarMenu,
@@ -16,18 +16,26 @@ import {
 } from "@nextui-org/react";
 import { useCallback, useEffect, useState } from "react";
 import { Badge } from "@nextui-org/react";
-import { FaBell, FaMoon, FaSun } from "react-icons/fa";
+import { FaBell } from "react-icons/fa";
+import { HiMenu } from "react-icons/hi";
+
 import { usePathname } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
 import ThemeSwitch from "@/app/ThemeSwitch";
 import "./navbar.css";
+import useAdmin from "@/hooks/useAdmin";
+import MobileNavLink from "../ui/NavbarCompo/MobileNavLink";
+import Link from "next/link";
+import { IoCloseOutline, IoMenuOutline } from "react-icons/io5";
+import { LuMenu } from "react-icons/lu";
+import UserDropDown from "./dashboardCompo/UserDropDown";
 
 const NextNavbar = () => {
   const pathName = usePathname();
+  const [isAdmin, isAdminLoading] = useAdmin();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
   const { user } = useContextData();
@@ -67,8 +75,15 @@ const NextNavbar = () => {
         >
           <NavbarContent>
             <NavbarMenuToggle
+              icon={
+                isMenuOpen ? (
+                  <IoCloseOutline className="text-4xl md:text-5xl duration-300  dark:text-whiteColor dark:opa7" />
+                ) : (
+                  <LuMenu className="text-3xl md:text-4xl duration-300  dark:text-whiteColor dark:opa7" />
+                )
+              }
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="lg:hidden"
+              className="lg:hidden w-max duration-300"
             />
             <NavbarBrand className="hidden md:flex">
               <Link href="/">
@@ -142,7 +157,9 @@ const NextNavbar = () => {
             {user && (
               <NavbarItem>
                 <Link
-                  href="/dashboard"
+                  href={
+                    isAdminLoading ? "/" : isAdmin ? "/admin" : "/dashboard"
+                  }
                   className={`${
                     pathName === "/dashboard" && "activeNavlink"
                   } text-black dark:text-white navLinkHover  border border-transparent py-1 px-3 rounded-md font-medium`}
@@ -161,7 +178,7 @@ const NextNavbar = () => {
                   aria-label="more than 99 notifications"
                   variant="light"
                 >
-                  <FaBell size={24} />
+                  <FaBell className="text-primaryColor" size={24} />
                 </Button>
               </Badge>
             </NavbarItem>
@@ -172,20 +189,9 @@ const NextNavbar = () => {
 
             <NavbarItem>
               {user ? (
-                <>
-                  <Button
-                    onClick={onOpen}
-                    color="success"
-                    variant="flat"
-                    style={{ borderRadius: "5px" }}
-                    className="font-bold border border-primaryColor"
-                  >
-                    Sign out
-                  </Button>
-                  {user && (
-                    <Avatar src={user?.photoURL} className="ml-3 " size="md" />
-                  )}
-                </>
+                <div>
+                  <UserDropDown onOpen={onOpen} />
+                </div>
               ) : (
                 <Button
                   as={Link}
@@ -201,8 +207,11 @@ const NextNavbar = () => {
             </NavbarItem>
           </NavbarContent>
 
-          <NavbarContent className="lg:hidden max-w-60">
-            <NavbarItem>
+          <NavbarContent
+            className="lg:hidden max-w-60 gap-0 items-center justify-end"
+            justify="end"
+          >
+            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
               <Badge content="99+" shape="circle" color="danger">
                 <Button
                   radius="full"
@@ -210,30 +219,24 @@ const NextNavbar = () => {
                   aria-label="more than 99 notifications"
                   variant="light"
                 >
-                  <FaBell size={24} />
+                  <FaBell className="text-primaryColor" size={24} />
                 </Button>
               </Badge>
             </NavbarItem>
 
-            <NavbarItem>
+            <NavbarItem className="text-center justify-end w-min max-w-12 mx-1 md:mx-2">
               <ThemeSwitch></ThemeSwitch>
             </NavbarItem>
 
-            <NavbarItem>
+            <NavbarItem
+              className={`text-center justify-end w-min ${
+                user && "max-w-12"
+              } mx-1 md:mx-2`}
+            >
               {user ? (
-                <>
-                  <Button
-                    onClick={onOpen}
-                    color="success"
-                    variant="flat"
-                    className="font-bold"
-                  >
-                    Sign out
-                  </Button>
-                  {user && (
-                    <Avatar src={user?.photoURL} className="ml-3" size="md" />
-                  )}
-                </>
+                <div>
+                  <UserDropDown onOpen={onOpen} />
+                </div>
               ) : (
                 <Button
                   as={Link}
@@ -249,11 +252,19 @@ const NextNavbar = () => {
           </NavbarContent>
 
           <NavbarMenu>
-            {menuItems.map((item, index) => (
+            {/* {mobileLinks.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
                 <Link href={item.path}>{item.title}</Link>
               </NavbarMenuItem>
-            ))}
+            ))} */}
+
+            <div className="min-h-[70vh] my-10 p-10">
+              {mobileLinks.map((link, index) => (
+                <NavbarMenuItem key={`${link}-${index}`} className="w-full">
+                  <MobileNavLink link={link} />
+                </NavbarMenuItem>
+              ))}
+            </div>
           </NavbarMenu>
 
           {/* logout modal */}
@@ -264,7 +275,7 @@ const NextNavbar = () => {
   );
 };
 
-const menuItems = [
+const mobileLinks = [
   {
     title: "Home",
     path: "/",
@@ -278,15 +289,11 @@ const menuItems = [
     path: "/contact",
   },
   {
-    title: "Services",
-    path: "/",
-  },
-  {
-    title: "Login",
+    title: "Sign In",
     path: "/auth/signin",
   },
   {
-    title: "Resister",
+    title: "Sign Up",
     path: "/auth/signup",
   },
   {

@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, presentUser => {
       //////////////////////////////////
       setUser(presentUser);
-      console.log("USER OBSERVED ::>>", presentUser);
+      // console.log("USER OBSERVED ::>>", presentUser);
 
       //////////////////
       /// jwt block ////
@@ -84,7 +84,7 @@ const AuthProvider = ({ children }) => {
           // if token exist, then store in local storage
           if (res.data) {
             localStorage.setItem("access-token", res.data.token);
-            console.log("access-token stored");
+            // console.log("access-token stored");
             setLoading(false);
           }
         });

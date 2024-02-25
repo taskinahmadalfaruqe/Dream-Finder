@@ -4,22 +4,22 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 import useContextData from "./useContextData";
 
-const useHr = () => {
+const useAdmin = () => {
   // hooks
   const axiosSecure = useAxiosSecure();
   const { user, Loading } = useContextData();
-  const { data: isHr, isLoading: isHrLoading } = useQuery({
-    queryKey: [user?.email, "isHr"],
+  const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
+    queryKey: [user?.email, "isAdmin"],
     // run this code block when loading are false
     enabled: !Loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/hr-check/${user?.email}`);
-      return res.data?.hr;
+      if (user) {
+        const res = await axiosSecure.get(`/user/admin-check/${user?.email}`);
+        return res.data?.admin;
+      }
     },
   });
-  // console.log("useHr pass >>>");
-
-  return [isHr, isHrLoading];
+  return [isAdmin, isAdminLoading];
 };
 
-export default useHr;
+export default useAdmin;

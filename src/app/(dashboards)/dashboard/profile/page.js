@@ -1,9 +1,14 @@
+"use client"
+import { AuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { FaRegEdit } from "react-icons/fa";
 
 const ProfilePage = () => {
+
+  const {user} = useContext(AuthContext);
+
   return (
     <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">
       <h2 className="font-bold text-3xl text-primaryColor text-center">
@@ -13,7 +18,7 @@ const ProfilePage = () => {
         <div className="pb-2">
           <Image
             className=""
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU"
+            src={user?.photoURL || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU"}
             height={70}
             width={70}
             alt="Profile image"
@@ -28,12 +33,12 @@ const ProfilePage = () => {
         <hr />
         <div className="py-4 space-y-3">
           <h2 className="">
-            <span className="font-bold text-xl">User Name : </span> Md. Abid
+            <span className="font-bold text-xl">User Name : </span> {user?.displayName}
           </h2>
           <hr />
           <h2>
             <span className="font-bold text-xl">User Email :</span>{" "}
-            abid@gmail.com
+            {user?.email}
           </h2>
           <hr />
           <h2>
@@ -42,24 +47,23 @@ const ProfilePage = () => {
           </h2>
           <hr />
           <h2>
-            <span className="font-bold text-xl">Resume Drive Link :</span> .
+            <span className="font-bold text-xl">Resume Drive Link :</span> 
+            https://drive.google.com/file/d/1XN12blDUvZ4QwPf7pMPImD11M5Q7XKnd/view
           </h2>
           <hr />
           <h2>
-            <span className="font-bold text-xl">Cover Later Drive Link :</span>{" "}
-            .
+            <span className="font-bold text-xl">Cover Later Drive Link : </span>{" "}
+            https://drive.google.com/file/d/1hOkkHx9gMwL2WGpxPkAvBDbgtV-Nqi_P/view
           </h2>
           <hr />
           <h2>
-            <span className="font-bold text-xl">PortFolio :</span> .
+            <span className="font-bold text-xl">PortFolio : </span> 
+            https://my-portfolio-e3e7b.web.app/
           </h2>
+          
           <hr />
           <h2>
-            <span className="font-bold text-xl">Website :</span> .
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">Location :</span> .
+            <span className="font-bold text-xl">Location : </span> Noakhali, Bangladesh.
           </h2>
         </div>
       </div>

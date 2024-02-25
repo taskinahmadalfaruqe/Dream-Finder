@@ -27,7 +27,7 @@ const SubscriptionAlertModal = () => {
               <ModalHeader className="flex flex-col gap-1 "><span className='text-primaryColor'>Subscription Alert !</span></ModalHeader>
               <ModalBody>
                <div className='h-[300px] '>
-               <Image className='h-full w-full rounded border border-primaryColor' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEUylDPZDMGnohKIsavAK5cUz7bsn7qwodpw&usqp=CAU' width={300} height={300}   alt="job photo" />
+               <Image className='h-full w-full object-cover rounded border border-primaryColor' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiwysYEElMHqLDq9Dvhg4AnUiLVjXUz9CqCQ&usqp=CAU' width={300} height={300}   alt="job photo" />
                </div>
                 <div className='space-y-3'>
                   <h1 className='text-xl font-bold text-primaryColor'>To Get More Feature..?</h1>
