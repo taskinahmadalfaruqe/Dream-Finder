@@ -15,17 +15,16 @@ export default function JobDetails({ id }) {
 
   useEffect(() => {
     fetch(`https://dream-finder-server.vercel.app/jobDetails/${id}`)
-      .then((res) => res.json())
-      .then((data) => setJob(data));
+      .then(res => res.json())
+      .then(data => setJob(data));
   }, [id]);
 
   return (
     <div className="container my-10 mb-40 p-5">
-   
       <Card className="py-4">
         <CardHeader className="pb-0 md:py-10 md:px-10 lg:px-20 flex-col items-start ">
           <h3 className="text-xl md:text-2xl text-secondaryColor dark:text-primaryColor font-bold mb-5 text-center  mx-auto">
-           {job?.company_name}
+            {job?.company_name}
           </h3>
           <div className=" flex items-center rounded-xl w-full jobDetailsBanner">
             <div className="uppercase py-20 grid justify-center font-bold w-full text-center rounded-xl">
@@ -49,7 +48,7 @@ export default function JobDetails({ id }) {
               About This Job
             </h3>
             <p className="text-secondaryColor dark:text-whiteColor mt-1 text-justify">
-            {/* We are looking for enthusiastic and energetic individuals with an
+              {/* We are looking for enthusiastic and energetic individuals with an
               interest in a wide range of web software technologies and
               architectures. Applicants must have the mindset to get their hands
               dirty in writing code in front-end web technology stacks based on
@@ -66,17 +65,22 @@ export default function JobDetails({ id }) {
                   Requirements
                 </h3>
                 <div className="text-justify">
-                 { job?.requirements && job?.requirements?.map(requirement => <p key={requirement} className="mt-5 space-x-2">
-                    <FaCheckSquare
-                      style={{
-                        display: "inline-block",
-                        marginRight: 5,
-                        color: "#00BE63",
-                      }}
-                    />
-                   {requirement}
-                  </p>)}
-                 
+                  {job?.requirements &&
+                    job?.requirements?.map((requirement, idx) => (
+                      <p
+                        key={requirement + idx * 99}
+                        className="mt-5 space-x-2"
+                      >
+                        <FaCheckSquare
+                          style={{
+                            display: "inline-block",
+                            marginRight: 5,
+                            color: "#00BE63",
+                          }}
+                        />
+                        {requirement}
+                      </p>
+                    ))}
                 </div>
               </div>
             </div>
@@ -106,7 +110,7 @@ export default function JobDetails({ id }) {
                       fontSize: 28,
                     }}
                   />{" "}
-                 {job?.workingHour}
+                  {job?.workingHour}
                 </p>
               </div>
 
@@ -209,7 +213,7 @@ export default function JobDetails({ id }) {
             </div>
           </div>
           <div>
-            <SubmissionButton onOpen={onOpen} id={job._id}/>
+            <SubmissionButton onOpen={onOpen} id={job._id} />
           </div>
         </CardBody>
       </Card>
