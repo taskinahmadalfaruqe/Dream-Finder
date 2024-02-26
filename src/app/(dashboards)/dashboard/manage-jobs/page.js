@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -11,180 +11,210 @@ import {
   Chip,
   Tooltip,
   getKeyValue,
+  Button,
 } from "@nextui-org/react";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useContextData from "@/hooks/useContextData";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Page = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContextData();
 
+  const [postedJob, setPostedJob] = useState([]);
+
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
     axiosSecure
       .get(`/api/v1/posted-jobs/${user?.email}`)
       .then(res => {
-        console.log(res.data);
+        console.log(res?.data);
+        setPostedJob(res?.data);
       })
       .catch(err => console.log(err));
-  }, [axiosSecure, user?.email]);
+  }, [axiosSecure, user?.email, reload]);
 
-  const renderCell = useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
+  const renderCell = useCallback(
+    (job, columnKey) => {
+      const handleDeleteJob = async id => {
+        const toastId = toast.loading("processing...");
+        const res = await axiosSecure.delete(`/api/v1/delete-job/${id}`);
+        if (res?.data?.deletedCount) {
+          setReload(!reload);
+          toast.success("Job deleted successfully.", { id: toastId });
+        } else {
+          console.log(res);
+          toast.error("Failed to delete job.", { id: toastId });
+        }
+      };
 
-    switch (columnKey) {
-      case "category":
-        return (
-          <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
-            description={user.email}
-            name={cellValue}
-          >
-            {user.email}
-          </User>
-        );
-      case "job title":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">
-              {user.team}
-            </p>
+      const handleDeleteJobWarning = async id => {
+        toast(t => (
+          <div>
+            <span>
+              Are you sure! you want to <b>delete</b> this job?
+            </span>
+            <div className="flex items-center justify-end gap-5 mt-3">
+              <Button
+                size="sm"
+                color="success"
+                variant="light"
+                onClick={() => {
+                  toast.dismiss(t.id);
+                }}
+                className="px-2 rounded-md font-semibold"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                color="success"
+                variant="shadow"
+                onClick={() => {
+                  toast.dismiss(t.id);
+                  handleDeleteJob(id);
+                }}
+                className="bg-primaryColor px-2 rounded-md text-white  font-semibold"
+              >
+                Proceed
+              </Button>
+            </div>
           </div>
-        );
-      case "status":
-        return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[user.status]}
-            size="sm"
-            variant="flat"
-          >
-            {cellValue}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EyeIcon />
-              </span>
-            </Tooltip>
-            <Tooltip content="Edit user">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
-              </span>
-            </Tooltip>
-            <Tooltip color="danger" content="Delete user">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
-              </span>
-            </Tooltip>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+        ));
+      };
+
+      let cellValue = job[columnKey];
+      if (columnKey.includes(",")) {
+        const x = columnKey.split(",");
+        cellValue = `$${job[x[0]]}-$${job[x[1]]}`;
+      }
+
+      switch (columnKey) {
+        case "category":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "jobTitle":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "location":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "posted_date":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "type":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "minSalary,maxSalary":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "viewCount":
+          return (
+            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
+              {cellValue}
+            </Chip>
+          );
+        case "action":
+          return (
+            <div className="relative flex items-center gap-2 justify-between">
+              <Link href={`/Find-Jobs/${job?._id}`}>
+                <Tooltip content="Details">
+                  <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                    <EyeIcon />
+                  </span>
+                </Tooltip>
+              </Link>
+              <Tooltip content="Edit job">
+                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                  <EditIcon />
+                </span>
+              </Tooltip>
+              <Tooltip color="danger" content="Delete job">
+                <span
+                  onClick={() => handleDeleteJobWarning(job?._id)}
+                  className="text-lg text-danger cursor-pointer active:opacity-50"
+                >
+                  <DeleteIcon />
+                </span>
+              </Tooltip>
+            </div>
+          );
+        default:
+          return cellValue;
+      }
+    },
+    [axiosSecure, reload]
+  );
 
   return (
-    <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">
-      <Table
-        color="success"
-        selectionMode="single"
-        aria-label="Example table with custom cells"
-      >
-        <TableHeader columns={columns}>
-          {column => (
-            <TableColumn
-              key={column.uid}
-              align={column.uid === "actions" ? "center" : "start"}
-            >
-              {column.name}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={users}>
-          {item => (
-            <TableRow key={item.id}>
-              {columnKey => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
+    <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto ">
+      {postedJob.length !== 0 && (
+        <Table
+          color="success"
+          selectionMode="single"
+          aria-label="Example table with custom cells"
+        >
+          {postedJob.length !== 0 && (
+            <TableHeader columns={columns} className="text-center">
+              {column => (
+                <TableColumn
+                  key={column.uid}
+                  align="center"
+                  className="text-center"
+                >
+                  {column.name}
+                </TableColumn>
               )}
-            </TableRow>
+            </TableHeader>
           )}
-        </TableBody>
-      </Table>
+          {postedJob.length !== 0 && (
+            <TableBody items={postedJob}>
+              {job => (
+                <TableRow key={job?._id}>
+                  {columnKey => (
+                    <TableCell className="text-center">
+                      {renderCell(job, columnKey)}
+                    </TableCell>
+                  )}
+                </TableRow>
+              )}
+            </TableBody>
+          )}
+        </Table>
+      )}
     </div>
   );
 };
 
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
-
 const columns = [
   { name: "CATEGORY", uid: "category" },
-  { name: "JOB TITLE", uid: "job title" },
+  { name: "JOB TITLE", uid: "jobTitle" },
   { name: "LOCATION", uid: "location" },
-  { name: "POSTED DATE", uid: "posted date" },
+  { name: "POSTED DATE", uid: "posted_date" },
   { name: "TYPE", uid: "type" },
-  { name: "VIEW COUNT", uid: "view count" },
+  { name: "SALARY", uid: ["minSalary", "maxSalary"] },
+  { name: "VIEW COUNT", uid: "viewCount" },
   { name: "ACTION", uid: "action" },
-];
-
-const users = [
-  {
-    id: 1,
-    name: "Tony Reichert",
-    role: "CEO",
-    team: "Management",
-    status: "active",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "tony.reichert@example.com",
-  },
-  {
-    id: 2,
-    name: "Zoey Lang",
-    role: "Technical Lead",
-    team: "Development",
-    status: "paused",
-    age: "25",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    email: "zoey.lang@example.com",
-  },
-  {
-    id: 3,
-    name: "Jane Fisher",
-    role: "Senior Developer",
-    team: "Development",
-    status: "active",
-    age: "22",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-    email: "jane.fisher@example.com",
-  },
-  {
-    id: 4,
-    name: "William Howard",
-    role: "Community Manager",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-  {
-    id: 5,
-    name: "Kristen Copper",
-    role: "Sales Manager",
-    team: "Sales",
-    status: "active",
-    age: "24",
-    avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-    email: "kristen.cooper@example.com",
-  },
 ];
 
 const EditIcon = props => (
