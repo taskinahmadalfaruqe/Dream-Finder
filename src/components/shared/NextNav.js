@@ -199,7 +199,7 @@ const NextNavbar = () => {
                   color="success"
                   variant="flat"
                   style={{ borderRadius: "5px" }}
-                  className="font-bold rounded border border-primaryColor"
+                  className="font-bold"
                 >
                   Sign in
                 </Button>
@@ -252,12 +252,6 @@ const NextNavbar = () => {
           </NavbarContent>
 
           <NavbarMenu>
-            {/* {mobileLinks.map((item, index) => (
-              <NavbarMenuItem key={`${item}-${index}`}>
-                <Link href={item.path}>{item.title}</Link>
-              </NavbarMenuItem>
-            ))} */}
-
             <div className="min-h-[70vh] my-10 p-10">
               {mobileLinks.map((link, index) => (
                 <NavbarMenuItem key={`${link}-${index}`} className="w-full">

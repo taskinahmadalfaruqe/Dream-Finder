@@ -215,27 +215,31 @@ const Page = () => {
               <div className="w-full px-3">
                 <p>Select Job Employment Status</p>
               </div>
-              <div className="w-full flex justify-between ">
-                <div className="w-1/2 sm:w-1/3 px-3 ">
-                  <Checkbox
-                    isSelected={isFullTime}
-                    onValueChange={setIsFullTime}
-                    color="success"
-                    isDisabled={isPartTime}
-                  >
-                    Full Time
-                  </Checkbox>
-                </div>
-                <div className="w-1/2 sm:w-1/3 px-3 ">
-                  <Checkbox
-                    isSelected={isPartTime}
-                    onValueChange={setIsPartTime}
-                    color="success"
-                    isDisabled={isFullTime}
-                  >
-                    PartTime
-                  </Checkbox>
-                </div>
+              <div className="w-1/2 px-3">
+                <Checkbox
+                  isSelected={isFullTime}
+                  onValueChange={setIsFullTime}
+                  color="success"
+                  isDisabled={isPartTime}
+                  className="ml-[1px] text-white min-w-full rounded-xl bg-default-100 hover:bg-default-200 duration-300 py-5"
+                >
+                  <div className="rounded-lg w-full">
+                    <span>Full Time</span>
+                  </div>
+                </Checkbox>
+              </div>
+              <div className="w-1/2 px-3">
+                <Checkbox
+                  isSelected={isPartTime}
+                  onValueChange={setIsPartTime}
+                  color="success"
+                  isDisabled={isFullTime}
+                  className="ml-[1px] text-white min-w-full rounded-xl bg-default-100 hover:bg-default-200 duration-300 py-5"
+                >
+                  <div className="rounded-lg w-full">
+                    <span>Part Time</span>
+                  </div>
+                </Checkbox>
               </div>
 
               <div className="w-full px-3">

@@ -13,8 +13,10 @@ const useHr = () => {
     // run this code block when loading are false
     enabled: !Loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/hr-check/${user?.email}`);
-      return res.data?.hr;
+      if (user) {
+        const res = await axiosSecure.get(`/user/hr-check/${user?.email}`);
+        return res.data?.hr;
+      }
     },
   });
   // console.log("useHr pass >>>");
