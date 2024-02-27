@@ -6,6 +6,8 @@ import AuthProvider from "@/providers/AuthProvider";
 import Providers from "./providers";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import NextNavbar from "@/components/shared/NextNav";
+import Footer from "@/components/shared/Footer";
 const inter = Inter({ subsets: ["latin"] });
 const queryClient = new QueryClient();
 
