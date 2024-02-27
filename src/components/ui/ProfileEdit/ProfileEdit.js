@@ -22,7 +22,8 @@ const ProfileEditPage = () => {
         return;
       } else {
         const res = await axios.get(
-          `http://localhost:5000/user/${user?.email}`
+          `https://dream-finder-server.vercel.app/user/${user?.email}`
+          //   `http://localhost:5000/user/${user?.email}`
         );
         const userData = await res.data;
         return userData;
@@ -39,7 +40,10 @@ const ProfileEditPage = () => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .put(`http://localhost:5000/update/user/${user?.email}`, data)
+      .put(
+        `https://dream-finder-server.vercel.app/update/user/${user?.email}`,
+        data
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           Swal.fire({
