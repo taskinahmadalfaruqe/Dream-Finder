@@ -16,9 +16,9 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <div
-      className={`${path.includes("auth") && "hidden"}`}
+      className={`${path.includes("auth") && "hidden"} `}
     >
-      <div className="bg-darkColor mt-32 flex items-center py-5 ">
+      <div className="bg-darkColor mt-32  flex items-center py-5 ">
         <footer className="container">
           <div className="flex justify-between items-center text-whiteColor flex-col md:flex-row text-center gap-5 relative lg:pt-16">
             <div className="space-y-3">

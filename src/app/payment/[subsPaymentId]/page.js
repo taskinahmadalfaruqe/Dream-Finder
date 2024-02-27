@@ -1,13 +1,16 @@
+import NextNavbar from '@/components/shared/NextNav';
 import Payment from '@/components/ui/Payment/Payment';
 import React from 'react';
 
 const PaymentDynamicPage = ({params}) => {
-    // console.log(params.subsPaymentId);
     return (
-        <div>
-            <h2 className='text-3xl font-bold text-center my-8'>Give Your Payment Here !</h2>
+       <div>
+        <NextNavbar />
+         <div className='bg-lightWhiteColor  h-lvh '>
+         
             <Payment subsPaymentId={params?.subsPaymentId}></Payment>
         </div>
+       </div>
     );
 };
 

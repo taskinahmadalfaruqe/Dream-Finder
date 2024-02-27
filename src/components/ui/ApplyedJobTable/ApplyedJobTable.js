@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     if (user) {
       fetch(
-        `https://dream-finder-file-upload-server.vercel.app/retrieveResume?user=${user?.email}&page=${page}`
+        `https://dream-finder-server.vercel.app/retrieveResume?user=${user?.email}&page=${page}`
       )
         .then((res) => res.json())
         .then((data) => {

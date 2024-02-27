@@ -9,7 +9,7 @@ const AppliedJobDetails = ({ id, date }) => {
 
   useEffect(() => {
     fetch(
-      `https://dream-finder-file-upload-server.vercel.app/retrieveResume/${id}`
+      `https://dream-finder-server.vercel.app/retrieveResume/${id}`
     )
       .then((res) => res.json())
       .then((data) => {
