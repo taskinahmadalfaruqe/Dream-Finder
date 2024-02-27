@@ -109,7 +109,6 @@ const CheckoutForm = ({ price, title, limit }) => {
   return (
     <div className=" flex  items-center">
       <div className="w-full">
-       
         <Card className="max-w-lg rounded-sm px-5 md:px-10 py-5 shadow-xl  border-2">
           <form onSubmit={handleSubmit} className="">
             {/* <CardElement
