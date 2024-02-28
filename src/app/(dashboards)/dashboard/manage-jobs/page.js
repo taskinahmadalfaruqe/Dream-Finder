@@ -12,6 +12,7 @@ import {
   Tooltip,
   getKeyValue,
   Button,
+  Spinner,
 } from "@nextui-org/react";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useContextData from "@/hooks/useContextData";
@@ -23,17 +24,23 @@ const Page = () => {
   const { user } = useContextData();
 
   const [postedJob, setPostedJob] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axiosSecure
       .get(`/api/v1/posted-jobs/${user?.email}`)
       .then(res => {
         console.log(res?.data);
         setPostedJob(res?.data);
+        setLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
   }, [axiosSecure, user?.email, reload]);
 
   const renderCell = useCallback(
@@ -172,6 +179,30 @@ const Page = () => {
 
   return (
     <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto ">
+      {loading === true && (
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <Spinner
+            label="Loading..."
+            color="success"
+            labelColor="success"
+            size="lg"
+          />
+        </div>
+      )}
+      {loading === false && postedJob.length === 0 && (
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <p className="text-lg text-center">
+            {" "}
+            you don&apos;t have any posted job, please{" "}
+            <Link
+              className="text-blue-500 hover:underline duration-300"
+              href={"/dashboard/post-job"}
+            >
+              post a job.
+            </Link>
+          </p>
+        </div>
+      )}
       {postedJob.length !== 0 && (
         <Table
           color="success"
