@@ -18,6 +18,7 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useContextData from "@/hooks/useContextData";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 const Page = () => {
   const axiosSecure = useAxiosSecure();
@@ -179,6 +180,12 @@ const Page = () => {
 
   return (
     <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto ">
+      <div className="my-10">
+        <SectionHeading
+          heading="Manage Job"
+          subHeading="manage your posted job here."
+        />
+      </div>
       {loading === true && (
         <div className="min-h-[50vh] flex items-center justify-center">
           <Spinner
