@@ -148,7 +148,9 @@ const Page = () => {
               </Link>
               <Tooltip content="Edit job">
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                  <EditIcon />
+                  <Link href={`/dashboard/update-job/${job?._id}`}>
+                    <EditIcon />
+                  </Link>
                 </span>
               </Tooltip>
               <Tooltip color="danger" content="Delete job">
