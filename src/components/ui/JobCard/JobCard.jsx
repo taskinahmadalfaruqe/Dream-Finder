@@ -19,12 +19,13 @@ import { AuthContext } from "@/providers/AuthProvider";
 import axios from "axios";
 import useBookmarkDelete from "@/hooks/useBookmarkDelete";
 import ApplyButton from "../ApplyButton/ApplyButton";
+import BookmarkIcon from "../BookmarkIcon/BookmarkIcon";
 
 const JobCard = ({ job }) => {
-  const { user, Loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [isShow, setIsShow] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [bookmarks, setBookmarks] = useState([]);
+  // const [isBookmarked, setIsBookmarked] = useState(false);
+  // const [bookmarks, setBookmarks] = useState([]);
 
   const {
     company_name,
@@ -41,55 +42,6 @@ const JobCard = ({ job }) => {
     appliedCount,
   } = job;
 
-  const handleSaveToBookmark = () => {
-    const bookmark = {
-      category,
-      viewCount,
-      description,
-      minSalary,
-      maxSalary,
-      location,
-      type,
-      company_logo,
-      posted_date,
-      appliedCount,
-      user: user?.email,
-      jobId: _id,
-    };
-    axios
-      .post(`https://dream-finder-server.vercel.app/bookmark`, bookmark)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const handleBookmarkDelete = () => {
-    axios
-      .delete(
-        `https://dream-finder-server.vercel.app/bookmarkDelete?id=${_id}&user=${user?.email}`
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    if (user) {
-      fetch(`https://dream-finder-server.vercel.app/bookmark/${user?.email}`)
-        .then((res) => res.json())
-        .then((data) => setBookmarks(data.bookmarks));
-      const bookmarked = bookmarks?.find((bookmark) => bookmark?.jobId === _id);
-
-      if (bookmarked) {
-        setIsBookmarked(true);
-      } else {
-        setIsBookmarked(false);
-      }
-    }
-  }, [user, isBookmarked, bookmarks, _id]);
-
   return (
     <Card
       onMouseLeave={() => setIsShow(false)}
@@ -105,38 +57,7 @@ const JobCard = ({ job }) => {
           <BiBarChartAlt className="text-primaryColor text-lg font-bold" />{" "}
           Actively Hiring
         </Button>
-        {user && (
-          <div
-            title="Remove from Bookmark"
-            onClick={() => {
-              if (isBookmarked) {
-                handleBookmarkDelete();
-                setIsBookmarked(false);
-              } else {
-                handleSaveToBookmark();
-                setIsBookmarked(true);
-              }
-            }}
-          >
-            {isBookmarked ? (
-              <FaBookmark
-                style={{
-                  color: "#00BE63",
-                  fontSize: 22,
-                  cursor: "pointer",
-                }}
-              />
-            ) : (
-              <FaRegBookmark
-                style={{
-                  color: "#00BE63",
-                  fontSize: 22,
-                  cursor: "pointer",
-                }}
-              />
-            )}
-          </div>
-        )}
+        <BookmarkIcon job={job} />
       </CardHeader>
       <Divider />
       <CardBody onMouseOver={() => setIsShow(true)} className="px-5 py-8">

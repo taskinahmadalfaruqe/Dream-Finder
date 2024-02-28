@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel="icon" href="/icon.png" sizes="any" />
       <body className={inter.className} suppressHydrationWarning={true}>
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider  client={queryClient}>
           <NextUIProvider>
             <AuthProvider>
               <Providers>

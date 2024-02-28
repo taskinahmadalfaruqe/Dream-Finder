@@ -9,7 +9,7 @@ const AppliedJobDetails = ({ id, date }) => {
 
   useEffect(() => {
     fetch(
-      `https://dream-finder-server.vercel.app/retrieveResume/${id}`
+      `https://dream-finder-file-upload-server.vercel.app/retrieveResume/${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -40,9 +40,9 @@ const AppliedJobDetails = ({ id, date }) => {
         <div className="flex items-center p-5 gap-5 md:gap-10">
           <div className="flex">
             <FaFilePdf style={{ fontSize: "50px", color: "#FC2D2D" }} />
-            <p className="ml-2">
+            <p className="ml-2 dark:text-secondaryColor">
               {appliedJobDetails?.fileName?.slice(0, 20)}... <br />{" "}
-              {appliedJobDetails?.size}
+              {appliedJobDetails?.size /1000} KB
             </p>
           </div>
           <AppliedJobButton

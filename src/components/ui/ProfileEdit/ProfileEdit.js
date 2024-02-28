@@ -15,7 +15,7 @@ const ProfileEditPage = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
-  const { data: userDefaultInfo, isPending } = useQuery({
+  const { data: userDefaultInfo, isPending, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       if (!user) {
