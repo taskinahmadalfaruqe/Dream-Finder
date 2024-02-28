@@ -15,6 +15,7 @@ import { FiUpload } from "react-icons/fi";
 import { AuthContext } from "@/providers/AuthProvider";
 import {useDisclosure} from "@nextui-org/react";
 import SuccessToast from "@/components/shared/SuccessToast";
+import Swal from "sweetalert2";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
@@ -58,7 +59,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         fileName:selectedFile?.name,
         size:selectedFile?.size
       };
-      fetch("https://dream-finder-server.vercel.app/uploadResume", {
+      fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,9 +80,21 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
           .then(data => {
             onOpenSuccess()
           })
-          .catch(error=> console.log(error))
+          .catch(error=> Swal.fire({
+            title:error.message,
+            icon:"error",
+            denyButtonColor:"#00BE63",
+            cancelButtonColor:"#00BE63",
+            confirmButtonColor:"#00BE63"
+          }))
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>Swal.fire({
+          title:error.message,
+          icon:"error",
+          denyButtonColor:"#00BE63",
+          cancelButtonColor:"#00BE63",
+          confirmButtonColor:"#00BE63"
+        }));
     };
 
     fileReader.readAsBinaryString(selectedFile);
