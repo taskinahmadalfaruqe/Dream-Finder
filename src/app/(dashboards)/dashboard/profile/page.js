@@ -19,7 +19,9 @@ const ProfilePage = () => {
         return;
       } else {
         const res = await axios.get(
-          `http://localhost:5000/user/${user?.email}`
+           `https://dream-finder-server.vercel.app/user/${user?.email}`
+          // `http://localhost:5000/user/${user?.email}`
+         
         );
         const userData = await res.data;
         return userData;
