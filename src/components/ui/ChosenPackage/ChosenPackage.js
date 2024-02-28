@@ -16,7 +16,7 @@ const ChosenPackage = ({ allItem }) => {
         <p className="flex items-center rounded-sm font-semibold  bg-lightPrimaryColor text-whiteColor px-2 w-max">
           {allItem.title.toLocaleUpperCase()}
         </p>
-        <p className="py-4">
+        <p className="py-4 dark:text-black">
           <span className="text-3xl font-bold ">$ {allItem.price} </span>
           <span className="text-md">/{allItem.limit}</span>
         </p>
