@@ -39,7 +39,7 @@ const Bookmarks = () => {
       {bookmarks.length ? (
         <div>
           {bookmarks?.map((bookmark) => (
-            <Card key={bookmark?._id} className="border p-2 rounded-none">
+            <Card key={bookmark?._id} className="border p-2 rounded-none mb-5">
               <CardBody>
                 <div className="lg:flex gap-5 space-y-5 lg:space-y-0">
                   <div>

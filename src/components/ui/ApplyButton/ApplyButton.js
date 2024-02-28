@@ -11,7 +11,7 @@ const [isApplied,setIsApplied] = useState(null)
 const router = useRouter()
 
 useEffect(()=>{
-    fetch(`https://dream-finder-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`)
+    fetch(`https://dream-finder-file-upload-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`)
     .then(res => res.json())
     .then(data => {
         if(data.isApplied){
