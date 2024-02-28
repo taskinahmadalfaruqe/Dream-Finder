@@ -14,7 +14,7 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [userStats, setUserStats] = useState({})
 
-  const { data: userProfileInfo, isPending } = useQuery({
+  const { data: userProfileInfo, isPending, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       if (!user) {
@@ -30,12 +30,13 @@ const Dashboard = () => {
   });
 
   useEffect(()=>{
+    
     fetch(`https://dream-finder-server.vercel.app/user-stat/${user?.email}`)
     .then(res => res.json())
     .then(data => setUserStats(data))
+    refetch()
 
-
-  },[user, userStats])
+  },[user, userStats, userProfileInfo])
 
   return (
     <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">

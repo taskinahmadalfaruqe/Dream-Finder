@@ -12,7 +12,7 @@ import { FaRegEdit } from "react-icons/fa";
 const ProfilePage = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: userInfo, isPending } = useQuery({
+  const { data: userInfo, isPending, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       if (!user) {
@@ -28,6 +28,12 @@ const ProfilePage = () => {
       }
     },
   });
+
+ 
+
+  useEffect(()=>{
+    refetch()
+  },[user, userInfo])
 
   if (isPending) {
     return;
