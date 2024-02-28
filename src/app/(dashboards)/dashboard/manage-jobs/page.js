@@ -101,7 +101,9 @@ const Page = () => {
         case "jobTitle":
           return (
             <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-              {cellValue}
+              {cellValue.length >= 30
+                ? cellValue.slice(0, 30) + "..."
+                : cellValue}
             </Chip>
           );
         case "location":
