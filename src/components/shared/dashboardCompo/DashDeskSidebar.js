@@ -36,7 +36,7 @@ const DashDeskSidebar = () => {
 
   return (
     <>
-      <ScrollShadow hideScrollBar className="h-[65vh]">
+      <ScrollShadow className="h-[65vh]">
         {/* dashboard navigation skeleton  */}
         {(isAdminLoading || isHrLoading) &&
           Array.from({ length: 8 }).map((_, index) => (
@@ -70,7 +70,7 @@ const DashDeskSidebar = () => {
                       >
                         <div>
                           {
-                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-1" />
+                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-4" />
                           }
                         </div>
                       </Tooltip>
@@ -108,7 +108,7 @@ const DashDeskSidebar = () => {
                       >
                         <div>
                           {
-                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-1" />
+                            <link.icon className="text-2xl sm:text-3xl lg:hidden mr-4" />
                           }
                         </div>
                       </Tooltip>

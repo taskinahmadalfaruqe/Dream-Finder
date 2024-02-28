@@ -10,7 +10,7 @@ const SubmissionButton = ({ onOpen, id }) => {
 
   useEffect(() => {
     fetch(
-      `https://dream-finder-file-upload-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`
+      `https://dream-finder-server.vercel.app/checkApplied?user=${user?.email}&jobId=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
