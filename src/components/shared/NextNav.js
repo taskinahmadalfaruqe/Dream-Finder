@@ -71,7 +71,7 @@ const NextNavbar = () => {
           maxWidth={navbarSize}
           shouldHideOnScroll={true}
           onMenuOpenChange={setIsMenuOpen}
-          className="navbarCustomDesign"
+          className="navbarCustomDesign  shadow-xl dark:shadow-darkColor"
         >
           <NavbarContent>
             <NavbarMenuToggle

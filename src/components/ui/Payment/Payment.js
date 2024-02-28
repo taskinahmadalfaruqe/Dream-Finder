@@ -22,7 +22,7 @@ const Payment = ({ subsPaymentId }) => {
     <div className=" md:flex justify-between container">
       <div className="md:w-1/2">
         <div className=" ">
-          <h2 className=" text-2xl font-bold  py-3 pt-10 text-secondaryColor">
+          <h2 className=" text-2xl font-bold  py-3 pt-20 text-secondaryColor">
             PLEASE MAKE YOUR PAYMENT HERE !
           </h2>
         </div>
@@ -35,7 +35,7 @@ const Payment = ({ subsPaymentId }) => {
         </Elements>
       </div>
       <div>
-      <ChosenPackage allItem={allItem} />
+        <ChosenPackage allItem={allItem} />
       </div>
     </div>
   );

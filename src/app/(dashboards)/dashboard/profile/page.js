@@ -1,71 +1,138 @@
-"use client"
+"use client";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { AuthContext } from "@/providers/AuthProvider";
+import { Avatar, Card } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FaRegEdit } from "react-icons/fa";
 
 const ProfilePage = () => {
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  console.log(user);
+  const { data: userInfo } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      if (!user) {
+        return;
+      }
+      const res = await axios.get(`http://localhost:5000/user/${user?.email}`);
+      const userData = await res.data;
+      return userData;
+    },
+  });
 
-  const {user} = useContext(AuthContext);
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo, user]);
 
   return (
-    <div className=" max-sm:px-2 md:px-10 group my-10 w-full max-sm:max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto ">
-      <h2 className="font-bold text-3xl text-primaryColor text-center">
-        User Information
-      </h2>
-      <div className="p-6 border mt-4 border-primaryColor shadow-xl rounded-lg">
-        <div className="pb-2">
-          <Image
-            className=""
-            src={user?.photoURL || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU"}
-            height={70}
-            width={70}
-            alt="Profile image"
-          />
-          <Link
-            href="/dashboard/editProfile"
-            className="flex gap-2 my-2 font-bold hover:text-blue-600 rounded p-2 items-center"
-          >
-            <FaRegEdit className="text-xl " /> Edit Profile
-          </Link>
-        </div>
-        <hr />
-        <div className="py-4 space-y-3">
-          <h2 className="">
-            <span className="font-bold text-xl">User Name : </span> {user?.displayName}
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">User Email :</span>{" "}
-            {user?.email}
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">Education :</span> Bsc In
-            Computer Science. BUET.
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">Resume Drive Link :</span> 
-            https://drive.google.com/file/d/1XN12blDUvZ4QwPf7pMPImD11M5Q7XKnd/view
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">Cover Later Drive Link : </span>{" "}
-            https://drive.google.com/file/d/1hOkkHx9gMwL2WGpxPkAvBDbgtV-Nqi_P/view
-          </h2>
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">PortFolio : </span> 
-            https://my-portfolio-e3e7b.web.app/
-          </h2>
-          
-          <hr />
-          <h2>
-            <span className="font-bold text-xl">Location : </span> Noakhali, Bangladesh.
-          </h2>
-        </div>
+    <div className="dark:bg-[#000000]  bg-lightWhiteColor">
+      <div className="container md:p-10">
+      
+        <Card className="p-6 px-10 border mt-4 max-w-2xl mx-auto shadow-2xl rounded-lg">
+          <div className="">
+            <div className="pb-2 flex justify-center">
+              <Avatar
+              isBordered 
+            
+                src={
+                  user?.photoURL ||
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSBDUPuDbUF3wr7i-mzGixQ3DnAwgSObvNg&usqp=CAU"
+                }
+                className="w-24 h-24 text-large"
+                
+              />
+            </div>
+
+            <div className="flex justify-center">
+              <Link
+                href="/dashboard/editProfile"
+                className="flex gap-2   font-bold hover:text-primaryColor text-center rounded p-2 "
+              >
+                <FaRegEdit className="text-2xl " /> Edit Profile
+              </Link>
+            </div>
+          </div>
+          <div className="py-3 mt-5 space-y-3">
+            <h2 className="md:text-xl">
+              <span className="font-bold ">USER NAME : </span>{" "}
+              <span className="font-semibold text-secondaryColor">
+                {userInfo?.name}
+              </span>
+            </h2>
+            <hr />
+            <h2 className="md:text-xl">
+              <span className="font-bold ">USER EMAIL :</span>{" "}
+              <span className="font-semibold text-secondaryColor">
+                {" "}
+                {userInfo?.email}
+              </span>
+            </h2>
+            <hr />
+            <h2 className="md:text-xl">
+              <span className="font-bold">EDUCATION :</span>
+              <span className="">
+                {userInfo?.education || (
+                  <Link
+                    href="/dashboard/editProfile"
+                    className="text-lightPrimaryColor font-semibold"
+                  >
+                    {" "}
+                    + Add Education
+                  </Link>
+                )}
+              </span>
+            </h2>
+
+            <hr />
+            <h2 className="md:text-xl">
+              <span className="font-bold">PORTFOLIO : </span>
+              {userInfo?.portfolio || (
+                <Link
+                  href="/dashboard/editProfile"
+                  className="text-lightPrimaryColor font-semibold"
+                >
+                  {" "}
+                  + Add Portfolio
+                </Link>
+              )}
+            </h2>
+
+            <hr />
+            <h2 className="md:text-xl">
+              <span className="font-bold">LINKEDIN : </span>
+              {userInfo?.linkedin || (
+                <Link
+                  href="/dashboard/editProfile"
+                  className="text-lightPrimaryColor font-semibold"
+                >
+                  {" "}
+                  + Add Linkedin Profile
+                </Link>
+              )}
+            </h2>
+
+            <hr />
+            <h2 className="md:text-xl">
+              <span className="font-bold text-xl">LOCATION : </span>{" "}
+              <span className="">
+                {userInfo?.education || (
+                  <Link
+                    href="/dashboard/editProfile"
+                    className="text-lightPrimaryColor font-semibold"
+                  >
+                    {" "}
+                    + Add Location
+                  </Link>
+                )}
+              </span>
+            </h2>
+          </div>
+        </Card>
       </div>
     </div>
   );

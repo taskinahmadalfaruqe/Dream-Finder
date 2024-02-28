@@ -1,5 +1,5 @@
 import CommonButton from "@/components/shared/CommonButton";
-import { Button } from "@nextui-org/react";
+import { Button, Card } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
 import { FaRightFromBracket } from "react-icons/fa6";
@@ -8,15 +8,15 @@ const ChosenPackage = ({ allItem }) => {
   return (
     <>
       <div className=" ">
-        <h2 className=" text-2xl font-bold  py-3 pt-10 text-secondaryColor">
+        <h2 className=" text-2xl font-bold  py-3 pt-20 text-secondaryColor">
         PACKAGE YOU CHOSE
         </h2>
       </div>
-      <div className="border-2 p-5 rounded bg-whiteColor  shadow-xl w-[300px] ">
+      <Card className="border-2 p-5 rounded   shadow-xl w-[300px] ">
         <p className="flex items-center rounded-sm font-semibold  bg-lightPrimaryColor text-whiteColor px-2 w-max">
           {allItem.title.toLocaleUpperCase()}
         </p>
-        <p className="py-4">
+        <p className="py-4 ">
           <span className="text-3xl font-bold ">$ {allItem.price} </span>
           <span className="text-md">/{allItem.limit}</span>
         </p>
@@ -47,7 +47,7 @@ const ChosenPackage = ({ allItem }) => {
             TRY ANOTHER PACKAGE
           </Button>
         </Link>
-      </div>
+      </Card>
     </>
   );
 };
