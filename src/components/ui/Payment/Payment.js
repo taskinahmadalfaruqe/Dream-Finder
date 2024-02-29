@@ -19,7 +19,7 @@ const Payment = ({ subsPaymentId }) => {
   const allItem = subsInfo.find((item) => item.id == subsPaymentId);
 
   return (
-    <div className=" md:flex justify-between container">
+    <div className=" md:flex justify-between container ">
       <div className="md:w-1/2">
         <div className=" ">
           <h2 className=" text-2xl font-bold  py-3 pt-20 text-secondaryColor">
