@@ -35,7 +35,8 @@ export default function SignUpForm() {
           name: res?.user?.displayName,
           profileImage:res?.user?.photoURL,
           isPremium:false,
-          isAdmin:false
+          isAdmin:false,
+          role:"user"
         };
 
         // if user not exist in db, then create user in db by there information.
