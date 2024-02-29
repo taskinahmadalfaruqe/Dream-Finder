@@ -19,6 +19,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { TiDocumentText } from "react-icons/ti";
+import { FaRegEdit } from "react-icons/fa";
 
 const Page = () => {
   const axiosSecure = useAxiosSecure();
@@ -40,9 +41,13 @@ const Page = () => {
 
   const renderCell = useCallback(
     (job, columnKey) => {
-   
-
+      console.log(columnKey);
       let cellValue = job[columnKey];
+      
+      console.log(cellValue);
+      if(columnKey === "appliedDate"){
+        cellValue = new Date(job[columnKey]).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+      }
       if (columnKey.includes(",")) {
         const x = columnKey.split(",");
         cellValue = `$${job[x[0]]}-$${job[x[1]]}`;
@@ -78,8 +83,8 @@ const Page = () => {
           );
         case "status":
           return (
-            <Chip className="capitalize text-nowrap" size="sm" variant="flat">
-              {cellValue}
+            <Chip className="capitalize text-nowrap flex" size="" variant="flat">
+             <p className="flex items-center gap-2"> {cellValue}  <FaRegEdit  style={{  color: "#00BE63" }} /></p>
             </Chip>
           );
        
@@ -147,7 +152,7 @@ const Page = () => {
 const columns = [
   { name: "CATEGORY", uid: "category" },
   { name: "JOB TITLE", uid: "jobTitle" },
-  { name: "Applicant", uid: "applicant" },
+  { name: "APPLICANT", uid: "applicant" },
   { name: "APPLIED DATE", uid: "appliedDate" },
   { name: "STATUS", uid: "status" },
   { name: "SUBMISSIONS", uid: "action" },
