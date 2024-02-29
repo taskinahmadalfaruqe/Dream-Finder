@@ -6,7 +6,7 @@ const PaymentDynamicPage = ({params}) => {
     return (
        <div>
         <NextNavbar />
-         <div className='bg-lightWhiteColor dark:bg-black  h-lvh '>
+         <div className='bg-lightWhiteColor   h-lvh '>
          
             <Payment subsPaymentId={params?.subsPaymentId}></Payment>
         </div>
