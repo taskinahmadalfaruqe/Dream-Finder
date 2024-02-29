@@ -21,7 +21,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
   const { isOpen, onOpenChange } = actions;
 
-  const { id, company_name, category } = jobInfo;
+  const { id, company_name, category,  } = jobInfo;
   const textareaRef = useRef(null);
   const { user } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -57,7 +57,9 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         company_name,
         status:"pending",
         fileName:selectedFile?.name,
-        size:selectedFile?.size
+        size:selectedFile?.size,
+        applicant: user?.displayName,
+        jobTitle: jobInfo?.jobTitle
       };
       fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
         method: "POST",
