@@ -80,7 +80,6 @@ const Page = () => {
     // //////////////////
     // post the job
     const res = await axiosSecure.post("/api/v1/post-job", formData);
-    console.log(res.data);
 
     if (res?.data?.insertedId || res?.data?.acknowledged) {
       router.push("/dashboard/manage-jobs");
