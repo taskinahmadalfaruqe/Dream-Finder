@@ -71,13 +71,7 @@ const CheckoutForm = ({ price, title, limit }) => {
         text: error.message,
       });
     } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `Welcome ! Now you're a ${limit} ${title} user.`,
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      
       console.log("payment method", paymentMethod);
       router.push("/");
     }
@@ -102,7 +96,55 @@ const CheckoutForm = ({ price, title, limit }) => {
         text: confirmError.message,
       });
     } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Welcome ! Now you're a ${limit} ${title} user.`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
       console.log("payment intent", paymentIntent);
+
+      const paymentInfo = {
+        user: user?.email,
+        amount: paymentIntent?.amount,
+        paymentId: paymentIntent?.id,
+        paymentClientSecret: paymentIntent?.client_secret,
+        paymentStatus: paymentIntent?.status,
+      }
+
+      await fetch(`http://localhost:5000/users/paymentInfo`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentInfo),
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+
+      
+      
+      let membership = '';
+      if(paymentIntent.amount === 5.55*100){
+        membership = "basicMonth"
+      }
+     else if(paymentIntent.amount === 55.25*100){
+        membership = "basicYear"
+      }
+     else if(paymentIntent.amount === 10.99*100){
+        membership = "premiumMonth"
+      }
+      else {
+        membership = "premiumYear"
+      };
+      
+      await fetch(`http://localhost:5000/users/update/${user?.email}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ packege: membership }),
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+
     }
   };
 
@@ -111,23 +153,7 @@ const CheckoutForm = ({ price, title, limit }) => {
       <div className="w-full">
         <Card className="max-w-lg rounded-sm px-5 md:px-10 py-5 shadow-xl  border-2">
           <form onSubmit={handleSubmit} className="">
-            {/* <CardElement
-        className="border-2 border-red-500 shadow-xl rounded p-10"
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
-              },
-            },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      /> */}
+           
             <div className="py-3  border-b-2">
               <CardNumberElement options={option} />
             </div>
@@ -152,5 +178,7 @@ const CheckoutForm = ({ price, title, limit }) => {
     </div>
   );
 };
+
+
 
 export default CheckoutForm;
