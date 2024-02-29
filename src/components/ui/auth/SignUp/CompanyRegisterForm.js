@@ -11,6 +11,8 @@ import { useRouter } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import { Spinner } from "@nextui-org/react";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
+import axios from "axios";
+import toast from "react-hot-toast";
 const CompanyRegisterForm = () => {
   const [isPasswordType, setIsPasswordType] = useState(true);
   const [err, setErr] = useState("");
@@ -29,38 +31,44 @@ const CompanyRegisterForm = () => {
     reset,
   } = useForm();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     setIsEmailSingInBtnActive(true);
-    console.log(data);
+
     const { email, password, name, photoUrl } = data;
-    console.log(email, password);
 
-    // sign up / create company entries using firebase
-    createUser(email, password)
-      .then(async res => {
-        console.log(res);
-        router.push("/auth/signin");
+    const userData = {
+      name,
+      email,
+      role: "hr",
+      profileImage: photoUrl,
+      isPremium: false,
+      isAdmin: false,
+    };
 
-        await updateUserData(name, photoUrl);
-
-        const userData = {
-          name,
-          email,
-          role: "hr",
-        };
-        ////////////////////////////
-        // if user not exist in db, then create user in db by there information.
-        await axiosPublic.post("/create/user", userData);
-
-        await logOut();
-        reset();
+    // if user not exist in db, then create user in db by there information.
+    const response = await axiosPublic.post("/create/user", userData);
+    if (response?.data?.insertedId || response?.data?.acknowledged) {
+     
+      // sign up / create company entries using firebase
+      createUser(email, password)
+        .then(async (res) => {
+          toast.success("Successfully Sign Up as Company");
+          router.push("/auth/signin");
+          await updateUserData(name, photoUrl);
+          
+          await logOut();
+          reset();
+          setIsEmailSingInBtnActive(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsEmailSingInBtnActive(false);
+          setErr("something is wrong! please try again.");
+        });
+    } else {
+      toast.error("Company already exist");
         setIsEmailSingInBtnActive(false);
-      })
-      .catch(err => {
-        console.log(err);
-        setIsEmailSingInBtnActive(false);
-        setErr("something is wrong! please try again.");
-      });
+    }
   };
 
   return (
@@ -153,7 +161,7 @@ const CompanyRegisterForm = () => {
             />
             {isPasswordType ? (
               <RiFingerprintLine
-                onClick={() => setIsPasswordType(x => !x)}
+                onClick={() => setIsPasswordType((x) => !x)}
                 className="cursor-pointer text-2xl absolute top-12 right-6 text-secondaryColor"
               ></RiFingerprintLine>
             ) : (

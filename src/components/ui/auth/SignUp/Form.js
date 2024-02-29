@@ -45,6 +45,7 @@ const Form = () => {
             const userInfo = {
               name,
               email,
+              role:"user",
               profileImage:photoUrl,
               isPremium:false,
               isAdmin:false
