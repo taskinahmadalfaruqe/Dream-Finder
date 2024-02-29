@@ -6,12 +6,12 @@ const PaymentDynamicPage = ({params}) => {
     return (
        <div>
         <NextNavbar />
-         <div className='bg-lightWhiteColor   h-lvh '>
-         
+         <div className='dark:bg-[#000000]  bg-lightWhiteColor  h-lvh '>
             <Payment subsPaymentId={params?.subsPaymentId}></Payment>
         </div>
        </div>
     );
 };
+// bg-lightWhiteColor 
 
 export default PaymentDynamicPage;

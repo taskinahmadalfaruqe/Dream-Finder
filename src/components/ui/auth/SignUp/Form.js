@@ -32,9 +32,7 @@ const Form = () => {
 
   const onSubmit = async data => {
     setIsEmailSingInBtnActive(true);
-    console.log(data);
     const { email, password, name, photoUrl } = data;
-    console.log(email, password);
 
     // sign up / create user using firebase
     createUser(email, password)
@@ -47,11 +45,14 @@ const Form = () => {
             const userInfo = {
               name,
               email,
+              role:"user",
+              profileImage:photoUrl,
+              isPremium:false,
+              isAdmin:false
             };
-            ////////////////////////////
+       
             // if user not exist in db, then create user in db by there information.
             await axiosPublic.post("/create/user", userInfo);
-            ////////////////////////////
             await logOut();
             setIsEmailSingInBtnActive(false);
             reset();

@@ -29,7 +29,7 @@ const AppliedJobButton = ({ content, fileName }) => {
   return (
     <div>
       <button onClick={handleDownload}>
-        <BsDownload style={{fontSize:22}} />
+        <BsDownload className="dark:text-secondaryColor" style={{fontSize:22}} />
       </button>
     </div>
   );

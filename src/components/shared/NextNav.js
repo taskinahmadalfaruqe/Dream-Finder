@@ -19,7 +19,7 @@ import { Badge } from "@nextui-org/react";
 import { FaBell } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useContextData from "@/hooks/useContextData";
 import SignOutModal from "./LogoutModal";
 import ThemeSwitch from "@/app/ThemeSwitch";
@@ -39,6 +39,7 @@ const NextNavbar = () => {
   const path = usePathname();
   const [navbarSize, setNavbarSize] = useState("xl");
   const { user } = useContextData();
+  const router = useRouter();
 
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
@@ -71,7 +72,7 @@ const NextNavbar = () => {
           maxWidth={navbarSize}
           shouldHideOnScroll={true}
           onMenuOpenChange={setIsMenuOpen}
-          className="navbarCustomDesign"
+          className="navbarCustomDesign  shadow-xl dark:shadow-darkColor"
         >
           <NavbarContent>
             <NavbarMenuToggle
@@ -114,6 +115,7 @@ const NextNavbar = () => {
                 Home
               </Link>
             </NavbarItem>
+
             <NavbarItem>
               <Link
                 href="/Find-Jobs"
@@ -199,7 +201,7 @@ const NextNavbar = () => {
                   color="success"
                   variant="flat"
                   style={{ borderRadius: "5px" }}
-                  className="font-bold rounded border border-primaryColor"
+                  className="font-bold"
                 >
                   Sign in
                 </Button>
@@ -252,12 +254,6 @@ const NextNavbar = () => {
           </NavbarContent>
 
           <NavbarMenu>
-            {/* {mobileLinks.map((item, index) => (
-              <NavbarMenuItem key={`${item}-${index}`}>
-                <Link href={item.path}>{item.title}</Link>
-              </NavbarMenuItem>
-            ))} */}
-
             <div className="min-h-[70vh] my-10 p-10">
               {mobileLinks.map((link, index) => (
                 <NavbarMenuItem key={`${link}-${index}`} className="w-full">

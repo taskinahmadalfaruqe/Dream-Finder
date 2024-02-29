@@ -15,12 +15,13 @@ import { FiUpload } from "react-icons/fi";
 import { AuthContext } from "@/providers/AuthProvider";
 import {useDisclosure} from "@nextui-org/react";
 import SuccessToast from "@/components/shared/SuccessToast";
+import Swal from "sweetalert2";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
   const { isOpen, onOpenChange } = actions;
 
-  const { id, company_name, category } = jobInfo;
+  const { id, company_name, category,  } = jobInfo;
   const textareaRef = useRef(null);
   const { user } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -56,9 +57,11 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
         company_name,
         status:"pending",
         fileName:selectedFile?.name,
-        size:selectedFile?.size
+        size:selectedFile?.size,
+        applicant: user?.displayName,
+        jobTitle: jobInfo?.jobTitle
       };
-      fetch("https://dream-finder-server.vercel.app/uploadResume", {
+      fetch("https://dream-finder-file-upload-server.vercel.app/uploadResume", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,9 +82,21 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
           .then(data => {
             onOpenSuccess()
           })
-          .catch(error=> console.log(error))
+          .catch(error=> Swal.fire({
+            title:error.message,
+            icon:"error",
+            denyButtonColor:"#00BE63",
+            cancelButtonColor:"#00BE63",
+            confirmButtonColor:"#00BE63"
+          }))
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>Swal.fire({
+          title:error.message,
+          icon:"error",
+          denyButtonColor:"#00BE63",
+          cancelButtonColor:"#00BE63",
+          confirmButtonColor:"#00BE63"
+        }));
     };
 
     fileReader.readAsBinaryString(selectedFile);

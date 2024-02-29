@@ -33,12 +33,14 @@ export default function SignUpForm() {
         const userData = {
           email: res?.user?.email,
           name: res?.user?.displayName,
+          profileImage:res?.user?.photoURL,
+          isPremium:false,
+          isAdmin:false,
+          role:"user"
         };
-        ////////////////////////////
+
         // if user not exist in db, then create user in db by there information.
         await axiosPublic.post("/create/user", userData);
-        ////////////////////////////
-        console.log("google authentication successfully.");
         router.push("/Find-Jobs");
         setIsGoogleAuthBtnActive(false);
       })
