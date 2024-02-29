@@ -16,6 +16,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 import {useDisclosure} from "@nextui-org/react";
 import SuccessToast from "@/components/shared/SuccessToast";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 export default function ApplicationSubmissionForm({ actions, jobInfo }) {
   const {isOpen:isOpenSuccess, onOpen:onOpenSuccess, onOpenChange:onOpenChangeSuccess} = useDisclosure();
@@ -35,7 +36,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
 
 
   const handleSubmit = (event, onClose) => {
-
+ const toastId = toast.loading("loading...")
     event.preventDefault();
     if (!selectedFile) {
       setFileName(<p className="text-redColor">&nbsp; This Field Is Required</p>)
@@ -81,6 +82,7 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
           .then(res => res.json())
           .then(data => {
             onOpenSuccess()
+            toast.remove(toastId)
           })
           .catch(error=> Swal.fire({
             title:error.message,
@@ -90,13 +92,16 @@ export default function ApplicationSubmissionForm({ actions, jobInfo }) {
             confirmButtonColor:"#00BE63"
           }))
         })
-        .catch((error) =>Swal.fire({
-          title:error.message,
-          icon:"error",
-          denyButtonColor:"#00BE63",
-          cancelButtonColor:"#00BE63",
-          confirmButtonColor:"#00BE63"
-        }));
+        .catch((error) =>{
+          toast.remove(toastId)
+          Swal.fire({
+            title:error.message,
+            icon:"error",
+            denyButtonColor:"#00BE63",
+            cancelButtonColor:"#00BE63",
+            confirmButtonColor:"#00BE63"
+          })
+        });
     };
 
     fileReader.readAsBinaryString(selectedFile);
