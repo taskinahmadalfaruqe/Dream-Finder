@@ -212,6 +212,11 @@ const dashboardHrLinks = [
   },
   // ////////
   {
+    heading: "Applyed Job",
+    path: "/dashboard/applyed-job",
+    icon: FaListOl,
+  },
+  {
     heading: "Sort List",
     path: "/dashboard/sort-list",
     icon: FaListOl,
