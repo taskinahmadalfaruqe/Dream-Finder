@@ -99,7 +99,7 @@ const NextNavbar = () => {
           </NavbarContent>
 
           <NavbarContent className="hidden lg:flex gap-4">
-            <NavbarItem className="">
+            <NavbarItem onClick={()=> window.location.href = "/"} className="">
               <Link
                 href="/"
                 style={{
