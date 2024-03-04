@@ -93,7 +93,7 @@ const JobSearchSection = ({ state }) => {
    setPostedDate(event.target.value)
   };
   return (
-    <Card className="sectionSearchSection h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  ">
+    <Card className="sectionSearchSection h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  hidden lg:block">
       <CardBody className="p-5">
         <ScrollShadow
           hideScrollBar

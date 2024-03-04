@@ -3,11 +3,14 @@ import React from "react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
 export default function AccordinCard() {
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set(["1"]));
+
 
     return (
         <div className="pb-20">
-            <Accordion variant="bordered">
-                <AccordionItem key="1" aria-label="Accordion 1" title="Will Dream Finder integrate with job search platforms or company career pages?">
+            <Accordion variant="bordered" selectedKeys={selectedKeys}
+      onSelectionChange={setSelectedKeys}>
+                <AccordionItem key="1" aria-label="Accordion 1"  title="Will Dream Finder integrate with job search platforms or company career pages?">
                     <p>Yes, Dream Finder integrates with popular job boards, allowing users to import job details directly into their tracker.</p>
                 </AccordionItem>
                 <AccordionItem key="2" aria-label="Accordion 2" title="Will Dream Finder send notifications for application deadlines or interview schedules?">

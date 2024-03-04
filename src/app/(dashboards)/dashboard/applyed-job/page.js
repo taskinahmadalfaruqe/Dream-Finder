@@ -92,7 +92,7 @@ const Page = () => {
         case "action":
           return (
             <div className="relative flex items-center  justify-center">
-              <Link href={`/Find-Jobs/${job?._id}`}>
+              <Link href={`/dashboard/appliedJob/${job?._id}`}>
                 <Tooltip content="Details">
                     <TiDocumentText
                       style={{ fontSize: 28, color: "#00BE63" }}
