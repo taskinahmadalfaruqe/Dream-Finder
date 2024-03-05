@@ -4,11 +4,11 @@ import "./banner.css";
 import { Button, Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
+
 
 const HomePageBanner = () => {
   const router = useRouter();
-  const textArray = [];
+
   const {
     register,
     handleSubmit,
@@ -21,9 +21,18 @@ const HomePageBanner = () => {
     router.push(`/Find-Jobs?category=${searchValue}`);
   };
 
+  
+  // const staticTextColor = "text-blue-500";
+  // const textArray = [
+  //   "We Make Dreams a Reality by",
+  //   "Getting You Hired!",
+  // ];
+  // const textArrayColor = "orange";
+  // const cursor = "_";
+
   return (
     <motion.div
-      initial={{ y: 800, opacity: 0 }}
+      initial={{ y: 500, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1.5 }}
       className="homePageBanner h-lvh w-full relative flex justify-center items-center"
@@ -37,6 +46,7 @@ const HomePageBanner = () => {
               Getting You Hired!
             </span>
           </h1>
+         
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="relative max-w-[90%] ">
