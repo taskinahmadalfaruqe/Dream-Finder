@@ -93,7 +93,7 @@ const JobSearchSection = ({ state }) => {
    setPostedDate(event.target.value)
   };
   return (
-    <Card className="sectionSearchSection h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  hidden lg:block">
+    <Card className="sectionSearchSection  h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  hidden lg:block">
       <CardBody className="p-5">
         <ScrollShadow
           hideScrollBar
@@ -115,7 +115,7 @@ const JobSearchSection = ({ state }) => {
                   ))}
                 </Select>
               </div>
-              <div className=" mt-5 md:mt-0 lg:mt-5 relative md:flex-1  lg:max-w-xs">
+              <div className=" mt-5 md:mt-0 lg:mt-5 relative md:flex-1">
                 <Input
                   type="text"
                   label="Location"
