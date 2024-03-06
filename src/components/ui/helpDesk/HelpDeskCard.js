@@ -7,7 +7,7 @@ import { MdMarkEmailRead } from "react-icons/md";
 export default function HelpDeskCard() {
   return (
     <Card className="shadow-xl rounded-lg py-1">
-      <div className=" max-w-lg p-6   rounded-lg shadow   dark:border-gray-700 dark:hover:bg-gray-700">
+      <div className="max-w-lg p-6   rounded-lg ">
         <h5 className="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           GET IN TOUCH
         </h5>
