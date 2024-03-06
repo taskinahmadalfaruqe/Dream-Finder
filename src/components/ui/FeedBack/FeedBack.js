@@ -84,7 +84,7 @@ const FeedBack = async () => {
                         </div>
                         <div className="  ">
                           <p className="text-2xl text-primaryColor font-semibold">
-                            {feedback.name}
+                            {feedback?.name.slice(0,20)} {feedback?.name.length >20 && "..."}
                           </p>
 
                           <p className="font-semibold">{feedback.comment}</p>
