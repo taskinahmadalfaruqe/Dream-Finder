@@ -48,7 +48,7 @@ const FeedBack = async () => {
                         </div>
                         <div className="  ">
                           <p className="text-2xl text-primaryColor font-semibold">
-                            {feedback?.name}
+                          {feedback?.name.slice(0,20)} {feedback?.name.length >20 && "..."}
                           </p>
 
                           <p className="font-semibold">{feedback?.comment?.slice(0,35)}{feedback?.comment.length > 34 && "..."}</p>
@@ -87,7 +87,7 @@ const FeedBack = async () => {
                             {feedback?.name.slice(0,20)} {feedback?.name.length >20 && "..."}
                           </p>
 
-                          <p className="font-semibold">{feedback.comment}</p>
+                          <p className="font-semibold">{feedback?.comment?.slice(0,35)}{feedback?.comment.length > 34 && "..."}</p>
                           <Rating
                             style={{ maxWidth: 100 }}
                             value={feedback.rating}
