@@ -9,6 +9,7 @@ import { Rating } from "@smastrom/react-rating";
 import img from "@/assets/team/team4.jpg";
 import { Card, Image } from "@nextui-org/react";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
+import axios from "axios";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 const FeedBack = async () => {
@@ -39,7 +40,7 @@ const FeedBack = async () => {
                         <div className="avatar">
                           <div className="w-16 h-16 rounded-full ring ring-primaryColor ring-offset-secondaryColor ring-offset-2">
                             <Image
-                              src={feedback.photo}
+                              src={feedback?.photo}
                               className="rounded-full w-16 h-16"
                               alt="photo"
                             />
@@ -47,13 +48,13 @@ const FeedBack = async () => {
                         </div>
                         <div className="  ">
                           <p className="text-2xl text-primaryColor font-semibold">
-                            {feedback.name}
+                          {feedback?.name.slice(0,20)} {feedback?.name.length >20 && "..."}
                           </p>
 
-                          <p className="font-semibold">{feedback.comment}</p>
+                          <p className="font-semibold">{feedback?.comment?.slice(0,35)}{feedback?.comment.length > 34 && "..."}</p>
                           <Rating
                             style={{ maxWidth: 100 }}
-                            value={feedback.rating}
+                            value={feedback?.rating}
                             readOnly
                           />
                         </div>
@@ -83,10 +84,10 @@ const FeedBack = async () => {
                         </div>
                         <div className="  ">
                           <p className="text-2xl text-primaryColor font-semibold">
-                            {feedback.name}
+                            {feedback?.name.slice(0,20)} {feedback?.name.length >20 && "..."}
                           </p>
 
-                          <p className="font-semibold">{feedback.comment}</p>
+                          <p className="font-semibold">{feedback?.comment?.slice(0,35)}{feedback?.comment.length > 34 && "..."}</p>
                           <Rating
                             style={{ maxWidth: 100 }}
                             value={feedback.rating}
