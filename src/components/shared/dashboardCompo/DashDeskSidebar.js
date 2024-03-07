@@ -36,7 +36,7 @@ const DashDeskSidebar = () => {
 
   return (
     <>
-      <ScrollShadow className="h-[65vh]">
+      <ScrollShadow className="h-[55vh] 2xl:h-[60vh]">
         {/* dashboard navigation skeleton  */}
         {(isAdminLoading || isHrLoading) &&
           Array.from({ length: 8 }).map((_, index) => (
