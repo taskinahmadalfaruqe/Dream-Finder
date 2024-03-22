@@ -31,9 +31,6 @@ const DashDeskSidebar = () => {
   const [isHr, isHrLoading] = useHr();
   const { user } = useContextData();
 
-  // console.log("is Hr?", isHr, "hr loading?", isHrLoading);
-  // console.log("is Admin?", isAdmin, "Admin loading?", isAdminLoading);
-
   return (
     <>
       <ScrollShadow className="h-[55vh] 2xl:h-[60vh]">
