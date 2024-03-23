@@ -28,7 +28,7 @@ const JobSearchSection = ({ state }) => {
     setSubmit,
     setPostedDate,
     postedDate,
-    setPage
+    setPage,
   } = state;
   const category = [
     "all",
@@ -60,46 +60,41 @@ const JobSearchSection = ({ state }) => {
     },
     {
       value: "",
-      text: "ALL"
+      text: "ALL",
     },
-
   ];
 
-  const handleCategory = (e) => {
+  const handleCategory = e => {
     const value = e.target.value;
     setCategory(value == "all" ? "" : value);
     console.log(e.target.value);
   };
 
-  const handleLocation = (e) => {
+  const handleLocation = e => {
     setLocation(e.target.value);
   };
 
-  const handleType = (value) => {
+  const handleType = value => {
     const index = type.indexOf(value);
     if (index === -1) {
-      setType((prevType) => [...prevType, value]);
+      setType(prevType => [...prevType, value]);
     } else {
-      setType((prevType) => prevType.filter((item) => item !== value));
+      setType(prevType => prevType.filter(item => item !== value));
     }
   };
 
-  const handleSalary = (value) => {
+  const handleSalary = value => {
     setMinSalary(value[0]);
     setMaxSalary([value[1]]);
   };
 
-  const handlePostedDate = (event) => {
-   setPostedDate(event.target.value)
+  const handlePostedDate = event => {
+    setPostedDate(event.target.value);
   };
   return (
-    <Card className="sectionSearchSection  h-[calc(100vh-70px)] overflow-y-hidden sticky top-0  hidden lg:block">
+    <Card className="sectionSearchSection  overflow-y-hidden sticky top-0  hidden lg:block">
       <CardBody className="p-5">
-        <ScrollShadow
-          hideScrollBar
-          offset={60}
-          size={200}
-        >
+        <ScrollShadow hideScrollBar offset={60} size={200}>
           <div className="">
             <div className="md:flex lg:block md:gap-3 lg:gap-0">
               <div className="md:flex-1">
@@ -108,7 +103,7 @@ const JobSearchSection = ({ state }) => {
                   className="md:w-full border border-primaryColor rounded-xl"
                   onChange={handleCategory}
                 >
-                  {category.map((item) => (
+                  {category.map(item => (
                     <SelectItem key={item} value={item}>
                       {item.toUpperCase()}
                     </SelectItem>
@@ -232,17 +227,20 @@ const JobSearchSection = ({ state }) => {
                 className="md:w-full border border-primaryColor rounded-xl"
                 onChange={handlePostedDate}
               >
-                    {dateLimit.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.text.toUpperCase()}
-                    </SelectItem>
-                  ))}
+                {dateLimit.map(item => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.text.toUpperCase()}
+                  </SelectItem>
+                ))}
               </Select>
             </div>
-            <div onClick={() => 
-           { setSubmit(!submit)
-            setPage(1)}
-            } className="mt-10 ">
+            <div
+              onClick={() => {
+                setSubmit(!submit);
+                setPage(1);
+              }}
+              className="mt-10 "
+            >
               <CommonButton buttonName={"Search"} />
             </div>
           </div>
