@@ -7,6 +7,7 @@ const AdminProfile = () => {
         <div>
              <div className="relative max-w-96 px-6 py-6  text-center bg-lightWhiteColor  border border-lightPrimaryColor rounded-3xl rounded-tr-none rounded-bl-none lg:mt-0 xl:px-10">
    <div className="text-whiteColor bg-primaryColor border border-primaryColor text-xl px-3 py-1 rounded-lg rounded-tr-none font-bold w-fit absolute right-[10px] top-[10px]">Admin</div>
+
    
     <div className="space-y-4 xl:space-y-6">
         <Image className="mx-auto rounded-full" src={profileImage} height="144" width="144" alt="author avatar"/>
